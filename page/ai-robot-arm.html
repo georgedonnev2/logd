@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>机械臂相关说明</title>
+    <link rel="stylesheet" type="text/css" href="../css/logd.css" />
+</head>
+
+<body>
+
+    <header>
+        <h1>机械臂相关说明</h1>
+        <section class="doc-main-info">
+            <p class="doc-author">George Donne</p>
+            <p class="doc-last-update">to be updated</p>
+            <p class="doc-first-on">to be released</p>
+        </section>
+    </header>
+
+    <footer>
+
+        <p> &copy George Donne 2024-2025. All Rights Reserved. 苏ICP备2021027062号-1&nbsp&nbsp|&nbsp&nbsp
+            <a href="#">关于</a>
+        </p>
+        <p> Support:
+            <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
+
+        </p>
+    </footer>
+
+    <main>
+
+        <!-- 华为样例的主程序--客户端 -->
+        <section>
+            <h2 id="机械臂华为样例的主程序客户端">
+                <a href="#机械臂华为样例的主程序客户端">机械臂华为样例的主程序--客户端</a>
+            </h2>
+
+            <p>应该是main.py。</p>
+
+        </section>
+
+        <!-- 华为样例的主程序--服务端 -->
+        <section>
+            <h2 id="机械臂华为样例的主程序服务端">
+                <a href="#机械臂华为样例的主程序服务端">机械臂华为样例的主程序--服务端</a>
+            </h2>
+
+            <p>应该是dofbot_server.cpp，/robot-arm/E2E-Sample/ros2_robot_arm/ros2_ws/src/dofbot_moveit/src/dofbot_server.cpp。
+            </p>
+
+        </section>
+
+        <section>
+            <h2 id="尚不大理解的程序">
+                <a href="#尚不大理解的程序">尚不大理解的程序</a>
+            </h2>
+
+            <h3 id="函数的2返回值赋值给变量和下划线">
+                <a href="#函数的2返回值赋值给变量和下划线">调用有2个返回值的函数，赋值给（即等号左边是） "变量, _"</a>
+            </h3>
+
+            <pre><code># main.py
+xy = [90, 135]
+...
+xy, _ = read_XYT(XYT_path) # 等号左边是什么含义
+
+'''
+240713:
+1、ready_XYT()返回2个值，1个list（2个整数），和1个整数。
+2、等号左边的意思是：只保存返回的list到xy中，另一个返回值整数没有保存。但是不能
+写 xy = （即没有 ,_），要报错的。
+'''
+        </code></pre>
+
+        </section>
+
+
+        <!-- Python 相关基础 -->
+        <section>
+            <h2 id="Python相关基础">
+                <a href="#Python相关基础">Python相关基础</a>
+            </h2>
+        </section>
+
+        <p>列表list和元组tuple</p>
+        <p>Python内置的一种数据类型是列表：list。list是一种有序的集合，可以随时添加和删除其中的元素。
+            另一种有序列表叫元组：tuple。tuple和list非常类似，但是tuple一旦初始化就不能修改。</p>
+        <p>从长相看，方括号[]的是list，圆括号()的是tuple。比如，如下list1是列表list，tuple1是元组tuple。</p>
+        <pre>
+            <code>
+>>> list1 =  ['Michael', 'Bob', 'Tracy']                               
+>>> tuple1 =  ('Michael', 'Bob', 'Tracy')                               
+            </code></pre>
+        <p>可参考：</p>
+        <ur>
+            <li>
+                <a href="https://www.bookstack.cn/read/liaoxuefeng-python30/11.md">4.3 使用list和tuple</a>，廖雪峰 Python3
+                教程，bookstack.cn。
+            </li>
+        </ur>
+
+        <section>
+            <h2 id="参考资料">
+                <a href="#参考资料">参考资料</a>
+            </h2>
+
+            <p>主要参考资料如下：</p>
+
+            <ol>
+                <li>
+                    DofBot树莓派视觉机械臂资料地址：<a href="https://www.yahboom.com/study/Dofbot-Pi" target="_blank">链接</a>
+                </li>
+
+            </ol>
+        </section>
+
+
+    </main>
+
+</body>
+
+</html>

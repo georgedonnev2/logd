@@ -1,5 +1,10 @@
 :root {
     --font-size: 16px;
+
+    --h2-color: darkcyan;
+    --h3-color: #666;
+
+    --text-gray-color: #666; 
 }
 
 * {
@@ -25,27 +30,7 @@ body {
 
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
-    code {
-        color: #999;
-    }
 
-    h2 {
-        padding: 1rem 0;
-    
-    a {
-        color: #333;
-        text-decoration: none;
-
-    }}
-    li, 
-    p {
-        font-size: 1rem;
-        line-height: 2rem;
-    }
-
-    ul {
-        padding-left: 2rem; 
-    }
 }
 
 header {
@@ -53,19 +38,41 @@ header {
     grid-column: 1 / span 16;
 
     background-color: #eee;
+    padding: 0.5rem 0;
 
-    h1,
+    h1 {
+        font-size: 2.25rem;
+        text-align: center;
+    }
+
     p {
+        display: inline;
         text-align: center;
 
     }
 
     section.doc-main-info {
         text-align: center;
+
+        .doc-author::before {
+            content: "by:";
+            color: var(--text-gray-color);
+            padding: 0 0.25rem;
+        }
+
+        .doc-last-update::before {
+            content: "// last update on:";
+            color: var(--text-gray-color);
+            padding: 0 0.25rem;      
+        }
+
+        .doc-first-on::before {
+            content: "// released on:";
+            color: var(--text-gray-color);
+            padding: 0 0.25rem;   
+        }
     }
-    p {
-        display: inline;
-    }
+
 }
 
 footer {
@@ -73,6 +80,11 @@ footer {
     grid-column: 1 / span 16;
 
     background-color: #eee;
+    padding: 0.5rem 0;
+
+    a {
+        color: #333;
+    }
 
     p {
         font-size: 0.75rem;
@@ -83,4 +95,81 @@ footer {
 main {
     grid-row: 2;
     grid-column: 3 / span 12;
+
+    code {
+        color: #999;
+        /*padding: 1rem 0;*/
+
+        /*overflow-wrap: break-word;
+        word-wrap: break-word;*/
+
+        font-family: monospace;
+        font-size: 1rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+
+        a {
+            color: var(--h2-color);
+        }
+    }
+    h3 {
+        font-size: 1.5rem;
+
+        a{
+            color: var(--h3-color);
+        }
+    }
+
+    h2,
+    h3 {
+        margin: 1rem 0;
+
+        a {
+
+            text-decoration: none;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        a[href^="#"] {
+            &::before {
+                color: var(--text-inactive, #999);
+                content: "#";
+                display: inline-block;
+                font-size: 1em;
+                line-height: 1;
+                margin-left: -1em;
+                padding: 0.5em 0;
+                
+                text-decoration: none;
+                visibility: hidden;
+                width: 1em;
+            }
+
+            &:hover {
+                &::before {
+                    visibility: visible;
+                }
+            }
+
+        }
+    }
+
+    li,
+    p {
+        font-size: 1rem;
+        line-height: 2rem;
+    }
+
+    
+    ol,
+    ul {
+        list-style-position: inside;
+        /*padding-left: 2rem;*/
+    }
+
 }
