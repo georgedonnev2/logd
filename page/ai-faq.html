@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>华为Atalas开发者套件相关FAQ</title>
+    <link rel="stylesheet" href="../css/logd.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>华为Atalas开发者套件相关FAQ</h1>
+        <section class="doc-main-info">
+            <p class="doc-author">George Donne</p>
+            <p class="doc-last-update">2024-06-28</p>
+            <p class="doc-first-on">2024-06-28</p>
+        </section>
+    </header>
+
+    <footer>
+        <p> &copy George Donne 2024-2025. All Rights Reserved. 苏ICP备2021027062号-1&nbsp&nbsp|&nbsp&nbsp
+            <a href="#">关于</a>
+        </p>
+        <p> Support:
+            <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
+        </p>
+    </footer>
+
+    <main>
+        <section>
+            <h2 id="开发者套件连接的显示器不显示">
+                <a href="#开发者套件连接的显示器不显示">开发者套件连接的显示器不显示</a>
+            </h2>
+
+            <p>问题现象：</p>
+            <ul>
+                <li>
+                    开发者套件启动后，通过HDMI接口连接的显示器不亮。
+                </li>
+                <li>
+                    该显示器连接到 Windows 台式机，是可以正常显示的。
+                </li>
+            </ul>
+
+            <p>解决方案：</p>
+            <ul>
+                <li>
+                    参考昇腾论坛帖子（<a href="https://www.hiascend.com/forum/thread-0286152887295065001-1-1.html"
+                        target="_blank">本机显示模式时，HDMI0接显示器无桌面输出 </a>），远程 ssh 登录开发者套件后，运行
+                    /usr/local/bin/toggle_graphical_desktop.sh 即可。
+                </li>
+                <li>
+                    不常用开发者套件连接的显示器，先暂不将上述 toggle_graphical_desktop.sh 加到 ~/.bashrc 中。
+                </li>
+            </ul>
+
+            <hr />
+        </section>
+    </main>
+
+</body>
+
+</html>
