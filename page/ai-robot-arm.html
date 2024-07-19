@@ -13,8 +13,8 @@
         <h1>机械臂相关说明</h1>
         <section class="doc-main-info">
             <p class="doc-author">George Donne</p>
-            <p class="doc-last-update">to be updated</p>
-            <p class="doc-first-on">to be released</p>
+            <p class="doc-last-update">2024-07-19</p>
+            <p class="doc-first-on">2024-07-19</p>
         </section>
     </header>
 
@@ -30,6 +30,384 @@
     </footer>
 
     <main>
+
+        <section>
+            <h2 id="机械臂硬件相关简介">
+                <a href="#机械臂硬件相关简介">机械臂硬件相关简介</a>
+            </h2>
+
+            <h3 id="机械臂底层驱动简介和安装">
+                <a href="#机械臂底层驱动简介和安装">机械臂底层驱动简介和安装</a>
+            </h3>
+
+            <p>
+                为了方便控制，机械臂扩展板（就是和华为开发者套件通过40针排线连接的那块板）的底层软件是单独开发的，并且提供接口调用，控制包括总线舵机、PWM舵机、RGB灯。相关的底层驱动源码已经封装成python库，出厂镜像已经安装好，如果想移植到自己的系统，可以在程序源码汇总文件夹里找到Dofbot.zip压缩包。执行&nbsp<code>unzip Dofbot.zip</code>&nbsp解压压缩包：需要将压缩包复制到docker内解压，由于基础控制并没有涉及ROS，用户在宿主机安装也是可以的。
+            </p>
+
+            <p>安装python驱动库。
+                执行命令&nbsp<code>cd Dofbot/0.py_install && sudo python3 setup.py install</code>&nbsp
+                输入用户密码后（注：sudo命令要求输入用户的密码）按回车确认，看到安装提示 Arm_Lib=x.x.x 版本号则表示安装成功。</p>
+
+            <p>上述信息包含在第1个接口“1.控制RGB灯”中，更多详情可参考：1.控制RGB灯<a href="https://www.yahboom.com/build.html?id=9961&cid=606"
+                    target="_blank">https://www.yahboom.com/build.html?id=9961&cid=606</a>。</p>
+
+            <hr />
+
+            <p>注：当前下载的源程序中是Dofbot.rar而非 Dofbot.zip。在 macOS 上同步以下步骤上传到开发者套件上：</p>
+            <ul>
+                <li>
+                    在macOS中使用第三方软件解压缩，比如到 Dofbot0718目录中；
+                </li>
+                <li>
+                    再在terminal终端中执行命令&nbsp
+                    <code>tar -zcvf Dofbot0718.tar.gz Dofbot0718</code>&nbsp重新压缩打包。（z：用gzip压缩；c：打包；v：显示信息；f：指定打包后生成的文件。Dofbot0718.tar.gz是指定的打包生成的文件，Dofbot0718是要打包的目录）
+                </li>
+                <li>
+                    在macOS的 Terminal
+                    终端上执行命令&nbsp<code>scp Dofbot0718.tar.gz root@192.168.31.200:/root/rrta</code>&nbsp，将打包文件
+                    Dofbot0718.tar.gz 上传到开发者套件 root 用户的 /root/ttra（ttra是自行创建的目录）目录下。后续执行 setup.py 安装后运行样例程序，使用 Arm_Lib
+                    库要求有root权限（注：通常这是不合理的，今后再研究原因），因此使用root用户（而不是开发者套件上的其他普通用户）做测试。
+                </li>
+            </ul>
+
+            <p>
+                用root用户登录华为开发者套件，解包 Dofbot0718.tar.gz，并执行 setup.py 安装。如下：
+            </p>
+            <p>在本地 Terminal 中执行以下命令登录华为开发者套件：</p>
+            <pre><code>~$ ssh root@192.168.31.200</code></pre>
+
+            <p>在开发者套件上执行以下命令：</p>
+            <pre><code>root@davinci-mini:~# cd ttra
+root@davinci-mini:~/ttra# tar -zxvf Dofbot0718.tar.gz #x表示解包
+root@davinci-mini:~/ttra# cd Dofbot0718/0.py_install
+root@davinci-mini:~/ttra/Dofbot0718/0.py_install# sudo python3 setup.py instal
+            </code></pre>
+
+            <p> 执行命令后显示如下。今后再看看是否要解决 warning。参考上述描述，应该算是安装成功了，因为显示了 Arm-Lib==0.0.5。
+                <!--<pre><code>
+gdv2@davinci-mini:~/ttra/Dofbot0718/0.py_install$ sudo python3 setup.py install
+[sudo] password for gdv2: 
+running install
+/usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+running bdist_egg
+running egg_info
+creating Arm_Lib.egg-info
+writing Arm_Lib.egg-info/PKG-INFO
+writing dependency_links to Arm_Lib.egg-info/dependency_links.txt
+writing top-level names to Arm_Lib.egg-info/top_level.txt
+writing manifest file 'Arm_Lib.egg-info/SOURCES.txt'
+reading manifest file 'Arm_Lib.egg-info/SOURCES.txt'
+writing manifest file 'Arm_Lib.egg-info/SOURCES.txt'
+installing library code to build/bdist.linux-aarch64/egg
+running install_lib
+running build_py
+creating build
+creating build/lib
+creating build/lib/Arm_Lib
+copying Arm_Lib/Arm_Lib.py -> build/lib/Arm_Lib
+copying Arm_Lib/__init__.py -> build/lib/Arm_Lib
+creating build/bdist.linux-aarch64
+creating build/bdist.linux-aarch64/egg
+creating build/bdist.linux-aarch64/egg/Arm_Lib
+copying build/lib/Arm_Lib/Arm_Lib.py -> build/bdist.linux-aarch64/egg/Arm_Lib
+copying build/lib/Arm_Lib/__init__.py -> build/bdist.linux-aarch64/egg/Arm_Lib
+byte-compiling build/bdist.linux-aarch64/egg/Arm_Lib/Arm_Lib.py to Arm_Lib.cpython-310.pyc
+byte-compiling build/bdist.linux-aarch64/egg/Arm_Lib/__init__.py to __init__.cpython-310.pyc
+creating build/bdist.linux-aarch64/egg/EGG-INFO
+copying Arm_Lib.egg-info/PKG-INFO -> build/bdist.linux-aarch64/egg/EGG-INFO
+copying Arm_Lib.egg-info/SOURCES.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+copying Arm_Lib.egg-info/dependency_links.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+copying Arm_Lib.egg-info/top_level.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+zip_safe flag not set; analyzing archive contents...
+creating dist
+creating 'dist/Arm_Lib-0.0.5-py3.10.egg' and adding 'build/bdist.linux-aarch64/egg' to it
+removing 'build/bdist.linux-aarch64/egg' (and everything under it)
+Processing Arm_Lib-0.0.5-py3.10.egg
+Removing /usr/local/lib/python3.10/dist-packages/Arm_Lib-0.0.5-py3.10.egg
+Copying Arm_Lib-0.0.5-py3.10.egg to /usr/local/lib/python3.10/dist-packages
+Arm-Lib 0.0.5 is already the active version in easy-install.pth
+
+Installed /usr/local/lib/python3.10/dist-packages/Arm_Lib-0.0.5-py3.10.egg
+Processing dependencies for Arm-Lib==0.0.5
+Finished processing dependencies for Arm-Lib==0.0.5
+                </code></pre>
+            </p>
+        -->
+
+
+            <pre>
+                    <code>
+root@davinci-mini:~/ttra/Dofbot0718/0.py_install# sudo python3 setup.py install
+running install
+/usr/lib/python3/dist-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning:setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+/usr/lib/python3/dist-packages/setuptools/command/easy_install.py:158:EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and otherstandards-based tools.
+  warnings.warn(
+running bdist_egg
+running egg_info
+creating Arm_Lib.egg-info
+writing Arm_Lib.egg-info/PKG-INFO
+writing dependency_links to Arm_Lib.egg-info/dependency_links.txt
+writing top-level names to Arm_Lib.egg-info/top_level.txt
+writing manifest file 'Arm_Lib.egg-info/SOURCES.txt'
+reading manifest file 'Arm_Lib.egg-info/SOURCES.txt'
+writing manifest file 'Arm_Lib.egg-info/SOURCES.txt'
+installing library code to build/bdist.linux-aarch64/egg
+running install_lib
+running build_py
+creating build
+creating build/lib
+creating build/lib/Arm_Lib
+copying Arm_Lib/Arm_Lib.py -> build/lib/Arm_Lib
+copying Arm_Lib/__init__.py -> build/lib/Arm_Lib
+creating build/bdist.linux-aarch64
+creating build/bdist.linux-aarch64/egg
+creating build/bdist.linux-aarch64/egg/Arm_Lib
+copying build/lib/Arm_Lib/Arm_Lib.py -> build/bdist.linux-aarch64/egg/Arm_Lib
+copying build/lib/Arm_Lib/__init__.py -> build/bdist.linux-aarch64/egg/Arm_Lib
+byte-compiling build/bdist.linux-aarch64/egg/Arm_Lib/Arm_Lib.py to Arm_Lib.cpython-310.pyc
+byte-compiling build/bdist.linux-aarch64/egg/Arm_Lib/__init__.py to __init__.cpython-310.pyc
+creating build/bdist.linux-aarch64/egg/EGG-INFO
+copying Arm_Lib.egg-info/PKG-INFO -> build/bdist.linux-aarch64/egg/EGG-INFO
+copying Arm_Lib.egg-info/SOURCES.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+copying Arm_Lib.egg-info/dependency_links.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+copying Arm_Lib.egg-info/top_level.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
+zip_safe flag not set; analyzing archive contents...
+creating dist
+creating 'dist/Arm_Lib-0.0.5-py3.10.egg' and adding 'build/bdist.linux-aarch64/egg' to it
+removing 'build/bdist.linux-aarch64/egg' (and everything under it)
+Processing Arm_Lib-0.0.5-py3.10.egg
+Removing /usr/local/lib/python3.10/dist-packages/Arm_Lib-0.0.5-py3.10.egg
+Copying Arm_Lib-0.0.5-py3.10.egg to /usr/local/lib/python3.10/dist-packages
+Arm-Lib 0.0.5 is already the active version in easy-install.pth
+
+Installed /usr/local/lib/python3.10/dist-packages/Arm_Lib-0.0.5-py3.10.egg
+Processing dependencies for Arm-Lib==0.0.5
+Finished processing dependencies for Arm-Lib==0.0.5                        
+                    </code>
+                </pre>
+
+
+            <!--
+            Arm_serial_servo_read I2C error
+
+            root@davinci-mini:~/ros2_robot_arm# ros2 run dofbot_garbage_yolov5 block_cls
+/usr/local/lib/python3.10/dist-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: 
+  warn(f"Failed to load image Python extension: {e}")
+[INFO] acl init success
+[INFO] open device 0 success
+[INFO] load model /root/ros2_robot_arm/ros2_ws/install/dofbot_garbage_yolov5/share/dofbot_garbage_yolov5/model/yolov5s_bs1.om success
+[INFO] create model description success
+y_offset is 0.044
+x_offset is 0.033
+finish init..
+Read xy is [88, 130]
+Start Reset Robot Arm Position, Please Wait..
+Arm_serial_servo_write6 I2C error
+Arm_serial_servo_write6 I2C error
+Finish Robot Arm Position Reset!
+read image from camera successfully: True
+Model is warming up at stage: 0
+read image from camera successfully: True
+Model is warming up at stage: 0
+read image from camera successfully: True
+Model is warming up at stage: 0
+read image from camera successfully: True
+Model is warming up at stage: 0
+read image from camera successfully: True
+Model is warming up at stage: 0
+read image from camera successfully: True
+msg is: {'Newspaper': (-0.02975, 0.262), 'Syringe': (0.006, 0.1972), 'Fish_bone': (-0.0445, 0.21107)}
+Model is warming up at stage: 0
+read image from camera successfully: True
+msg is: {'Syringe': (0.006, 0.19747), 'Newspaper': (-0.02975, 0.262), 'Fish_bone': (-0.04475, 0.2116)}
+Model is warming up at stage: 1
+read image from camera successfully: True
+msg is: {'Syringe': (0.00625, 0.19747), 'Fish_bone': (-0.0445, 0.21133)}
+Model is warming up at stage: 2
+...
+...
+...
+            read image from camera successfully: True
+msg is: {'Syringe': (0.0325, 0.23267), 'Fish_bone': (-0.03, 0.26173)}
+Model is warming up at stage: 22
+read image from camera successfully: True
+msg is: {'Syringe': (0.032, 0.23267), 'Fish_bone': (-0.0305, 0.262)}
+Model is warming up at stage: 23
+read image from camera successfully: True
+msg is: {'Syringe': (0.0325, 0.23267), 'Fish_bone': (-0.04475, 0.21133)}
+Model is warming up at stage: 24
+read image from camera successfully: True
+msg is: {'Syringe': (0.0055, 0.19747), 'Fish_bone': (-0.03025, 0.26173)}
+Model is warming up at stage: 25
+Arm_Buzzer_On I2C error
+new msg is [('Syringe', (0.0055, 0.19747)), ('Fish_bone', (-0.03025, 0.26173))]
+posxy is: (0.0055, 0.19747)
+Arm_serial_servo_write6 I2C error
+Arm_serial_servo_write I2C error
+Arm_serial_servo_write6 I2C error
+Arm_serial_servo_write I2C error
+Arm_serial_servo_write6 I2C error
+Arm_serial_servo_write I2C error
+Arm_serial_servo_write6 I2C error
+Arm_serial_servo_write I2C error
+Arm_serial_servo_write6 I2C error
+posxy is: (-0.03025, 0.26173)
+Arm_serial_servo_write6 I2C error
+Arm_serial_servo_write I2C error
+Arm_serial_servo_write6 I2C error
+Arm_serial_servo_write I2C error
+Arm_serial_servo_write6 I2C error
+Arm_serial_servo_write I2C error
+Arm_serial_servo_write6 I2C error
+Arm_serial_servo_write I2C error
+Arm_serial_servo_write6 I2C error
+back position is [88, 130, 0, 0, 90, 30]
+Arm_serial_servo_write6 I2C error
+read image from camera successfully: True
+msg is: {'Syringe': (0.0325, 0.23267), 'Fish_bone': (-0.0305, 0.262)}
+Model is warming up at stage: 0
+read image from camera successfully: True
+msg is: {'Syringe': (0.0325, 0.2324), 'Fish_bone': (-0.03025, 0.26147)}
+Model is warming up at stage: 1
+-->
+
+            <h3 id="驱动机械臂">
+                <a href="#驱动机械臂">驱动机械臂</a>
+            </h3>
+
+            <p>以“3.控制单个舵机”为例。更多详情请参考：3.控制单个舵机；<a
+                    href="https://www.yahboom.com/build.html?id=9963&cid=606">https://www.yahboom.com/build.html?id=9963&cid=606</a>
+            </p>
+            <ul>
+                <li>
+                    API： Arm_serial_servo_write(id, angle, time)
+                </li>
+                <li>
+                    功能：控制总线舵机要运行到的角度。
+                </li>
+                <li>
+                    参数解释：
+                    <ul>
+
+                        <li>
+                            id：要控制的舵机的 ID 号，范围是 1~6，每个 ID 号表示一个舵机，从最底端的舵机的 ID 为 1，往上依次增加，最上面的舵机 ID 为 6。
+                        </li>
+                        <li>
+                            angle：控制舵机要运行到的角度，除了 5 号舵机（ID=5），其他舵机的控制范围都是 0~180，5 号舵机的控制范围是 0~270。
+                        </li>
+                        <li>
+                            time：控制舵机运行的时间，在有效范围内，舵机转动相同的角度，输入运行的时间越小，舵机运动越快。输入 0 则舵机以最快速度运行。
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    返回值：无。
+                </li>
+            </ul>
+
+            <p>样例代码如下。用编辑器生成python文件，比如用 vscode，或者开发者套件上的 vim，生成python文件比如
+                3ctrlservo.py。然后在root用户下执行&nbsp<code>python3 3ctrlservo.py</code>&nbsp。</p>
+            <pre><code>
+#!/usr/bin/env python3
+#coding=utf-8
+
+import time
+from Arm_Lib import Arm_Device
+
+# 创建机械臂对象
+Arm = Arm_Device()
+time.sleep(.1)
+
+# 单独控制一个舵机运动到某个角度
+id = 6
+Arm.Arm_serial_servo_write(id, 90, 500)
+time.sleep(1)
+
+# 控制一个舵机循环切换角度
+id = 6
+ 
+def main():
+    while True:
+        Arm.Arm_serial_servo_write(id, 120, 500)
+        time.sleep(1)
+        Arm.Arm_serial_servo_write(id, 50, 500)
+        time.sleep(1)
+        Arm.Arm_serial_servo_write(id, 120, 500)
+        time.sleep(1)
+        Arm.Arm_serial_servo_write(id, 180, 500)
+        time.sleep(1)
+ 
+try :
+    main()
+except KeyboardInterrupt:
+    print(" Program closed! ")
+    pass
+
+del Arm # 释放掉 Arm 对象  
+        </code></pre>
+
+            <hr />
+
+            <p>
+                在2024-07-18做测试时，报 xxx I2C error 错误，并没有控制机械臂得到预期结果。马上执行以前运行已经正常的华为样例程序，也是报 xxx I2C
+                error错误，从程序打印输出判断视觉识别等貌似正常，但无法控制机械臂运动抓取积木了。咨询机械臂技术人员，答复说应该是40针排线（连接了开发者套件和机械臂扩展板）等可能松动导致的，关机断电后重新插一下就应该可以了。近期将参考机械臂技术人员的建议试试修复，能成功运行控制机械臂的样例程序。
+            </p>
+            <p>
+                从华为样例程序报错的 xxx I2C error错误看，最底层控制机械臂就是调用了机械臂提供的Python API。
+            </p>
+
+            <hr />
+
+            <p>
+                关于I2C，引用<a
+                    href="https://zhuanlan.zhihu.com/p/500996257">“彻底搞懂I2C总线（一）什么是I2C？什么是I2C总线？什么是I2C规范”</a>中关于I2C的由来的描述，方便理解I2C是用于做什么的。原文有7篇是一个系列，感兴趣读者可阅读参考。以下是引用的I2C的由来：
+            </p>
+            <ul>
+                <li>在电视机内部电路中，众多功能需要用到许多集成电路IC来实现，包括主控器件微控制器和众多外围设备器件，如：PLL合成器、非易失性存储器、音频处理器、视频处理器、屏幕显示器等。这些器件相互之间要传递数据信息，那么就需要用导线相互连接，如此众多IC器件的互连，势必导致芯片引脚、PCB走线以及连接导线变得数量庞大，错综复杂，这会导致IC芯片体积增大、功耗增大、成本增加，给IC芯片设计制造厂商带来不利影响，同时也给IC芯片应用厂商和应用工程师们造成极大不便。
+                </li>
+
+                <li>1982年，从事电灯泡、电剃刀、电唱机、收音机、电视机等研发制造已久的荷兰飞利浦公司，为解决电视机的上述问题，从而发明了一种集成电路互连通信电路，该电路的优点就是仅用两条线就可以实现芯片之间的互连通信，使硬件电路最简化，硬件效益最大化，给芯片设计制造者和芯片应用者带来极大益处。
+                </li>
+
+                <li>飞利浦公司给这种集成电路互连通信电路命名为Inter-Integrated Circuit，简称为Inter-IC，或I2C（数字“2”为上标）。</li>
+            </ul>
+
+            <h3 id="PythonAPI列表">
+                <a href="#PythonAPI列表">Python API 列表</a>
+            </h3>
+
+            <p>以下列了主要 Python API 的名称。每个 API 的功能和参数解释，以及对应的样例程序，请参考机械臂官网之<a
+                    href="https://www.yahboom.com/study/Dofbot-Pi#xuanzhon_9">机械臂基础控制</a>。</p>
+            <ul>
+                <li>
+                    1.控制RGB灯：Arm_RGB_set(R, G, B)；设置 RGB 灯亮的颜色。R、G、B取值范围0-255，数值越大，亮度越亮。
+                </li>
+                <li>
+                    2.控制蜂鸣器：Arm_Buzzer_On(delay=255)，Arm_Buzzer_Off()。
+                </li>
+                <li>
+                    3.控制单个舵机：Arm_serial_servo_write(id, angle, time) 。
+                </li>
+                <li>
+                    4.读取舵机当前的位置：Arm_serial_servo_read(id)。id：要读取的舵机的 ID 号，范围是 1~6，每个 ID 号表示一个舵机，从最底端的舵机的 ID 为 1，往上依次增加，最上面的舵机 ID 为 6。返回值：对应 ID 舵机当前的角度，ID=5 时，角度范围为 0~270，其他都为0~180。
+                </li>
+                <li>
+                    5.一次控制6个舵机：Arm_serial_servo_write6(S1, S2, S3, S4, S5, S6, time)。
+                </li>
+
+            </ul>
+
+            <p>还有机械臂上的摄像头。和机械臂不强相关，也是使用了 openCV 做控制和使用的。此处从略。</p>
+
+
+
+        </section>
+
+
 
         <!-- 华为样例的主程序--客户端 -->
         <section>
