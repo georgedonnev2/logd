@@ -179,7 +179,7 @@ main {
     }
 
     pre {
-        overflow: auto; /*每行内容过长时，出现水平滚动条*/
+        overflow-x: auto; /*每行内容过长时，出现水平滚动条*/
     }
 
 }
