@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>环境、远程服务器、网络等说明</title>
+    <link rel="stylesheet" type="text/css" href="../css/logd.css" />
+</head>
+
+<body>
+
+    <header>
+        <h1>环境、远程服务器、网络等说明</h1>
+        <section class="doc-main-info">
+            <p class="doc-author">George Donne</p>
+            <p class="doc-last-update">2024-08-02</p>
+            <p class="doc-first-on">2024-06-07</p>
+        </section>
+    </header>
+
+
+    <footer>
+
+        <p> &copy George Donne 2024-2025. All Rights Reserved. 苏ICP备2021027062号-1&nbsp&nbsp|&nbsp&nbsp
+            <a href="#">关于</a>
+        </p>
+        <p> Support:
+            <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
+        </p>
+    </footer>
+
+    <main>
+
+        <h2 id="实验室关电上电">
+            <a href="#实验室关电上电">实验室上电和断电</a>
+        </h2>
+
+        <p>实验室上电：</p>
+        <ul>
+            <li>如下图片中的 3组开关（黄底红边），都往上拨，即上电。上电后所有开关状态如下图所示。</li>
+            <li>未涉及到的其他开关（2组蓝色开关），不要触碰。</li>
+        </ul>
+
+        <p>实验室断电：</p>
+        <ul>
+            <li>当天工作完毕不在使用实验室设备了，一定要断电。</li>
+            <li>如下图片中的 3组开关（黄底红边），都往下拨，即断电。</li>
+            <li>未涉及到的其他开关（2组蓝色开关），不要触碰。</li>
+        </ul>
+
+        <br>
+
+        <img src="../img/ai-server_network-1.webp" alt="electricity-box">
+
+
+        <h2 id="华为昇腾开发者套件DK的开机关机下电">
+            <a href="#华为昇腾开发者套件DK的开机关机下电">华为昇腾开发者套件DK的开机、关机+下电</a>
+        </h2>
+
+        <ul>
+            <li>
+                开发者套件如何开机、关机+下电，可参考<a
+                    href="https://www.hiascend.com/document/detail/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/Hardware%20Interfaces/hiug/hiug_0004.html">https://www.hiascend.com/document/detail/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/Hardware%20Interfaces/hiug/hiug_0004.html</a>
+            </li>
+            <li>当天工作完成后，一定要关机+下电。下电即正常关机后，拔掉开发者套件上的电源线。</li>
+            <li>关机：除了直接按开发者套件上的开机关机键外，还可以用 root 用户执行 <code>shutdown -h now</code> 命令。</li>
+        </ul>
+
+
+        <h2 id="WiFi接入实验室局域网">
+            <a href="#WiFi接入实验室局域网">WiFi接入实验室局域网</a>
+        </h2>
+        <ul>
+            <li>接入点：gdmifi</li>
+            <li>密码：djq960423</li>
+        </ul>
+
+        <h2 id="登录华为昇腾开发者套件">
+            <a href="#登录华为昇腾开发者套件">登录局域网 Linux 服务器（即华为昇腾开发者套件） -- IP地址： 192.168.31.200</a>
+        </h2>
+        <ol>
+            <li>
+                Windows 运行 power shell，
+            </li>
+            <li>
+                在 power shell中执行命令： ssh 用户名@192.168.31.200。比如用户名是 gdv2，则：<br>
+                ssh gdv2@192.168.31.200
+            </li>
+            <li>
+                按屏幕提示输入口令。输入口令时，屏幕上不显示输入的口令。
+            </li>
+        </ol>
+
+        <h2 id="登录公网Linux服务器81">
+            <a href="#登录公网Linux服务器81">登录公网 Linux 服务器 -- IP地址： 8.147.232.81</a>
+        </h2>
+        <p>登录方法，同登录局域网 Linux 服务器。此处从略。</p>
+    </main>
+
+</body>
+
+</html>

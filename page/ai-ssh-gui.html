@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>通过 SSH 访问 Linux 主机并打开图形界面</title>
+    <link rel="stylesheet" type="text/css" href="../css/logd.css" />
+</head>
+
+<body>
+
+    <header>
+        <h1>通过 SSH 访问 Linux 主机并打开图形界面</h1>
+        <section class="doc-main-info">
+            <p class="doc-author">George Donne</p>
+            <p class="doc-last-update">2024-06-19</p>
+            <p class="doc-first-on">2024-06-07</p>
+        </section>
+    </header>
+
+
+    <footer>
+
+        <p> &copy George Donne 2024-2025. All Rights Reserved. 苏ICP备2021027062号-1&nbsp&nbsp|&nbsp&nbsp
+            <a href="#">关于</a>
+        </p>
+        <p> Support:
+            <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
+        </p>
+    </footer>
+
+
+    <main>
+        <h2 id="操作步骤">
+            <a href="#操作步骤">操作步骤</a>
+        </h2>
+        <ol>
+            <li>下载XQuartz并安装</li>
+            <p>从<a href="https://www.xquartz.org/index.html" target="_blank">XQuartz官网</a>下载安装包，并安装到 Mac 本地电脑。</p>
+
+            <li>使用 xhost 命令，为远程主机添加权限：</li>
+            <p>在 Mac 本地电脑的 Terminal 终端上，执行 xhost 命令，为 Linux 远程主机（假定 Linux 远程主机的 IP 地址是 192.168.31.200）添加权限。</p>
+            <pre><code class="lang-sh line-numbers">~ % xhost + 192.168.31.200
+192.168.31.200 being added to access control list</code></pre>
+            <br />
+
+            <li>ssh 连接远程主机</li>
+            <p>在 Mac 本地电脑的 Terminal 终端上，执行 ssh -XY 用户名@IP地址，可连接 Linux 远程主机（并能运行 Linux 远程主机上需要图形界面的应用）。假定用户名是 gdv2，</p>
+            <pre><code class="lang-sh line-numbers"> ~ % ssh -XY gdv2@192.168.31.200
+gdv2@192.168.31.200's password: 
+    _                                _             _               _     _  _   
+   / \    ___   ___  ___  _ __    __| |         __| |  ___ __   __| | __(_)| |_ 
+  / _ \  / __| / __|/ _ \| '_ \  / _` | _____  / _` | / _ \\ \ / /| |/ /| || __|
+ / ___ \ \__ \| (__|  __/| | | || (_| ||_____|| (_| ||  __/ \ V / |   < | || |_ 
+/_/   \_\|___/ \___|\___||_| |_| \__,_|        \__,_| \___|  \_/  |_|\_\|_| \__|
+                                                                                
+Welcome to Atlas 200I DK A2
+This system is based on Ubuntu 22.04.4 LTS (GNU/Linux 5.10.0+ aarch64)
+
+gdv2@davinci-mini:~$ </code></pre>
+            <br />
+            <li>执行 xclock 验证</li>
+            <pre><code class="lang-sh line-numbers">gdv2@davinci-mini:~$ xclock</code></pre>
+            <p>如果在 Mac 本地电脑上出现一个钟表的图形界面，就说明成功了。</p>
+        </ol>
+
+        <h2 id="命令说明">
+            <a href="#命令说明">命令说明</a>
+        </h2>
+        <h3>ssh命令</h3>
+        <p>
+            ssh 命令大家很熟悉了，这里仅介绍与 X11 forwarding 相关的几个选项。<br />
+
+            本部分译自 ssh 命令手册，可见 man ssh。<br />
+            <br />
+            -X ：打开 X11 forwarding。也可以通过在 configuration 文件中对每个 host 单独进行设置。<br />
+            应谨慎启用 X11 forwarding。具有绕过远程主机文件权限的用户（对于用户的X授权数据库）可以通过转发连接访问本地X11显示器。攻击者可能能够执行诸如击键监控之类的活动。 因此，X11 forwarding
+            默认受到 X11 SECURITY 扩展限制。 有关更多信息，请参阅 ssh_config(5) 中的 ssh -Y 选项和 ForwardX11Trusted 指令。<br />
+            <br />
+            -x：关闭 X11 forwarding。<br />
+            <br />
+            -Y：信任该 X11 forwarding，被信任的 X11 forwarding 不受到 X11 SECURITY 扩展限制。
+        </p>
+        <h3>xhost命令</h3>
+
+        <p>xhost 是用来控制X server访问权限的。<br />
+            <br />
+            通常当你从 hostA 登陆到 hostB 上运行 hostB 上的应用程序时，做为应用程序来说，hostA 是 client，但是对图形来说，是在 hostA 上显示的，需要使用 hostA 的
+            Xserver，所以 hostA 是 server。因此在登陆到 hostB 前，需要在 hostA 上运行 xhost + 来使其它用户能够访问 hostA 的 Xserver。
+        </p>
+
+        <h2>
+            <a href="#主要参考资料">主要参考资料</a>
+        </h2>
+        <ol>
+            <li>
+                <a href="https://blog.csdn.net/weixin_44966641/article/details/125148230" target="_blank">mac X11
+                    XQuartz的安装与使用</a>，CSDN，2022-06-06发布。
+            </li>
+        </ol>
+    </main>
+
+
+</body>
+
+</html>
