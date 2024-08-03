@@ -16,7 +16,7 @@
         <h1>个人网站建站相关</h1>
         <section class="doc-main-info">
             <p class="doc-author">George Donne</p>
-            <p class="doc-last-update">2024-07-18</p>
+            <p class="doc-last-update">2024-08-03</p>
             <p class="doc-first-on">2024-07-16</p>
         </section>
     </header>
@@ -66,6 +66,48 @@
                 <a href="#个人网站实现手机适配">个人网站实现手机适配</a>
             </h2>
 
+            <p>期望在手机上浏览网站时，如下左图的效果，而不是如下右图的效果。当然也可以横屏观看，字就会自动大一些，也可以适合阅读的。右图竖屏观看可以放大些，但需要左右滚动，也是不方便。</p>
+
+            <img src="../img/web-build-personal-website-1.PNG">
+            <img src="../img/web-build-personal-website-2.PNG">
+
+            <p>只要在每个 html 文件的头部即 <code>&lthead&gt&lt/head&gt</code> 加入如下 <code>&ltmeta name="viewport" ... &gt </code>
+                即可。</p>
+            <pre><code>
+&lthead&gt
+    &lt!-- 其他元素 --&gt
+
+    &ltmeta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"&gt
+
+    &lt!-- 其他元素 --&gt
+
+&lt/head&gt
+
+</code></pre>
+
+            <p>有兴趣的读者可以参考如下链接，了解相关原理：</p>
+            <ul>
+                <li><a href="https://fedev.cn/css/viewports.html" target="_blank">viewports剖析</a>，fedev.cn，约2014年。文中的一些图不可用了，可以参考文中的 2 个英文原文链接。</li>
+                <li><a href="https://www.quirksmode.org/mobile/viewports.html">A tale of two viewports — part one</a>，《viewports剖析》所引用的英文链接1。</li>
+                <li><a href="https://www.quirksmode.org/mobile/viewports2.html">A tale of two viewports — part two</a>，《viewports剖析》所引用的英文链接2。</li>
+                <li>MDN（Mozilla Developer Network）的相关解释也不错。请读者自行搜索，在此就不列链接了。</li>
+            </ul>
+            <br>
+            
+            <hr>
+
+            <p>其他说明和参考信息：</p>
+            <ul>
+                <li>学习了相关知识后，觉得是否此种简短模式 <code>&ltmeta name="viewport" content="width=device-width, initial-scale=1.0"&gt</code> 就够了可以了，而且也有网站也是这么建议的。经测试，简短模式效果不是很理想了，最终还是先采用了完整模式 <code>&ltmeta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"&gt</code>。</li>
+
+                <li>调试期间发现加了 <code>&ltmeta name="viewport" ... &gt </code> 还是没有达到预期效果。</li>
+                <ul>
+                    <li>在 PC 的 Chrome 浏览器调试（在开发者模式下选取手机比如 iphone14 Pro Max），和一些网站（比如 huaweicloud.com）做比对。发现别人网站的 body 宽度是 430，我的是 640。</li>
+                    <li>进一步检查。发现 body 的父元素 html 的宽度是期望的 430。查看 css ，发现 body 相关的设置了 min-width: 640px。</li>
+                    <li>将 body 的 min-width:640px 修改为 320px，问题解决！</li>
+                </ul>
+                <li>在 PC + Chrome 浏览器、iPhone + Safari 浏览器上查看，效果还 OK。尚未在其他终端 + 相关浏览器做验证。</li>
+            </ul>
 
         </section>
     </main>
