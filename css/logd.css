@@ -54,7 +54,7 @@ header {
 
     }
 
-    section.doc-main-info {
+    section {
         text-align: center;
 
         .doc-author::before {
