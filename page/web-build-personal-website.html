@@ -9,6 +9,9 @@
 
     <title>个人网站建站相关</title>
     <link rel="stylesheet" type="text/css" href="../css/logd.css" />
+
+    <!-- 引入不蒜子计数 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </head>
 
 <body>
@@ -16,8 +19,14 @@
         <h1>个人网站建站相关</h1>
         <section class="doc-main-info">
             <p class="doc-author">George Donne</p>
-            <p class="doc-last-update">2024-08-03</p>
+            <p class="doc-last-update">2024-08-30</p>
             <p class="doc-first-on">2024-07-16</p>
+        </section>
+
+        <section>
+            <span id="busuanzi_container_page_pv">
+                浏览量：<span id="busuanzi_value_page_pv"></span>👀
+            </span>
         </section>
     </header>
 
@@ -27,6 +36,15 @@
         </p>
         <p> Support:
             <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
+        </p>
+        <p>
+            <span id="busuanzi_container_site_pv">
+                本站浏览量：<span id="busuanzi_value_site_pv"></span>👀
+            </span>
+            &nbsp&nbsp|&nbsp&nbsp
+            <span id="busuanzi_container_site_uv">
+                本站访客数：<span id="busuanzi_value_site_uv"></span>👤
+            </span>
         </p>
     </footer>
 
@@ -46,7 +64,7 @@
 
             </ul>
 
-            <h3 id="已基本完成事项ß">
+            <h3 id="已基本完成事项">
                 <a href="#已基本完成事项">已基本完成事项</a>
             </h3>
             <ul>
@@ -88,22 +106,30 @@
 
             <p>有兴趣的读者可以参考如下链接，了解相关原理：</p>
             <ul>
-                <li><a href="https://fedev.cn/css/viewports.html" target="_blank">viewports剖析</a>，fedev.cn，约2014年。文中的一些图不可用了，可以参考文中的 2 个英文原文链接。</li>
-                <li><a href="https://www.quirksmode.org/mobile/viewports.html">A tale of two viewports — part one</a>，《viewports剖析》所引用的英文链接1。</li>
-                <li><a href="https://www.quirksmode.org/mobile/viewports2.html">A tale of two viewports — part two</a>，《viewports剖析》所引用的英文链接2。</li>
+                <li><a href="https://fedev.cn/css/viewports.html"
+                        target="_blank">viewports剖析</a>，fedev.cn，约2014年。文中的一些图不可用了，可以参考文中的 2 个英文原文链接。</li>
+                <li><a href="https://www.quirksmode.org/mobile/viewports.html">A tale of two viewports — part
+                        one</a>，《viewports剖析》所引用的英文链接1。</li>
+                <li><a href="https://www.quirksmode.org/mobile/viewports2.html">A tale of two viewports — part
+                        two</a>，《viewports剖析》所引用的英文链接2。</li>
                 <li>MDN（Mozilla Developer Network）的相关解释也不错。请读者自行搜索，在此就不列链接了。</li>
             </ul>
             <br>
-            
+
             <hr>
 
             <p>其他说明和参考信息：</p>
             <ul>
-                <li>学习了相关知识后，觉得是否此种简短模式 <code>&ltmeta name="viewport" content="width=device-width, initial-scale=1.0"&gt</code> 就够了可以了，而且也有网站也是这么建议的。经测试，简短模式效果不是很理想了，最终还是先采用了完整模式 <code>&ltmeta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"&gt</code>。</li>
+                <li>学习了相关知识后，觉得是否此种简短模式
+                    <code>&ltmeta name="viewport" content="width=device-width, initial-scale=1.0"&gt</code>
+                    就够了可以了，而且也有网站也是这么建议的。经测试，简短模式效果不是很理想了，最终还是先采用了完整模式
+                    <code>&ltmeta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"&gt</code>。
+                </li>
 
                 <li>调试期间发现加了 <code>&ltmeta name="viewport" ... &gt </code> 还是没有达到预期效果。</li>
                 <ul>
-                    <li>在 PC 的 Chrome 浏览器调试（在开发者模式下选取手机比如 iphone14 Pro Max），和一些网站（比如 huaweicloud.com）做比对。发现别人网站的 body 宽度是 430，我的是 640。</li>
+                    <li>在 PC 的 Chrome 浏览器调试（在开发者模式下选取手机比如 iphone14 Pro Max），和一些网站（比如 huaweicloud.com）做比对。发现别人网站的 body
+                        宽度是 430，我的是 640。</li>
                     <li>进一步检查。发现 body 的父元素 html 的宽度是期望的 430。查看 css ，发现 body 相关的设置了 min-width: 640px。</li>
                     <li>将 body 的 min-width:640px 修改为 320px，问题解决！</li>
                 </ul>
@@ -111,6 +137,66 @@
             </ul>
 
         </section>
+
+        <!-- 网站访问量计数 -->
+        <section>
+
+            <h2 id="网站访问量计数_静态网站">
+                <a href="#网站访问量计数_静态网站">网站访问量计数--静态网站</a>
+            </h2>
+
+            <p>拟实现以下功能：</p>
+            <ul>
+                <li>网站的访客数统计</li>
+                <li>网站的访问量统计</li>
+                <li>某个页面/文章的访问量统计</li>
+            </ul>
+
+            <p>采用“不蒜子”计数，链接：<a href="https://ibruce.info/2015/04/04/busuanzi/"
+                    target="_blank">https://ibruce.info/2015/04/04/busuanzi/</a></p>
+
+            <ul>
+                <li>算法a：pv（Page View）的方式，单个用户连续点击n篇文章，记录n次访问量。</li>
+                <li>算法b：uv（Unique Visitor）的方式，单个用户连续点击n篇文章，只记录1次访客数。</li>
+            </ul>
+
+            <p>PV 和 UV 的含义，可参考：<a href="https://www.cnblogs.com/wajika/p/6365775.html"
+                    target="_blank">详解PV、UV、VV、IP及其关系与计算</a></p>
+
+            <p>相关代码如下：</p>
+
+            <pre><code>
+&lt!-- 在 head 中引入不蒜子计数 --&gt
+&ltscript async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"&gt&lt/script&gt
+
+
+&lt!-- 在网页的 body 的 header 中显示访问数量 --&gt
+&ltsection&gt
+    &ltspan id="busuanzi_container_page_pv"&gt
+        浏览量：&ltspan id="busuanzi_value_page_pv"&gt&lt/span&gt👀
+    &lt/span&gt
+&lt/section&gt
+
+
+&lt!-- 在网页的 body 的 footer 中，显示网站的访客数和访问数量 --&gt
+&ltp&gt
+    &ltspan id="busuanzi_container_site_pv"&gt
+        本站浏览量：&ltspan id="busuanzi_value_site_pv"&gt&lt/span&gt👀
+    &lt/span&gt
+    |
+    &ltspan id="busuanzi_container_site_uv"&gt
+        本站访客数：&ltspan id="busuanzi_value_site_uv"&gt&lt/span&gt👤
+    &lt/span&gt
+&lt/p&gt</code></pre>
+
+            <p>遗留问题：</p>
+            <ul>
+                <li>用移动 5G 访问网站，每刷新一次页面，除了浏览量按预期的增加 1 以外，访客数也会加 1（期望是不变）。//240830</li>
+            </ul>
+
+        </section>
+        <br>
+        <br>
     </main>
 
 </body>
