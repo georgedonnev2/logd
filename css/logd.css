@@ -5,6 +5,8 @@
     --h3-color: #666;
 
     --text-gray-color: #666; 
+    /* --text-em-blue: #007bb6; */
+    --text-em-blue: #0066cc;
 }
 
 
@@ -110,6 +112,15 @@ main {
         font-size: 1rem;
     }
 
+    .em-blue {
+        color: var(--text-em-blue);
+    }
+    
+    .em-bold {
+        font-weight: bold;
+    }
+
+
     h2 {
         font-size: 2rem;
 
@@ -165,6 +176,10 @@ main {
     img {
         width: 48%;
     }
+    img.img-g4 {
+        width: 24%;
+    }
+
     li,
     p {
         font-size: 1rem;
@@ -172,7 +187,7 @@ main {
         margin: 1em 0;
     }
     li {
-        margin: 0;
+        margin: 0.4em 0;
     }
 
     
