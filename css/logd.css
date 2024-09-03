@@ -2,11 +2,14 @@
     --font-size: 16px;
 
     --h2-color: #007bb6;
-    --h3-color: #666;
+    --h3-color: #000;
 
     --text-gray-color: #666;
     /* --text-em-blue: #007bb6; */
     --text-em-blue: #0066cc;
+
+    /* color for link (get from huaweicloud.com) */
+    --a-text-color: #1476ff;
 }
 
 
@@ -60,19 +63,19 @@ header {
         text-align: center;
 
         .doc-author::before {
-            content: "by:";
+            content: "编者:";
             color: var(--text-gray-color);
             padding: 0 0.25rem;
         }
 
         .doc-last-update::before {
-            content: "// last update on:";
+            content: " | 最近更新:";
             color: var(--text-gray-color);
             padding: 0 0.25rem;
         }
 
         .doc-first-on::before {
-            content: "// released on:";
+            content: "| 首次发布:";
             color: var(--text-gray-color);
             padding: 0 0.25rem;
         }
@@ -100,6 +103,28 @@ footer {
 main {
     grid-row: 2;
     grid-column: 3 / span 12;
+
+    a {
+        color: var(--a-text-color);
+        outline-color: transparent;
+        text-decoration: none;
+
+        &:link {
+            /* color: var(--a-text-color); */
+        }
+        &:visited {
+            /* color: var(--a-text-color); */
+        }
+        &:focus {
+
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+        &:active {
+
+        }
+    }
 
     code {
         color: #999;
@@ -181,6 +206,12 @@ main {
     img.img-g4 {
         width: 24%;
     }
+
+img.logo-inline {
+    /* max-width: 100%; */
+    width: auto;
+    height: 1rem;
+}
 
     li,
     p {
