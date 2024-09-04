@@ -112,18 +112,18 @@ main {
         &:link {
             /* color: var(--a-text-color); */
         }
+
         &:visited {
             /* color: var(--a-text-color); */
         }
-        &:focus {
 
-        }
+        &:focus {}
+
         &:hover {
             text-decoration: underline;
         }
-        &:active {
 
-        }
+        &:active {}
     }
 
     code {
@@ -207,11 +207,14 @@ main {
         width: 24%;
     }
 
-img.logo-inline {
-    /* max-width: 100%; */
-    width: auto;
-    height: 1rem;
-}
+    img.logo-inline {
+        /* max-width: 100%; */
+        width: auto;
+        height: 1rem;
+    }
+    #cmbchina-logo {
+        background-color: #b72d34;
+    }
 
     li,
     p {
@@ -248,7 +251,7 @@ img.logo-inline {
             padding: 10px;
             font-weight: bold;
             font-size: 1rem;
-          }
+        }
 
         th,
         td {
