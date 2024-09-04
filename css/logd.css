@@ -201,6 +201,7 @@ main {
 
     img {
         width: 48%;
+        content-visibility:auto;
     }
 
     img.img-g4 {
