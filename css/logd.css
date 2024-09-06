@@ -147,12 +147,18 @@ main {
         font-size: 1rem;
     }
 
+
+    .em-black {
+        color: var(--h3-color);
+    }
     .em-blue {
         color: var(--text-em-blue);
     }
-
     .em-bold {
         font-weight: bold;
+    }
+    .em-normal {
+        font-weight: normal;
     }
 
 
@@ -173,7 +179,8 @@ main {
     }
 
     h2,
-    h3 {
+    h3,
+    p {
         margin: 1rem 0;
 
         a {
@@ -222,6 +229,10 @@ main {
         /* max-width: 100%; */
         width: auto;
         height: 1rem;
+    }
+    img.logo-h3 {
+        width: auto;
+        height: 1.5rem;
     }
     #cmbchina-logo {
         background-color: #b72d34;
