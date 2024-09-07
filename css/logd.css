@@ -79,13 +79,13 @@ header {
         }
 
         .doc-last-update::before {
-            content: " | 最近更新:";
+            content: " | 更新:";
             color: var(--text-gray-color);
             padding: 0 0.25rem;
         }
 
         .doc-first-on::before {
-            content: "| 首次发布:";
+            content: "| 发布:";
             color: var(--text-gray-color);
             padding: 0 0.25rem;
         }
@@ -246,7 +246,7 @@ main {
     }
 
     li {
-        margin: 0.4em 0;
+        margin: 0 0;
     }
 
 
