@@ -160,6 +160,12 @@ main {
     .em-normal {
         font-weight: normal;
     }
+    .em-larger {
+        font-size:larger;
+    }
+    .em-smaller {
+        font-size: smaller;
+    }
 
 
     h2 {
