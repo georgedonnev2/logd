@@ -7,8 +7,8 @@
     --text-color: #333;
     --text-comment-color: #666;
     --text-gray-color: #666;
-    /* --text-em-blue: #007bb6; */
-    --text-em-blue: #0066cc;
+    --text-em-blue: #007bb6;
+    /* --text-em-blue: #0066cc; */
 
     /* color for link (get from huaweicloud.com) */
     --a-text-color: #1476ff;
@@ -134,7 +134,32 @@ main {
         }
 
         &:active {}
+
+        &[href^="#"] {
+            &::before {
+                color: var(--text-inactive, #999);
+                content: "#";
+                display: inline-block;
+                font-size: 1em;
+                line-height: 1;
+                margin-left: -1em;
+                padding: 0.5em 0;
+    
+                text-decoration: none;
+                visibility: hidden;
+                width: 1em;
+            }
+    
+            &:hover {
+                &::before {
+                    visibility: visible;
+                }
+            }
+    
+        }
     }
+
+    
 
     code {
         color: #999;
@@ -198,7 +223,7 @@ main {
             }
         }
 
-        a[href^="#"] {
+        /* a[href^="#"] {
             &::before {
                 color: var(--text-inactive, #999);
                 content: "#";
@@ -219,7 +244,7 @@ main {
                 }
             }
 
-        }
+        } */
     }
 
     img {
