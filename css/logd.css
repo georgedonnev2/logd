@@ -107,15 +107,26 @@ footer {
     text-align: center;
 
     background-color: #eee;
-    padding: 0.5rem 0;
+    /* padding: 0.5rem 0; */
 
-    a {
-        color: #333;
+    
+    /* a[href^="#"] {
+        padding: 0;
+        margin: 0;
+        line-height: 0;
+        color: red;
+    } */
+
+    a,
+    p {
+        font-size: 0.75rem;
+        line-height: 0.5;
+        text-align: center;
+
     }
 
-    * {
-        font-size: 0.75rem;
-        text-align: center;
+    p {
+        color: #666;
     }
 }
 
@@ -204,29 +215,7 @@ main {
     }
 
 
-    .em-black {
-        color: var(--h3-color);
-    }
-
-    .em-blue {
-        color: var(--text-em-blue);
-    }
-
-    .em-bold {
-        font-weight: bold;
-    }
-
-    .em-normal {
-        font-weight: normal;
-    }
-
-    .em-larger {
-        font-size: larger;
-    }
-
-    .em-smaller {
-        font-size: smaller;
-    }
+    
 
 
     h2 {
@@ -283,6 +272,8 @@ main {
         } */
     }
 
+    
+
     img {
         width: 48%;
         content-visibility: auto;
@@ -337,6 +328,30 @@ main {
 
 }
 
+.em-black {
+    color: var(--h3-color);
+}
+
+.em-blue {
+    color: var(--text-em-blue);
+}
+
+.em-bold {
+    font-weight: bold;
+}
+
+.em-normal {
+    font-weight: normal;
+}
+
+.em-larger {
+    font-size: larger;
+}
+
+.em-smaller {
+    font-size: smaller;
+}
+
 main.with-sidebar {
     grid-row: 2;
     grid-column: 2 / span 12;
@@ -358,6 +373,10 @@ main.with-sidebar {
     } */
 
     
+}
+main.without-sidebar {
+    grid-row: 2;
+    grid-column: 2 / span 14;
 }
 
 aside {
