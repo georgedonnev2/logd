@@ -120,7 +120,7 @@ footer {
     a,
     p {
         font-size: 0.75rem;
-        line-height: 0.5;
+        line-height: 0.5em;
         text-align: center;
 
     }
@@ -159,7 +159,7 @@ a {
             content: "#";
             display: inline-block;
             font-size: 1em;
-            line-height: 1;
+            line-height: 1em;
             margin-left: -1em;
             padding: 0.5em 0;
 
@@ -180,7 +180,8 @@ a {
 li,
     p {
         font-size: 1rem;
-        line-height: var(--text-line-height, 1.6rem);
+        line-height: var(--text-line-height, 1.6em);
+        /* line-height: var(--text-line-height, 1.6rem); */
         margin: 1em 0;
     }
 
@@ -272,7 +273,9 @@ main {
         } */
     }
 
-    
+    p {
+        margin: 1em 0;
+    }
 
     img {
         width: 48%;
@@ -404,7 +407,7 @@ aside {
     p,
     a {
         font-size: 0.75rem;
-        line-height: var(--text-line-height, 1.6rem);
+        line-height: var(--text-line-height, 1.6em);
         margin: 0 0;
     }
 
