@@ -24,7 +24,7 @@
 
         <section class="doc-main-info">
             <p class="doc-author text-comment em-comment">George</p>
-            <p class="doc-last-update text-comment em-comment">24-09-18</p>
+            <p class="doc-last-update text-comment em-comment">24-09-26</p>
             <p class="doc-first-on text-comment em-comment">24-09-16</p>
 
             <p class="text-comment em-comment">
@@ -59,17 +59,18 @@
         </p>
     </footer>
 
-        <!-- 目录 -->
-        <aside>
-            <p class="em-larger">目录</p>
-    
-            <a href="#story-24w">24W</a><br>
-            <a href="#job-story-fe-mobile-jd-ks-mt">前端25L</a><br>
-    
-            <!-- &nbsp&nbsp<a href="#huawei-company-governance">组织</a><br>
+    <!-- 目录 -->
+    <aside>
+        <p class="em-larger">目录</p>
+
+        <a href="#story-company-f-written-exam">F公司笔试</a><br>
+        <a href="#story-24w">积极投递W</a><br>
+        <a href="#job-story-fe-mobile-jd-ks-mt">前端25L</a><br>
+
+        <!-- &nbsp&nbsp<a href="#huawei-company-governance">组织</a><br>
             &nbsp&nbsp<a href="#huawei-more-video-poster">更多</a> -->
-    
-        </aside>
+
+    </aside>
 
     <!-- main -->
     <main class="with-sidebar">
@@ -86,6 +87,116 @@
 
         </section>
         <br>
+
+
+        <section>
+            <h2 id="story-company-f-written-exam">
+                <a href="#story-company-f-written-exam">F公司笔试样例题</a>
+            </h2>
+            <p class="text-comment em-comment">
+                来源：25届本科L |
+                更新：24-09-26 | 发布：24-09-26
+            </p>
+
+            <!--  -->
+            <p class="em-bold">
+                题目1 海盗分金币
+            </p>
+            <p>
+                有5个海盗抢得100枚金币，他们按抽签的顺序依次提方案：<br>
+
+                首先由1号提出分配方案，然后5人表决，投票要超过半数同意方案才被通过，否则他将被扔入大海喂鲨鱼，由下一位再次提出方案，依此类推。请问：1号最多能给自己分配并得到多少金币？
+            </p>
+
+            <!--  -->
+            <p class="em-bold">
+                题目2 分桃子狼人杀
+            </p>
+            <p>
+
+                有四个同学，每个人得到的桃子数量不同，4个到7个之间。然后，4个人都吃掉了1个或2个桃，结果每个人剩下的桃数是还是各不相同。<br>
+                4个人吃过桃后，说了如下的话。其中，吃了2个桃的人撒谎了，吃了1个桃的人说了实话。<br>
+                安娜:“我吃过红色的桃。”<br>
+                杰瑞:"安娜现在手里有4个桃。”<br>
+                凯特:“我和简一共吃了 3个桃。”<br>
+                简:"杰瑞吃了2个桃。凯特现在拿着的桃数量不是3个。”<br>
+                请问:最初杰瑞手里有几个桃?<br>
+                A 6<br>
+                B 4<br>
+                C 5<br>
+                D 7<br>
+            </p>
+
+            <!--  -->
+            <p class="em-bold">题目3 幼儿园问题</p>
+            <p>
+                老师让幼儿园的小朋友排成一行,然后开始发水果.老师分发水果的方法是这样的：从左面第一个人开始,每隔2人发一个梨；从右边第一个人开始,每隔4人发一个苹果.如果分发后的结果有10个小朋友既得到了梨,又得到了苹果,那么这个幼儿园有多少个小朋友?
+            </p>
+
+            <!--  -->
+            <p class="em-bold">题目4 二叉搜索树的路径</p>
+            <p>
+                假设某棵二叉查找树的所有键均为1到10的整数，现在我们要查找5，可能的路径为……
+            </p>
+            <p>可能的思路：左子树的值都小于当前节点，右子树的值都大于当前节点</p>
+
+            <!--  -->
+            <p class="em-bold">编程题：最长回文子序列</p>
+
+            <p>
+                给你一个字符串，你可以删除任意字符，输出一个最长的回文子序列
+            </p>
+
+
+            思路：1.保证回文：反转原字符串，子字符串一致而是回文 2.删除（子序列）：求其公共子序列
+            <pre><code>
+示例代码，表示下思路，不一定正确，不一定能运行哦
+#include&ltiostream&gt
+#include&ltstring&gt
+using namespace std;
+int main(){
+    string s;
+    cin>>s;
+    string res;
+    for(int i = s.length()-1;i>=0;i--){
+    res += s[i];
+    }
+    const int N = s.length();
+    int dp[N+1][N+1];
+    for(int i = 0;i<=N;i++){ 
+        for(int j=0;j<=N;j++){ 
+            dp[i][j]=0; 
+        } 
+    } 
+    for(int i=0;i<=N-1;i++){ 
+        for(int j=0;j<=N-1;j++){ 
+            if(res[j]==s[i]){ 
+                dp[i+1][j+1]=dp[i][j]+1; 
+            }else{
+                dp[i+1][j+1]=max(dp[i][j+1],dp[i+1][j]); 
+            } 
+        } 
+    } 
+    cout&lt&ltdp[N][N]&lt&ltendl; 
+}  
+                    </code></pre>
+
+            <p class="em-bold">
+                编程题K个三次方之和
+            </p>
+            <p>
+                题目描述：
+                给你一个整数N，要求a1^3+a2^3+.....+ak^3=N<br>
+                a1 a2 可重复，要求K最小，输出一个长度为K的数组。<br>
+                样例： <br>
+                输入：42<br>
+                输出：[2,2,2,2,2,1,1]<br>
+                样例解释<br>
+                这里并不能去每次找最大的三次幂让他相减，需要DP最短的路径，如果按照贪心的思想就会出现这样的错误42 [3,2,1,1,1,1,1,1,1] </p>
+
+            <p class="text-comment em-comment">### THE END ###</p>
+
+        </section>
 
         <!-- 积极投递不断尝试 -- 24届校友W -->
         <section>
