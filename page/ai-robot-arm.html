@@ -3,44 +3,121 @@
 
 <head>
     <meta charset="utf-8">
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
     <title>机械臂相关说明</title>
     <link rel="stylesheet" type="text/css" href="../css/logd.css" />
+
+    <!-- 引入不蒜子计数 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </head>
 
-<body>
+<body class="with-sidebar">
 
+    <!-- header -->
     <header>
         <h1>机械臂相关说明</h1>
+
         <section class="doc-main-info">
-            <p class="doc-author">George Donne</p>
-            <p class="doc-last-update">2024-07-31</p>
-            <p class="doc-first-on">2024-07-19</p>
+            <p class="doc-author text-comment em-comment">George</p>
+            <p class="doc-last-update text-comment em-comment">24-10-24</p>
+            <p class="doc-first-on text-comment em-comment">24-07-19</p>
+
+            <p class="text-comment em-comment">
+                <span id="busuanzi_container_page_pv">
+                    | 浏览量：<span id="busuanzi_value_page_pv"></span>👀
+                </span>
+                &nbsp|&nbsp
+                返回<a href="./rem-i-want-job.html" target="_blank">
+                    <我想找工作>
+                </a>
+            </p>
         </section>
     </header>
 
+    <!-- footer -->
     <footer>
-
-        <p> &copy George Donne 2024-2025. All Rights Reserved. 苏ICP备2021027062号-1&nbsp&nbsp|&nbsp&nbsp
-            <a href="#">关于</a>
+        <p>
+            &copy George Donne 2024-2025. All Rights Reserved. 苏ICP备2021027062号-1&nbsp&nbsp|&nbsp&nbsp
+            <a href="./logd-about.html">关于</a>
         </p>
-        <p> Support:
-            <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
 
+        <p>
+            Support: <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
+        </p>
+
+        <p>
+            <span id="busuanzi_container_site_pv">
+                本站浏览量：<span id="busuanzi_value_site_pv"></span>👀
+            </span>
+            &nbsp&nbsp|&nbsp&nbsp
+            <span id="busuanzi_container_site_uv">
+                本站访客数：<span id="busuanzi_value_site_uv"></span>👤
+            </span>
         </p>
     </footer>
 
-    <main>
+    <!-- sidebar -->
+    <aside>
+        <p class="em-larger">目录</p>
+
+        <a href="#robot-arm-selection">选型</a><br>
+        <a href="#ra-yb-briefing">简介某款</a><br>
+        &nbsp&nbsp<a href="#ra-yb-driver">驱动</a><br>
+    </aside>
+
+    <!-- main -->
+    <main class="with-sidebar">
+
 
         <section>
-            <h2 id="机械臂硬件相关简介">
-                <a href="#机械臂硬件相关简介">机械臂硬件相关简介</a>
+            <h2 id="robot-arm-selection">
+                <a href="#robot-arm-selection">机械臂选型</a>
             </h2>
 
-            <h3 id="机械臂底层驱动简介和安装">
-                <a href="#机械臂底层驱动简介和安装">机械臂底层驱动简介和安装</a>
+            <h3 id="ras-overall">
+                <a href="#ras-overall">整体建议</a>
+
+            </h3>
+
+            <p class="em-bold">
+                吸盘推荐
+            </p>
+            <p>
+                对于分拣这类形状可能不规则、质地柔软的动物，吸盘是一个很好的选择，因为它可以通过负压吸附动物，避免对其造成物理伤害。在选择时，应考虑吸盘的材质、吸附力、形状和尺寸等因素。国产品牌中，虽然具体针对此类应用的吸盘型号可能不多，但一些通用的真空吸盘或定制化的吸盘解决方案可能适用。
+            </p>
+
+            <h3 id="ras-hitbot">
+                <a href="#ras-hitbot">慧灵科技</a>
+            </h3>
+
+            <p>
+                慧灵科技：慧灵科技（江苏）有限公司是一家专注于机器人技术的公司，其小型六轴机械臂可能适用于分拣寡毛类底栖动物的任务。这种机械臂具有高精度、高灵活性和适当的负载能力，可以满足分拣任务的要求。
+            </p>
+
+            <p>
+                慧灵科技推荐：<br>
+                ▫️ 夹蚯蚓的话，我建议您这个机械臂1832+8S 电动夹爪。<br>
+                ▫️ 报价约 2 万左右。<br>
+                ▫️ 总部昆山。
+            </p>
+            <p>
+                公司网址：<a href="https://www.hitbot.cc/" target="_blank">https://www.hitbot.cc/ 🔗 </a>
+            </p>
+        </section>
+
+
+
+
+        <!--  -->
+        <section>
+            <h2 id="ra-yb-briefing">
+                <a href="#ra-yb-briefing">机械臂硬件相关简介</a>
+            </h2>
+
+            <h3 id="ra-yb-driver">
+                <a href="#ra-yb-driver">机械臂底层驱动简介和安装</a>
             </h3>
 
             <p>
@@ -366,7 +443,8 @@ del Arm # 释放掉 Arm 对象
             <hr />
 
             <p>
-                2024-07-31解决了 xxx I2C error。详见<a href="https://logd.georgedonne.cn/page/ai-faq.html#驱动机械臂报xxxI2Cerror" target="_blank">驱动机械臂报 xxx I2C error</a>。
+                2024-07-31解决了 xxx I2C error。详见<a href="https://logd.georgedonne.cn/page/ai-faq.html#驱动机械臂报xxxI2Cerror"
+                    target="_blank">驱动机械臂报 xxx I2C error</a>。
 
             </p>
             <hr>
@@ -403,7 +481,8 @@ del Arm # 释放掉 Arm 对象
                     3.控制单个舵机：Arm_serial_servo_write(id, angle, time) 。
                 </li>
                 <li>
-                    4.读取舵机当前的位置：Arm_serial_servo_read(id)。id：要读取的舵机的 ID 号，范围是 1~6，每个 ID 号表示一个舵机，从最底端的舵机的 ID 为 1，往上依次增加，最上面的舵机 ID 为 6。返回值：对应 ID 舵机当前的角度，ID=5 时，角度范围为 0~270，其他都为0~180。
+                    4.读取舵机当前的位置：Arm_serial_servo_read(id)。id：要读取的舵机的 ID 号，范围是 1~6，每个 ID 号表示一个舵机，从最底端的舵机的 ID 为
+                    1，往上依次增加，最上面的舵机 ID 为 6。返回值：对应 ID 舵机当前的角度，ID=5 时，角度范围为 0~270，其他都为0~180。
                 </li>
                 <li>
                     5.一次控制6个舵机：Arm_serial_servo_write6(S1, S2, S3, S4, S5, S6, time)。
@@ -499,6 +578,7 @@ xy, _ = read_XYT(XYT_path) # 等号左边是什么含义
             <ol>
                 <li>
                     DofBot树莓派视觉机械臂资料地址：<a href="https://www.yahboom.com/study/Dofbot-Pi" target="_blank">链接</a>
+                    <!-- 1p5i -->
                 </li>
 
             </ol>
