@@ -1,42 +1,81 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
     <meta charset="utf-8">
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
-    <title>环境、远程服务器、网络等说明</title>
+    <title>环境、服务器、网络等说明</title>
     <link rel="stylesheet" type="text/css" href="../css/logd.css" />
+
+    <!-- 引入不蒜子计数 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </head>
 
-<body>
+<body class="with-sidebar">
 
+    <!-- header -->
     <header>
-        <h1>环境、远程服务器、网络等说明</h1>
+        <h1>环境、服务器、网络等说明</h1>
+
         <section class="doc-main-info">
-            <p class="doc-author">George Donne</p>
-            <p class="doc-last-update">2024-08-02</p>
-            <p class="doc-first-on">2024-06-07</p>
+            <p class="doc-author text-comment em-comment">George</p>
+            <p class="doc-last-update text-comment em-comment">24-10-29</p>
+            <p class="doc-first-on text-comment em-comment">24-06-07</p>
+
+            <p class="text-comment em-comment">
+                <span id="busuanzi_container_page_pv">
+                    | 浏览量：<span id="busuanzi_value_page_pv"></span>👀
+                </span>
+                <!-- &nbsp|&nbsp
+                返回<a href="./rem-i-want-job.html" target="_blank">
+                    <我想找工作>
+                </a> -->
+            </p>
         </section>
     </header>
 
-
+    <!-- footer -->
     <footer>
-
-        <p> &copy George Donne 2024-2025. All Rights Reserved. 苏ICP备2021027062号-1&nbsp&nbsp|&nbsp&nbsp
-            <a href="#">关于</a>
+        <p>
+            &copy George Donne 2024-2025. All Rights Reserved. 苏ICP备2021027062号-1&nbsp&nbsp|&nbsp&nbsp
+            <a href="./logd-about.html">关于</a>
         </p>
-        <p> Support:
-            <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
+
+        <p>
+            Support: <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
+        </p>
+
+        <p>
+            <span id="busuanzi_container_site_pv">
+                本站浏览量：<span id="busuanzi_value_site_pv"></span>👀
+            </span>
+            &nbsp&nbsp|&nbsp&nbsp
+            <span id="busuanzi_container_site_uv">
+                本站访客数：<span id="busuanzi_value_site_uv"></span>👤
+            </span>
         </p>
     </footer>
 
-    <main>
+    <!-- sidebar -->
+    <aside>
+        <p class="em-larger">目录</p>
 
-        <h2 id="实验室关电上电">
-            <a href="#实验室关电上电">实验室上电和断电</a>
+        <a href="#lab-power-onoff">实验室电源</a><br>
+        <a href="#dk-power-onoff">开发板开关机</a><br>
+        <a href="#login-dk-server">登录</a><br>
+        <a href="#dk-system-mgmt">系统管理</a><br>
+        &nbsp&nbsp<a href="#dksm-add-ssd">增加硬盘</a><br>
+        &nbsp&nbsp<a href="#dksm-add-user">增加用户</a><br>
+    </aside>
+
+    <!-- main -->
+    <main class="with-sidebar">
+
+        <!--  -->
+        <h2 id="lab-power-onoff">
+            <a href="#lab-power-onoff">实验室上电和断电</a>
         </h2>
 
         <p>实验室上电：</p>
@@ -54,11 +93,13 @@
 
         <br>
 
-        <img src="../img/ai-server_network-1.jpg" alt="electricity-box">
+        <a href="../img/ai-server_network-1.jpg" target="_blank"><img src="../img/ai-server_network-1.jpg"
+                style="width:100%;" alt="electricity-box"></a>
 
 
-        <h2 id="华为昇腾开发者套件DK的开机关机下电">
-            <a href="#华为昇腾开发者套件DK的开机关机下电">华为昇腾开发者套件DK的开机、关机+下电</a>
+        <!--  -->
+        <h2 id="dk-power-onoff">
+            <a href="#dk-power-onoff">华为昇腾开发者套件DK的开机、关机+下电</a>
         </h2>
 
         <ul>
@@ -71,23 +112,23 @@
         </ul>
 
 
-        <h2 id="WiFi接入实验室局域网">
+        <!-- <h2 id="WiFi接入实验室局域网">
             <a href="#WiFi接入实验室局域网">WiFi接入实验室局域网</a>
         </h2>
         <ul>
             <li>接入点：gdmifi</li>
             <li>密码：djq960423</li>
-        </ul>
+        </ul> -->
 
-        <h2 id="登录华为昇腾开发者套件">
-            <a href="#登录华为昇腾开发者套件">登录局域网 Linux 服务器（即华为昇腾开发者套件） -- IP地址： 192.168.31.200</a>
+        <h2 id="login-dk-server">
+            <a href="#login-dk-server">登录华为昇腾开发者套件</a>
         </h2>
         <ol>
             <li>
                 Windows 运行 power shell，
             </li>
             <li>
-                在 power shell中执行命令： ssh 用户名@192.168.31.200。比如用户名是 gdv2，则：<br>
+                假定开发者套件的 IP 是 192.168.31.200。在 power shell中执行命令： ssh 用户名@192.168.31.200。比如用户名是 gdv2，则：<br>
                 ssh gdv2@192.168.31.200
             </li>
             <li>
@@ -95,10 +136,115 @@
             </li>
         </ol>
 
-        <h2 id="登录公网Linux服务器81">
+        <!-- <h2 id="登录公网Linux服务器81">
             <a href="#登录公网Linux服务器81">登录公网 Linux 服务器 -- IP地址： 8.147.232.81</a>
         </h2>
-        <p>登录方法，同登录局域网 Linux 服务器。此处从略。</p>
+        <p>登录方法，同登录局域网 Linux 服务器。此处从略。</p> -->
+
+        <!--  -->
+        <section>
+            <h2 id="dk-system-mgmt">
+                <a href="#dk-system-mgmt">华为昇腾开发者套件系统管理</a>
+            </h2>
+
+            <!--  -->
+            <section>
+                <h3 id="dksm-add-ssd">
+                    <a href="#dksm-add-ssd">增加SSD硬盘</a>
+                </h3>
+                <p class="text-comment em-comment">更新 24-10-29 | 发布 24-10-29</p>
+                <p>
+                    在淘宝买了块 M2 接口的 SSD 硬盘。有 2280 长一些的，也有 2240 一半长的。买了 2280 规格 1TB 的。参考 <a
+                        href="https://www.hiascend.com/document/detail/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/Hardware%20Interfaces/hiug/hiug_0021.html"
+                        target="_blank">接入 M.2Key M硬盘🔗 </a>，将 SSD 硬盘装到开发者套件上。螺丝有点紧，用大螺丝刀搞定。大致要经过以下几步操作，就可以用上 SSD 硬盘。
+                </p>
+
+                <p class="em-bold">
+                    1、执行 <code>fdisk -l</code> 查看未挂载的硬盘
+                </p>
+                <pre><code>Disk /dev/nvme0n1: 931.51 GiB, 1000204886016 bytes, 1953525168 sectors
+Disk model: WD Blue SN580 1TB                       
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x9d447651
+                </code></pre>
+
+                <p class="em-bold">
+                    2、执行 <code> fdisk /dev/nvme0n1</code> 对硬盘分区
+                </p>
+                <p>
+                    考虑硬盘有 1TB，就做 2个分区，每个 500 GB左右。第 1 个分区在大小那里，输入了 +500G，其他基本都是默认取值。做 2 遍，因为分了 2 个区。分区完成后，执行
+                    <code>fdisk -l</code>，就可以看到新增了2个设备（device）
+                </p>
+                <pre><code>Device         Boot      Start        End    Sectors   Size Id Type
+/dev/nvme0n1p1            2048 1048578047 1048576000   500G 83 Linux
+/dev/nvme0n1p2      1048578048 1953525167  904947120 431.5G 83 Linux
+                </code></pre>
+
+                <p class="em-bold">
+                    3、执行 <code>mkfs</code> 对分区（设备，device）格式化
+                </p>
+                <p>
+                    最终选择了 mkfs.ext4，即格式化为 ext4 文件系统。命令如下：
+                </p>
+                <code>
+                    mkfs.ext4 /dev/nvme0n1p1<br>
+                    mkfs.ext4 /dev/nvme0n1p2<br>
+                </code>
+
+                <p class="em-bold">
+                    4、执行 <code>mount</code> 命令挂载分区（设备，device）到文件系统
+                </p>
+                <p>
+                    新建了2个目录，<code>/home1</code> 和 <code>/data1</code>，分别用于挂载 2 个分区。命令如下：
+                </p>
+                <code>
+                    mount /dev/nvme0n1p1 /home1<br>
+                    mount /dev/nvme0n1p2 /data1<br>
+                </code>
+
+                <p class="em-bold">
+                    5、相关信息更新到 <code>/etc/fstab</code> 文件中
+                </p>
+                <p>
+                    相关信息更新到<code>/etc/fstab</code> 文件中后，每次重启系统，可直接使用该 SSD 硬盘，即可以访问目录 <code>/home1</code> 和 <code>/data1</code>。如果未将相关信息更新到<code>/etc/fstab</code> 文件中，则每次重新启动后，要重复上述第 4 步操作。更新什么信息到 <code>/etc/fstab</code> 文件中，此处从略，可执行上网搜索。
+                </p>
+
+                <p>
+                    开机使用一段时间后，用手摸 SSD 硬盘，觉得还是有点热。待双 11 在淘宝买个散热马甲装上，应该就可以了。
+                </p>
+
+                <p class="text-comment em-comment">
+                    主要参考资料：<br>
+                    1、<a href="https://blog.csdn.net/chcourseofgrowth/article/details/104486407"
+                        target="_blank">在Linux系统中，添加新硬盘。划分两个分区🔗</a><br>
+                    2、<a href="https://blog.csdn.net/bill_wjn/article/details/106013425"
+                        target="_blank">linux挂载硬盘步骤（简单易用，直接上手，无废话）🔗</a>
+                </p>
+            </section>
+
+            <!--  -->
+            <br>
+            <hr>
+            <section>
+                <h3 id="dksm-add-user">
+                    <a href="#dksm-add-user">增加用户</a>
+                </h3>
+                <p class="text-comment em-comment">更新 24-10-29 | 发布 24-10-29</p>
+
+                <p>
+                    通过图形界面实现增加用户的。相关参数取值如下：
+                </p>
+                <p>
+                    1、main group。取值为 <code>user</code>。<br>
+                    2、还加入 sudo group。这样用户也就可以通过 <code>sudo</code> 方式，执行 <code>sudo install ...</code> / <code>sudo shutdown ...</code>等命令。<br>
+                    3、shell。选择了 <code>/bin/bash</code>。一般在 Linux 上大多使用该 shell。另外选择该 shell 后，命令提示符也是彩色的，并带路径名，等，是我所希望的（省的要自己设置）。假定选择 <code>/bin/shell</code>，命令提示符就是普通的。<br>
+                    4、home 目录。记得修改到 <code>/home1</code> 下面，因为有几百G空间。
+                </p>
+            </section>
+        </section>
     </main>
 
 </body>
