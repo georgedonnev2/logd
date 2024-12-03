@@ -21,7 +21,7 @@
 
         <section class="doc-main-info">
             <p class="doc-author text-comment em-comment">George</p>
-            <p class="doc-last-update text-comment em-comment">24-11-29</p>
+            <p class="doc-last-update text-comment em-comment">24-12-03</p>
             <p class="doc-first-on text-comment em-comment">24-11-29</p>
 
             <p class="text-comment em-comment">
@@ -69,6 +69,7 @@
         <a href="#setup-testing">组装调试</a><br>
         &nbsp&nbsp<a href="#setup-parts">组装部件</a><br>
         &nbsp&nbsp<a href="#testing-tunning">烧录调试</a><br>
+        &nbsp&nbsp<a href="#code-onchip">相关源码</a><br>
     </aside>
 
     <!-- main -->
@@ -93,13 +94,13 @@
                 <p>
                     组装完成的轮足机器人如下图所示：<br>
                     <a href="../img/ai-robot-wheel-rw.jpg" target="_blank"><img src="../img/ai-robot-wheel-rw.jpg"
-                            alt="robot-wheel" style="width:100%;"></a>
+                            alt="robot-wheel" style="width:auto;max-width:100%;"></a>
                 </p>
 
                 <p>
                     通过遥控器（如下图所示）控制轮足机器人运动。目前可做运动有：前进/后退，左转/右转，升高/降低腿。<br>
                     <a href="../img/ai-robot-wheel-rc.jpg" target="_blank"><img src="../img/ai-robot-wheel-rc.jpg"
-                            alt="remote-controller" style="width:auto;"></a>
+                            alt="remote-controller" style="width:auto;max-width:100%;"></a>
 
                 </p>
 
@@ -120,7 +121,7 @@
                     - 摇杆④（位于遥控器的右中）<br>
                     - 电源⑤（位于遥控器的中央）<br>
                     <a href="../img/ai-robot-wheel-rc2.png" target="_blank"><img src="../img/ai-robot-wheel-rc2.png"
-                            alt="remote-controller-1" style="width:auto;"></a>
+                            alt="remote-controller-1" style="width:auto;max-width:100%;"></a>
                 </p>
 
                 <p>
@@ -215,7 +216,7 @@
                 </p>
                 <p>
                     <a href="../img/ai-robot-wheel-parts.jpg" target="_blank"><img src="../img/ai-robot-wheel-parts.jpg"
-                            alt="parts" style="width:auto;"></a><br>
+                            alt="parts" style="width:auto;max-width:100%;"></a><br>
                 </p>
 
                 <br>
@@ -236,7 +237,7 @@
                 </p>
                 <p>
                     <a href="../img/ai-robot-wheel-board.jpg" target="_blank"><img src="../img/ai-robot-wheel-board.jpg"
-                            alt="board" style="width:auto;"></a><br>
+                            alt="board" style="width:auto;max-width:100%;"></a><br>
                 </p>
 
                 <br>
@@ -245,7 +246,7 @@
                 </p>
                 <p>
                     <a href="../img/ai-robot-wheel-all.jpg" target="_blank"><img src="../img/ai-robot-wheel-all.jpg"
-                            alt="all" style="width:auto;"></a><br>
+                            alt="all" style="width:auto;max-width:100%;"></a><br>
                 </p>
 
                 <br>
@@ -254,7 +255,7 @@
                 </p>
                 <p>
                     <a href="../img/ai-robot-wheel-all1.jpg" target="_blank"><img src="../img/ai-robot-wheel-all1.jpg"
-                            alt="all1" style="width:auto;"></a><br>
+                            alt="all1" style="width:auto;max-width:100%;"></a><br>
                 </p>
 
             </section>
@@ -300,8 +301,44 @@
                         target="_blank">https://www.vofa.plus/🔗</a>）测试和调优，轮足机器人通过 USB
                     串口和电脑相连。比如：轮子是否被识别到，轮子转动是否丝滑，让4个舵机转动微小角度确保腿部的大腿和品字型白框垂直，等等。
                     <a href="../img/ai-robot-wheel-vofa.jpg" target="_blank"><img src="../img/ai-robot-wheel-vofa.jpg"
-                            alt="vofa" style="width:100%;"></a><br>
+                            alt="vofa" style="width:auto;max-width:100%;"></a><br>
                 </p>
+
+
+                <!--  -->
+                <br>
+                <section>
+                    <h3 id="code-onchip">
+                        <a href="#code-onchip">相关源码</a>
+                    </h3>
+
+                    <p>
+                        有3个源代码，如下：
+                    </p>
+                    <p>
+
+                        <a href="../src/BLDC_Control-241105.zip">点击下载 BLDC_Control-241105.zip（主控板源代码）</a><br>
+                        <span class="text-comment em-comment">主控板相关源代码</span>
+                    </p>
+                    <p>
+                        <a href="../src/bipedal-241105.zip">点击下载 bipedal-241105.zip（舵机板源代码）</a><br>
+                        <span class="text-comment em-comment">舵机板相关源代码</span>
+                    </p>
+                    <p>
+                        <a href="../src/bipedal_calibrate-241105.zip">点击下载
+                            bipedal_calibrate-241105.zip（舵机板校准源代码）</a><br>
+                        <span
+                            class="text-comment em-comment">轮足机器人的大腿，是和舵机漏出的齿轮相连的。要求大腿部件，和品字型白框基本垂直。大腿部件上的齿轮和舵机漏出的齿轮（非运动状态时是锁定的）相连，初始状态不一定能保证大腿垂直。该校准程序用于让舵机转动很小的角度，以便让大腿垂直。4个舵机转动的角度记录下来，然后填入
+                            bipedal-241105.zip 中的相关文件中，并烧录到舵机板。</span>
+                    </p>
+
+                    <p>
+                        相关文档可参考：
+                        <a href="../doc/轮足校准先看.pdf" target="_blank">点击下载《轮足校准先看.pdf》</a>
+                    </p>
+
+                </section>
+
 
             </section>
 
