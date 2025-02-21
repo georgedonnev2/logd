@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <title>昇腾500A2小站制作启动盘</title>
+    <link rel="stylesheet" type="text/css" href="../css/logd.css" />
+
+    <!-- 引入不蒜子计数 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</head>
+
+<body class="with-sidebar">
+
+    <!-- header -->
+    <header>
+        <h1>昇腾500A2小站制作启动盘</h1>
+
+        <section class="doc-main-info">
+            <p class="doc-author text-comment em-comment">George</p>
+            <p class="doc-last-update text-comment em-comment">25-01-03</p>
+            <p class="doc-first-on text-comment em-comment">25-01-03</p>
+
+            <p class="text-comment em-comment">
+                <span id="busuanzi_container_page_pv">
+                    | 浏览量：<span id="busuanzi_value_page_pv"></span>👀
+                </span>
+                <!-- &nbsp|&nbsp
+                返回<a href="./rem-i-want-job.html" target="_blank">
+                    <我想找工作>
+                </a> -->
+            </p>
+        </section>
+    </header>
+
+    <!-- footer -->
+    <footer>
+        <p>
+            &copy George Donne 2024-2025. All Rights Reserved. 苏ICP备2021027062号-1&nbsp&nbsp|&nbsp&nbsp
+            <a href="./logd-about.html">关于</a>
+        </p>
+
+        <p>
+            Support: <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
+        </p>
+
+        <p>
+            <span id="busuanzi_container_site_pv">
+                本站浏览量：<span id="busuanzi_value_site_pv"></span>👀
+            </span>
+            &nbsp&nbsp|&nbsp&nbsp
+            <span id="busuanzi_container_site_uv">
+                本站访客数：<span id="busuanzi_value_site_uv"></span>👤
+            </span>
+        </p>
+    </footer>
+
+    <!-- sidebar -->
+    <aside>
+        <p class="em-larger">目录</p>
+
+        <a href="#profile-xx">xx简介</a><br>
+        &nbsp&nbsp<a href="#">xxxx</a><br>
+    </aside>
+
+    <!-- main -->
+    <main class="with-sidebar">
+
+        <section>
+            <h2 id="make-ubuntu-image-guide">
+                <a href="#make-ubuntu-image-guide">M.2 SATA SSD作为启动盘</a>
+            </h2>
+
+            <p>
+                参考资料：Atlas 500 A2 智能小站 用户指南 06 | 常用操作 | 制作和启动系统镜像，<a
+                    href="https://support.huawei.com/enterprise/zh/doc/EDOC1100304816/ebb121ad?idPath=23710424|251366513|22892968|252309141|254412305"
+                    target="_blank">（华为官网链接）</a>
+            </p>
+
+            <h3 id="download-software-package">
+                <a href="#download-software-package">1、下载软件包（共3个包）</a>
+
+            </h3>
+            <p>
+                工具包(源码、编译工具链、烧写工具)：<br>
+                （3-1） Ascend-hdk-310b-sdk-soc_<version>.zip，下载地址：<a
+                        href="https://support.huawei.com/enterprise/zh/ascend-computing/ascend-hdk-pid-252764743/software/"
+                        target="_blank">https://support.huawei.com/enterprise/zh/ascend-computing/ascend-hdk-pid-252764743/software/</a><br>
+
+                    选择了 <code>版本及补丁号：Ascend HDK 23.0.8；发布时间：2024-12-17</code><br>
+                    选择了 <code>软件名称：Ascend-hdk-310b-sdk-soc_23.0.8.zip；软件说明：昇腾310B SoC开发包(包含SD卡制卡工具)</code><br>
+            </p>
+
+            <!--  -->
+            <p>
+                恢复出厂镜像包：<br>
+                （3-2）Ascend-hdk-310b-npu-soc_23.0.0_linux-aarch64.zip<br>
+                （3-3）A500-A2-firmware_1.0.22.zip <mark>（250103：这个包里面所有的软件，都需要制作到镜像中吗？先都放进去吧。）</mark><br>
+                (Ascend-hdk-310b-npu-soc_<version>_linux-rt-aarch64.zip，没有看到，貌似和3-2 是二选一。先不管。)<br>
+                    <br>
+                    下载地址：<a
+                        href="https://support.huawei.com/enterprise/zh/ascend-computing/atlas-500-a2-pid-254412305/software"
+                        target="_blank">https://support.huawei.com/enterprise/zh/ascend-computing/atlas-500-a2-pid-254412305/software</a><br>
+                    <br>
+                    选择了 <code>版本及补丁号：Atlas 500 A2 1.0.22；发布日期：2024-01-19</code><br>
+                    选择了 <code>软件名称：Ascend-hdk-310b-npu-soc_23.0.0_linux-aarch64.zip </code>
+
+            </p>
+
+            <!--  -->
+            <p>
+                在下载软件包时，遇到权限不足无法下载的问题。按提示尝试了“3.注册产品升级为产品客户”等操作，但无法解决。还提单咨询，得到回复是按照“5.联系管理员”操作。最终按照“5.联系管理员”解决了权限不足的问题。<br>
+                <br>
+                （注：以下错误提示中，都是有超链接的）<br>
+                错误提示：对不起，您当前无权限查看该资料！建议您尝试如下方法解决：<br>
+                1. 如果您是销售伙伴/服务伙伴/业务运营伙伴用户，请升级为合作伙伴账号<br>
+                2. 如果您是咨询与规划伙伴/解决方案开发伙伴/人才联盟伙伴/投融资伙伴/产业伙伴用户，请注册产品以解锁权限<br>
+                3. 如果您是购买了华为产品的客户，请注册产品升级为产品客户<br>
+                4. 如果您是华为工程师/ASP，请用W3/ASP账号登录<br>
+                5. 如需更多支持，请联系管理员<br>
+            </p>
+
+
+            <!--  -->
+            <h3 id="prepare-hardware">
+                <a href="#prepare-hardware">2、硬件准备</a>
+            </h3>
+
+            <p>
+                1、一张M.2 SATA SSD硬盘和支持M.2 SATA SSD硬盘的USB读卡器。<br>
+                买了 M.2 SATA SSD，1TB，海康的。还有绿联的 M.2 硬盘盒。
+            </p>
+            <p>
+                2、一台带USB端口且操作系统为Ubuntu 22.04的x86架构的Linux服务器作为制卡环境。
+            </p>
+            <p>
+                3、Linux服务器已安装qemu-user-static、binfmtsupport、yaml、squashfs-tools、unzip<br>
+
+                执行命令
+                <code>apt-get install -y qemu-user-static python3-yaml binfmt-support gcc-aarch64-linux-gnu g++-aarch64-linux-gnu expect unzip squashfs-tools</code>
+            </p>
+            <p>
+                4、在 Linux 服务器上安装交叉编译器。<br>
+                <br>
+                依次执行以下操作或命令
+                <br>
+            <pre><code>
+（1）登录 Linux 服务器
+（2）执行 su root，切换到 root 用户
+（3）创建目录 mkdir /opt/compiler
+（4）在本地 PC 机上传 toolchain.tar.gz 到 /opt/compiler 目录中
+（5）在 Linux 服务器上， 执行  cd /opt/compiler
+（6）解压缩，执行命令 tar -xvf toolchain.tar.gz -C ./
+（7）增加交叉编译器的路径到路径中，执行命令 echo "export PATH=/opt/compiler/toolchain/bin:\$PATH: " >> /etc/profile
+（8）使环境变量生效，执行命令 source /etc/profile
+（9）查看交叉编译器的版本信息，执行命令 aarch64-target-linux-gnu-gcc -v。看到有 gcc version 7.3.0 即表示安装交叉编器成功了。
+
+root@ciml1:/opt/compiler# aarch64-target-linux-gnu-gcc -v
+……
+gcc version 7.3.0 (Do-Compiler V100R001C15B002) 
+
+</code></pre>
+
+            </p>
+
+            <!--  -->
+            <h3 id="download-ubuntu-image">
+                <a href="#download-ubuntu-image">3、下载 Ubuntu 镜像等</a>
+            </h3>
+
+            <p>
+                1、下载 Ubuntu 镜像 22.04 到本地PC机（<a
+                    href="https://old-releases.ubuntu.com/releases/22.04.1/ubuntu-22.04-live-server-arm64.iso">下载链接</a>）
+            </p>
+            <p>
+                2、下载 Ubuntu 文件系统到本地PC机。<br>
+                下载链接：<a
+                    href="https://www.hiascend.com/zh/hardware/firmware-drivers/community?product=1&model=23&cann=All&driver=2023.0.T10"
+                    target="_blank">https://www.hiascend.com/zh/hardware/firmware-drivers/community?product=1&model=23&cann=All&driver=2023.0.T10</a><br>
+                选择 <br><code>软件名称：Ascend-hdk-310b-npu-sample-root-filesystem-soc_23.0.rc1_linux-aarch64.zip<br>
+                分类：NPU<br>
+            发布日期：2024/01/15<br>
+        说明：根文件系统样例镜像</code><br>
+                解压后获取 <code>Sample-root-filesystem-soc_ubuntu-22.04-aarch64.img</code>
+            </p>
+
+
+            <!--  -->
+            <h3 id="make-burn-ubuntu-image">
+                <a href="#make-burn-ubuntu-image">制作及烧写镜像</a>
+            </h3>
+
+            <p>
+                1、从本地PC上传以下软件到 Linux 服务器的的 /home/ascend/mksd 目录<br>
+                <code>
+                    sdtool.tar.gz（制卡所需工具包）<br>
+                    Ascend-hdk-310b-npu-driver-soc_23.0.0_linux-aarch64.run（驱动包）<br>
+                    ubuntu-22.04-live-server-arm64.iso（Ubuntu ISO 镜像）<br>
+                    Sample-root-filesystem-soc_ubuntu-22.04-aarch64.img<br>
+                </code>
+            </p>
+
+            <p>
+                2、以 root 用户身份，依次执行以下指令：<br>
+                <code>
+                    cd /home/ascend/mksd<br>
+                    tar -xzvf sdtool.tar.gz<br>
+                    cp -arf sdtool/* .（执行完后，在 /home/ascend/mksd 目录下，就用 recovertool 子目录了。）<br>
+                </code>
+            </p>
+
+            <p>
+                3、从本地 PC 机，上传文件 <code>Ascend-hdk-310b-npu-soc_23.0.0_linux-aarch64.tar.gz</code> 到 Linux 服务器的 /home/ascend/mksd/recovertool 目录下。
+            </p>
+
+            <p>
+                4、从本地 PC 机，上传以下文件到 Linux 服务器的 /home/ascend/mksd/recovertool 目录下。官网指南说是可以选的，貌似和设备管理相关，就先选上。<br>
+                <code>
+                    A500-A2-hdm_23.0.8.tar.gz<br>
+                    Ascend-mindxedge-om_5.0.0_linux-aarch64.tar.gz<br>
+                    Ascend-mindxedge-mefedge_5.0.0_linux-aarch64.tar.gz<br>
+                </code>
+            </p>
+
+            <!-- NETWORK_CARD_DEFAULT_IP = "192.168.0.2"
+NETWORK_CIDR_PREFIX = "24"
+NETWORK_DEFAULT_NETMASK = "255.255.255.0"
+NETWORK_DEFAULT_GATEWAY = "192.168.0.1"
+USB_CARD_DEFAULT_IP = "192.168.1.2"
+MAKE_OS_RESULT = "make_os_sd.result" -->
+
+
+
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

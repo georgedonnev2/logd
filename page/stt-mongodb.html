@@ -78,7 +78,9 @@
                 由于本机用了另一个 admin 用户安装了一些程序，所以用当前用户安装 <code>brew install mongodb-atlas</code> 不成功。就决定在本地安装 MongoDB。
             </p>
             <p>
-                从 MongoDB 官网下载安装包。网址：<a href="https://www.mongodb.com/try/download/community" target="_blank">https://www.mongodb.com/try/download/community</a>，相关版本信息：Version - 8.0.0(current), Platform - macOS x64, Package - tgz。
+                从 MongoDB 官网下载安装包。网址：<a href="https://www.mongodb.com/try/download/community"
+                    target="_blank">https://www.mongodb.com/try/download/community</a>，相关版本信息：Version - 8.0.0(current),
+                Platform - macOS x64, Package - tgz。
             </p>
 
             <p>
@@ -86,11 +88,206 @@
             </p>
 
             <p>
-                在 MongoDB 5.xx 以后，安装包中就没有 mongo（就是 MongoDB Shell），于是无法用命令行方式操作 MongoDB。可能有以下几种解决办法：
+                在 MongoDB 5.xx 以后，安装包中就没有 mongo（就是 MongoDB Shell），于是无法用命令行方式操作 MongoDB。从<a
+                    href="https://www.mongodb.com/try/download/shell">https://www.mongodb.com/try/download/shell</a> 下载
+                zip 包，解压后执行 mongosh 即可
             </p>
-            <ul>
-                <li>下载 MongoDB 5.xx 版本，将其中的</li>
-            </ul>
+
+            安装数据库工具：https://www.mongodb.com/docs/database-tools/installation/installation-macos/
+
+
+            mongod --dbpath /usr/local/var/mongodb --logpath /usr/local/var/log/mongodb/mongo.log --fork
+            mongod --dbpath ~/mongodb8/data --logpath ~/mongodb8/log/mongo.log --fork
+            --dbpath 设置数据存放目录
+            --logpath 设置日志存放目录
+            --fork 在后台运行
+
+
+
+        </section>
+
+        <section>
+            <h2 id="db-design">
+                <a href="#db-desgin">数据库设计</a>
+            </h2>
+
+            <p>
+                《财富》世界500强排行榜
+            </p>
+            <p>
+                collection: glb500_yr23
+
+            </p>
+            <p>
+                rank: 排名<br>
+                name: 公司名称。榜单上的公司名称。<br>
+                revenue: 榜单上写的营业收入。单位：百万美元。<br>
+                profit：榜单上写的例如。单位：百万美元。<br>
+                country：公司所属国家。<br>
+                name_fr：组织的正式/注册名称。比如中国移动的名称应该是中国移动通信集团有限公司，而不是中国移动通信集团公司（虽然2017年之前叫这个名字）<br>
+            </p>
+
+            <p>
+                <!-- mongoimport -h 127.0.0.1:27017 --authenticationDatabase=admin -u root -p c123456 -d czg -c tt2_csv --type=csv --headerline /root/mongo_export/czg_t2.csv -->
+                mongoimport -d remai -c glb500_yr2023 --type=csv --headerline ~/mongodb8/inf-data/glb500-yr2023.csv
+            </p>
+
+            <section>
+                <h3 id="student-path">
+                    <a href="#student-path">毕业生去向信息</a>
+                </h3>
+
+                <p>
+                    collection：student_gy23<br>
+                    2023年毕业的学生
+                </p>
+                <p>
+                    sid：学号。<br>
+                    name: 姓名。<br>
+                    //gender: 性别。<br>
+                    major：专业。<br>
+                    path_after_graduate：毕业后的去向。比如升学、签三方协议入职，等等。<br>
+                    organization：雇佣单位。<br>
+                    type_org：雇佣单位的性质。比如国企。<br>
+                    industry_org：雇佣单位所属行业。<br>
+                    location_org：雇佣单位所在地。比如xx省xx市xx区。<br>
+                    position_type：入职岗位的类别。<br>
+                    degree: bachelor / master / doctor <br>
+                    path_fr: 去向的规整名称，根据 path_after_graduate 取值得到。比如：
+                </p>
+                <p>
+                    mongoimport -d remai -c student_gy23 --type=csv --headerline ~/mongodb8/inf-data/student-gy23.csv
+                </p>
+
+                {
+
+
+
+
+
+
+
+
+                "degree": "bachelor-23",
+                "path_type": "got-job"
+                }
+            </section>
+
+
+            <!--  -->
+            <section>
+                <h3 id="organization-info">
+                    <a href="#organization-info">组织信息</a>
+                </h3>
+
+                <p>
+                    collection: organization<br>
+                    （组织的信息）
+                </p>
+                <p>
+                    sn：序号。唯一。采用36进制。<br>
+                    name_fr：组织的名称，正式/注册的名称。<br>
+                    name_aka：组织的简称/俗称。比如中国移动通信集团，通常叫做中国移动。<br>
+                    category: 组织的分类。比如政府机关、事业单位、企业、其他，等。<br>
+                    hierarchy_psn：上级组织的序号。<br>
+                    h_comments: 层级关系的相关证据。<br>
+
+
+                </p>
+                <p>
+                    mongoimport -d remai -c organization --type=csv --headerline ~/mdb8/inf-data/organization.csv
+                </p>
+
+            </section>
+
+
+
+        </section>
+
+        <!--  -->
+        <br>
+        <hr>
+        <section>
+            <h2 id="db-ops">
+                <a href="#db-ops">数据库操作</a>
+            </h2>
+
+            <p>
+                以下以 MongoDB Compass v1.45.2 为例。
+            </p>
+            <p>
+                <span class="em-bold">1、删除文档document的字段field，用 update 之 $unset</span>
+            </p>
+            <p>
+                比如删除 db = remai， collection = student_y2023 中的 major 字段。
+            </p>
+            <p>
+                （1）链接数据库后，在界面左侧选择对应的 collection。<br>
+                （2）然后在 document tab中，点击 update 按钮。<br>
+                （3）在出现的界面的 update 框输入如下信息，就可以了。 
+            </p>
+
+
+
+
+            <pre><code>
+{
+    $unset: {
+        major: ""
+    }
+}
+            </code></pre>
+            </p>
+
+            <p>
+                2、增加字段A，用 aggregate 之 $addFields。
+            </p>
+
+            <p>
+                比如增加一个字段 usn，取值等于已有字段 sn。
+            </p>
+            <p>
+                (1) 链接数据库后，在界面左侧选择对应的 collection。<br>
+                (2) 然后选择 Aggregation tab，点击 add Stage 按钮。<br>
+                (3) 在出现的界面中，选择 $addFields,bing 输入如下信息，就可以了。 
+                <pre><code>
+ /**
+ * newField: The new field name.
+ * expression: The new field expression.
+ */
+{
+  usn: "$sn"
+}</code></pre>
+            </p>
+
+            <p>
+                <span class="em-bold">3、完全复制集合A到集合B，可以使用 aggregate 之 $match $out </span>
+            </p>
+            <p>
+                比如复制集合 list_soe 到 bk_list_soe 做备份，则可以在 mongosh 中执行 
+                <code>db.list_soe.aggregate([{ $match: {} }, { $out: "bk_list_soe" }])</code>
+            </p>
+
+            <p>
+                <span class="em-bold">4、修改字段名，可以使用 updateMany 之 $rename </span>
+            </p>
+            <p>
+                比如将字段名 sn 修改为 usn，则可以在 mongosh 中执行 
+                <code>db.bk_list_soe.updateMany({},{$rename:{"sn":"usn"}})</code>
+            </p>
+
+            db.bk_list_soe.updateMany({},{$set:{"sn123":"$usn"}})
+           
+
+        </section>
+
+        <section>
+            <h2 id="reference-info">
+                <a href="#reference-info">参考信息</a>
+            </h2>
+            <p>
+                Python Faker 生成数据库测试数据。（241227）
+            </p>
         </section>
 
     </main>
