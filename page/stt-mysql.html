@@ -82,7 +82,29 @@
         <p>
             点击下载：DEB Bundle， 8.4.4， 476.0M，文件名：mysql-server_8.4.4-1ubuntu22.04_amd64.deb-bundle.tar
         </p>
+        <p>
+            昇腾智能小站，是arm64的。重新选了Linux-Genric
+        </p>
 
+        <p>
+            参考：https://blog.csdn.net/tuzh6/article/details/130324004
+        </p>
+
+[mysqld]
+bind-address=0.0.0.0
+port=3306
+user=root
+basedir=/home1/mysql
+datadir=/home1/mysql/data
+socket=/home1/mysql/tmp/mysql.sock
+log-error=/home1/mysql/data/mysql.err
+pid-file=/home1/mysql/data/mysql.pid
+#character config
+character_set_server=utf8mb4
+lower_case_table_names=1
+symbolic-links=0
+
+./mysqld --defaults-file=/etc/my.cnf --basedir=/home1/mysql/ --datadir=/home1/mysql/data --user=mysql --initialize
 
 
     </main>
