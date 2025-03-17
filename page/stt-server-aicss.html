@@ -21,7 +21,7 @@
 
         <section class="doc-main-info">
             <p class="doc-author text-comment em-comment">George</p>
-            <p class="doc-last-update text-comment em-comment">25-03-04</p>
+            <p class="doc-last-update text-comment em-comment">25-03-17</p>
             <p class="doc-first-on text-comment em-comment">25-03-04</p>
 
             <p class="text-comment em-comment">
@@ -64,6 +64,7 @@
 
         <a href="#basic-operation">常规操作</a><br>
         &nbsp&nbsp<a href="#loginto-server">登录</a><br>
+        <a href="#ascend-dk-briefing">昇腾开发板说明</a><br>
     </aside>
 
     <!-- main -->
@@ -80,45 +81,45 @@
             </h3>
             <p>
 
-                <ol>
-                    <li>
-                        确认要登录到服务器的本地电脑，已接入校园网。当前，服务器只能在校园网内访问到。
-                    </li>
-                    <br>
-                    <li>
-                        在本地电脑上启动终端 或 ssh 工具。比如 Windows 下的 cmd 或 powershell，macOS 下的 terminal（终端）。以下是终端为例。
-                    </li>
-                    <br>
-                    <li>
-                        在本地电脑终端上输入以下命令登录服务器：<br>
-                        <code>
+            <ol>
+                <li>
+                    确认要登录到服务器的本地电脑，已接入校园网。当前，服务器只能在校园网内访问到。
+                </li>
+                <br>
+                <li>
+                    在本地电脑上启动终端 或 ssh 工具。比如 Windows 下的 cmd 或 powershell，macOS 下的 terminal（终端）。以下是终端为例。
+                </li>
+                <br>
+                <li>
+                    在本地电脑终端上输入以下命令登录服务器：<br>
+                    <code>
                             ssh -p 20305 用户名@172.18.144.9
                         </code>
-                        <br>
-                        <br>
-                        <span class="em-comment text-comment">
+                    <br>
+                    <br>
+                    <span class="em-comment text-comment">
                         （1）用户名，替换为服务器管理员给你的用户名。<br>
                         （2）其他，不要改变，按原样输入命令。<br>
                         （3）首次用 ssh 登录服务器，屏幕还可能提示和 ssh 相关的信息，输入 yes 即可。
-                        </span>
-                    </li>
-                    <br>
-                    <li>
-                        如果上一步正确，则屏幕提示输入密码。<br>
-                        输入密码时，屏幕不会显示输入的密码，继续输入；密码输入完成了，按 [回车] 键。
-                    </li>
-                    <br>
-                    <li>
-                        输入正确的用户名和密码后，就可以登录到服务器了。
-                    </li>
-
-                </ol>
-
+                    </span>
+                </li>
                 <br>
-                <hr>
+                <li>
+                    如果上一步正确，则屏幕提示输入密码。<br>
+                    输入密码时，屏幕不会显示输入的密码，继续输入；密码输入完成了，按 [回车] 键。
+                </li>
                 <br>
+                <li>
+                    输入正确的用户名和密码后，就可以登录到服务器了。
+                </li>
+
+            </ol>
+
+            <br>
+            <hr>
+            <br>
             以下是登录样例，供参考。
-                <pre><code>
+            <pre><code>
 ~ % ssh -p 20305 zyq@172.18.144.9 （<-- 输入 ssh 命令登录服务器）
 zyq@172.18.144.9's password: （<-- 此处输入密码，屏幕不会显示所输入的密码）
 
@@ -147,6 +148,166 @@ zyq@davinci-mini:~$ （<-- 登录成功啦！）
             </p>
         </section>
         <br>
+
+        <!-- 昇腾开发板使用简要说明 -->
+        <section>
+            <h2 id="ascend-dk-briefing">
+                <a href="#ascend-dk-briefing">昇腾开发板说明</a>
+            </h2>
+
+            <p>
+                昇腾官网相关链接：<br>
+                - <a href="https://www.hiascend.com/hardware/developer-kit-a2" target="_blank">昇腾开发板（Atlas 200I DK A2） 简介</a><br>
+                - <a href="https://www.hiascend.com/document/detail/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/qs/qs_0018.html" target="_blank">昇腾开发板快速开始</a>
+            </p>
+
+            <p>
+                <span class="em-bold">1、把烧录好的 SD 卡，插到开发板相应插槽中。</span><br>
+                断电状态下（即开发板没有通电源），插入已经烧录好的 SD 卡。如何烧录，可参考官网相关链接，此处从略。
+            </p>
+            <p>
+                <span class="em-bold">2、给开发板插上电源。</span><br> 
+                插上电源后，开发板上的三个绿灯，会逐个点亮。稍等一会后，三个绿灯都亮了，则表示启动成功。
+            </p>
+            <p>
+                <span class="em-bold">3、用网线连接电脑和开发板。</span><br> 
+                3.1 网线一端，插入电脑的网口。<br>
+                3.2 网线另一端，插入开发板的网口。开发板有 2 个网口，上下排列，要插入上面那个网口。<br>
+                3.3 开发板的上面网口的 IP 地址是 192.168.137.100。设置电脑的 IP，和开发板的IP地址，在同一个网段，比如 192.168.137.2 
+                 到 192.168.137.99 中的一个，或者 192.168.137.101 到 192.168.137.254 中的一个。<br>
+
+            </p>
+            <p>
+                <span class="em-bold">4、用ping 测试电脑和开发板之间网络是否连通。</span><br> 
+               在电脑上启动命令行终端程序（比如 Windows 操作系统的 cmd，或者 powershell），并在命令行终端上执行 <code>ping 192.168.137.100</code>。如能看到如下信息，则表明电脑和开发板之间的网络是连通的。
+               <pre><code>~ % ping 192.168.137.100
+PING 192.168.137.100 (192.168.137.100): 56 data bytes
+64 bytes from 192.168.137.100: icmp_seq=0 ttl=64 time=0.450 ms
+64 bytes from 192.168.137.100: icmp_seq=1 ttl=64 time=0.701 ms
+64 bytes from 192.168.137.100: icmp_seq=2 ttl=64 time=0.775 ms
+64 bytes from 192.168.137.100: icmp_seq=3 ttl=64 time=0.611 ms
+^C
+--- 192.168.137.100 ping statistics ---
+4 packets transmitted, 4 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.450/0.634/0.775/0.121 ms                
+               </code></pre>
+
+            </p>
+
+            
+            <p>
+                <span class="em-bold">5、通过 ssh 登录开发板。</span><br> 
+                在电脑的命令行终端中执行 <code>ssh HwHiAiUser@192.168.137.100</code>，登录开发板。<br>
+                屏幕提示 <code>HwHiAiUser@192.168.137.100's password:</code>时，输入<code>密码 Mind@123</code>，输入密码完成后按回车键。<span class="em-blue">密码输入过程中，屏幕不会有回显，这是正常的，不必担心。</span><br>
+                当输入正确密码后，就可以登录开发板，并看到如下信息。
+                <pre><code>~ % ssh HwHiAiUser@192.168.137.100
+HwHiAiUser@192.168.137.100's password: 
+    _                                _             _               _     _  _   
+   / \    ___   ___  ___  _ __    __| |         __| |  ___ __   __| | __(_)| |_ 
+  / _ \  / __| / __|/ _ \| '_ \  / _` | _____  / _` | / _ \\ \ / /| |/ /| || __|
+ / ___ \ \__ \| (__|  __/| | | || (_| ||_____|| (_| ||  __/ \ V / |   < | || |_ 
+/_/   \_\|___/ \___|\___||_| |_| \__,_|        \__,_| \___|  \_/  |_|\_\|_| \__|
+                                                                                                    
+Welcome to Atlas 200I DK A2
+This system is based on Ubuntu 22.04 LTS (GNU/Linux 5.10.0+ aarch64)
+
+This system is only applicable to individual developers and cannot be used for commercial purposes.
+                    
+By using this system, you have agreed to the Huawei Software License Agreement.
+Please refer to the agreement for details on https://www.hiascend.com/software/protocol
+                    
+Reference resources
+* Home page: https://www.hiascend.com/hardware/developer-kit-a2
+* Documentation: https://www.hiascend.com/hardware/developer-kit-a2/resource
+* Online courses: https://www.hiascend.com/edu/courses
+* Online experiments: https://www.hiascend.com/zh/edu/experiment
+* Forum: https://www.hiascend.com/forum/
+* Code: https://gitee.com/HUAWEI-ASCEND/ascend-devkit
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+(base) HwHiAiUser@davinci-mini:~$                 
+                </code></pre>
+            </p>
+
+            <p>
+                <span class="em-bold">6、启动开发板的预置样例。</span><br> 
+                依次执行以下命令：
+<pre><code>(base) HwHiAiUser@davinci-mini:~$ cd samples
+(base) HwHiAiUser@davinci-mini:~/samples$ cd notebooks   
+(base) HwHiAiUser@davinci-mini:~/samples/notebooks$ ./start_notebook.sh     
+</code></pre>
+<br>
+可看到如下信息，表示开发板预置样例启动了。<br>
+<br>
+
+                <pre><code>[I 2025-03-17 20:14:01.452 ServerApp] Package jupyterlab took 0.0001s to import
+[I 2025-03-17 20:14:01.529 ServerApp] Package jupyter_lsp took 0.0751s to import
+[W 2025-03-17 20:14:01.530 ServerApp] A `_jupyter_server_extension_points` function was not found in jupyter_lsp. Instead, a `_jupyter_server_extension_paths` function was found and will be used for now. This function name will be deprecated in future releases of Jupyter Server.
+[I 2025-03-17 20:14:01.557 ServerApp] Package jupyter_server_terminals took 0.0263s to import
+[I 2025-03-17 20:14:01.560 ServerApp] Package notebook_shim took 0.0001s to import
+[W 2025-03-17 20:14:01.560 ServerApp] A `_jupyter_server_extension_points` function was not found in notebook_shim. Instead, a `_jupyter_server_extension_paths` function was found and will be used for now. This function name will be deprecated in future releases of Jupyter Server.
+[I 2025-03-17 20:14:01.562 ServerApp] jupyter_lsp | extension was successfully linked.
+[I 2025-03-17 20:14:01.580 ServerApp] jupyter_server_terminals | extension was successfully linked.
+[I 2025-03-17 20:14:01.602 ServerApp] jupyterlab | extension was successfully linked.
+[I 2025-03-17 20:14:02.621 ServerApp] notebook_shim | extension was successfully linked.
+[I 2025-03-17 20:14:02.701 ServerApp] notebook_shim | extension was successfully loaded.
+[I 2025-03-17 20:14:02.710 ServerApp] jupyter_lsp | extension was successfully loaded.
+[I 2025-03-17 20:14:02.714 ServerApp] jupyter_server_terminals | extension was successfully loaded.
+[I 2025-03-17 20:14:02.717 LabApp] JupyterLab extension loaded from /usr/local/miniconda3/lib/python3.9/site-packages/jupyterlab
+[I 2025-03-17 20:14:02.717 LabApp] JupyterLab application directory is /usr/local/miniconda3/share/jupyter/lab
+[I 2025-03-17 20:14:02.720 LabApp] Extension Manager is 'pypi'.
+[I 2025-03-17 20:14:02.732 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2025-03-17 20:14:02.733 ServerApp] Serving notebooks from local directory: /home/HwHiAiUser/samples/notebooks
+[I 2025-03-17 20:14:02.733 ServerApp] Jupyter Server 2.5.0 is running at:
+[I 2025-03-17 20:14:02.733 ServerApp] http://192.168.137.100:8888/lab?token=696173ee0cbed331a0e360bf5a2b851cdf81dde0850fce7d
+[I 2025-03-17 20:14:02.733 ServerApp]     http://127.0.0.1:8888/lab?token=696173ee0cbed331a0e360bf5a2b851cdf81dde0850fce7d
+[I 2025-03-17 20:14:02.734 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 2025-03-17 20:14:02.746 ServerApp] 
+                        
+To access the server, open this file in a browser:
+    file:///home/HwHiAiUser/.local/share/jupyter/runtime/jpserver-38492-open.html
+Or copy and paste one of these URLs:
+    http://192.168.137.100:8888/lab?token=696173ee0cbed331a0e360bf5a2b851cdf81dde0850fce7d
+    http://127.0.0.1:8888/lab?token=696173ee0cbed331a0e360bf5a2b851cdf81dde0850fce7d
+           
+                </code></pre>
+                <br>
+                将 <code>http://192.168.137.100:8888/lab?token=696173ee0cbed331a0e360bf5a2b851cdf81dde0850fce7d </code>那行，<span class="em-blue">复制到本地电脑的浏览器中。（token后面的取值，会每次不一样，不要复制此处的样例）</span>
+                <br>
+
+            </p>
+            <p>
+                界面样例截图如下：<br>
+                <a href="../img/stt-server-aicss-01.jpg" target="_blank"><img src="../img/stt-server-aicss-01.jpg"
+                    alt="image-functions" style="width:auto;max-width:100%;"></a>
+            </p>
+
+            <p>
+                如何使用预置样例，请参考<a href="https://www.hiascend.com/document/detail/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/Getting%20Started%20with%20Application%20Development/paqe/paqe_0001.html" target="_blank">昇腾官网-体验预置样例</a>
+            </p>
+
+            <p>
+                <span class="em-bold">最后：关机</span><br> 
+                1、电源插头的附近，有3个小按钮。长按中间那个按钮，约几秒钟后松开，稍后等待3个绿灯逐个熄灭，剩余一个绿灯亮时，就可以拔掉电源了。<br>
+                2、或者，切换到 root 用户关机，执行以下命令。也是要等一个绿灯亮时，才可以拔掉电源了。root 用户口令是 <code>Mind@123</code>
+<pre>
+<code>(base) HwHiAiUser@davinci-mini:~/samples/notebooks$ su root
+Password: 
+(base) root@davinci-mini:/home/HwHiAiUser/samples/notebooks# shutdown -h now
+Connection to 192.168.137.100 closed by remote host.
+Connection to 192.168.137.100 closed.
+    </code>
+</pre>
+            </p>
+
+        </section>
 
     </main>
 
