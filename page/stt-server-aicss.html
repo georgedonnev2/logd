@@ -21,7 +21,7 @@
 
         <section class="doc-main-info">
             <p class="doc-author text-comment em-comment">George</p>
-            <p class="doc-last-update text-comment em-comment">25-03-17</p>
+            <p class="doc-last-update text-comment em-comment">25-04-14</p>
             <p class="doc-first-on text-comment em-comment">25-03-04</p>
 
             <p class="text-comment em-comment">
@@ -65,6 +65,14 @@
         <a href="#basic-operation">常规操作</a><br>
         &nbsp&nbsp<a href="#loginto-server">登录</a><br>
         <a href="#ascend-dk-briefing">昇腾开发板说明</a><br>
+        &nbsp&nbsp<a href="#insert-sd">插SD卡</a><br>
+        &nbsp&nbsp<a href="#power-on">上电</a><br>
+        &nbsp&nbsp<a href="#connect-pc-dk">连网线</a><br>
+        &nbsp&nbsp<a href="#network-on">测连通</a><br>
+        &nbsp&nbsp<a href="#ssh-dk">ssh登录</a><br>
+        &nbsp&nbsp<a href="#run-example">启动样例</a><br>
+        &nbsp&nbsp<a href="#run-all-examples">运行所有</a><br>
+        &nbsp&nbsp<a href="#shutdown-dk">关机</a><br>
     </aside>
 
     <!-- main -->
@@ -157,30 +165,87 @@ zyq@davinci-mini:~$ （<-- 登录成功啦！）
 
             <p>
                 昇腾官网相关链接：<br>
-                - <a href="https://www.hiascend.com/hardware/developer-kit-a2" target="_blank">昇腾开发板（Atlas 200I DK A2） 简介</a><br>
-                - <a href="https://www.hiascend.com/document/detail/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/qs/qs_0018.html" target="_blank">昇腾开发板快速开始</a>
+                - <a href="https://www.hiascend.com/hardware/developer-kit-a2" target="_blank">昇腾开发板（Atlas 200I DK A2）
+                    简介</a><br>
+                - <a href="https://www.hiascend.com/document/detail/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/qs/qs_0018.html"
+                    target="_blank">昇腾开发板快速开始</a>
             </p>
 
+            <!--  -->
+            <h3 id="insert-sd">
+                <a href="#insert-sd">1、将烧录好的 SD 卡，插入开发板</a>
+            </h3>
             <p>
-                <span class="em-bold">1、把烧录好的 SD 卡，插到开发板相应插槽中。</span><br>
+                <!-- <span class="em-bold">1、把烧录好的 SD 卡，插到开发板相应插槽中。</span><br> -->
                 断电状态下（即开发板没有通电源），插入已经烧录好的 SD 卡。如何烧录，可参考官网相关链接，此处从略。
             </p>
+
+            <!--  -->
+            <h3 id="power-on">
+                <a href="#power-on">2、给开发板插上电源</a>
+            </h3>
             <p>
-                <span class="em-bold">2、给开发板插上电源。</span><br> 
+                <!-- <span class="em-bold">2、给开发板插上电源。</span><br>  -->
                 插上电源后，开发板上的三个绿灯，会逐个点亮。稍等一会后，三个绿灯都亮了，则表示启动成功。
             </p>
-            <p>
-                <span class="em-bold">3、用网线连接电脑和开发板。</span><br> 
-                3.1 网线一端，插入电脑的网口。<br>
-                3.2 网线另一端，插入开发板的网口。开发板有 2 个网口，上下排列，要插入上面那个网口。<br>
-                3.3 开发板的上面网口的 IP 地址是 192.168.137.100。设置电脑的 IP，和开发板的IP地址，在同一个网段，比如 192.168.137.2 
-                 到 192.168.137.99 中的一个，或者 192.168.137.101 到 192.168.137.254 中的一个。<br>
 
+            <!--  -->
+            <h3 id="connect-pc-dk">
+                <a href="#connect-pc-dk">3、用网线连接电脑和开发板</a>
+            </h3>
+
+            <p>
+                <!-- <span class="em-bold">3、用网线连接电脑和开发板。</span><br>  -->
+                3.0 （可选）电脑如果没有空闲网口，可在电脑 USB 上插 USB转网口 的转接器，以获得一个空闲网口。 <br>
+                3.1 网线一端，插入电脑的空闲网口。<br>
+                3.2 网线另一端，插入开发板的网口。开发板有 2 个网口，上下排列，<span class="em-blue em-bold">要插入上面那个网口</span>。<br>
+                <br>
+                <span class="em-bold">3.3 设置电脑的 IP 地址，以便通过网线访问开发板。</span>
+            <ul>
+                <li>
+                    把电脑的 IP 地址，设置为和开发板同一个网段的地址。
+                </li>
+
+                <li>
+                    打开：设置 | 网络。找到 USB 网口对应的网络适配器，修改 IP 地址的相关设置。
+                </li>
+                <li>
+                    设置 [DHCP]：<span class="em-blue">手动</span>
+                </li>
+                <li>
+                    设置 [IPV4]：<span class="em-blue">ON</span>
+                </li>
+                <li>
+                    设置 [IP]：192.168.137.<span class="em-blue">xxx</span>。
+                    可用的网址可以是： 192.168.137.xxx。xxx = （跳过0，0是网络号），<span class="em-blue">1 ~
+                        99</span>，（跳过100，被开发板占用了），<span class="em-blue">101 ~ 254</span>，（跳过255，255是广播地址）。<br>
+                    <span class="em-blue em-bold">xxx 设置为屏幕上方贴的编号。比如，屏幕上方贴的编号数字是 139，则设置 IP 地址为： 192.168.137.139。100号，设置IP地址为 192.168.137.200<span>
+                </li>
+                <li>
+                    设置 [子网掩码长度]： <span class="em-blue">24</span>
+                </li>
+                <li>
+                    设置 [网关]： 192.168.137.<span class="em-blue">xxx</span>。xxx在上述可选的取值范围内，并且和本机设置的 IP 地址不同即可，因为网关实际上不用到。比如 192.168.137.1。不设置网关，可能无法保存 IP 地址的设置。
+                </li>
+                <li>
+                    点击 [保存]
+                </li>
+                
+
+            </ul>
+
+            <!--  -->
+            <h3 id="network-on">
+                <a href="#network-on">
+                    4、测试电脑和开发板之间网络是否连通
+                </a>
+            </h3>
             </p>
             <p>
-                <span class="em-bold">4、用ping 测试电脑和开发板之间网络是否连通。</span><br> 
-               在电脑上启动命令行终端程序（比如 Windows 操作系统的 cmd，或者 powershell），并在命令行终端上执行 <code>ping 192.168.137.100</code>。如能看到如下信息，则表明电脑和开发板之间的网络是连通的。
-               <pre><code>~ % ping 192.168.137.100
+                <!-- <span class="em-bold">4、用ping 测试电脑和开发板之间网络是否连通。</span><br> -->
+                在电脑上启动命令行终端程序（比如 Windows 操作系统的 cmd，或者 powershell），并在命令行终端上执行<br>
+                <code>ping 192.168.137.100</code><br>如能看到如下信息，则表明电脑和开发板之间的网络是连通的。
+            <pre><code>~ % ping 192.168.137.100
 PING 192.168.137.100 (192.168.137.100): 56 data bytes
 64 bytes from 192.168.137.100: icmp_seq=0 ttl=64 time=0.450 ms
 64 bytes from 192.168.137.100: icmp_seq=1 ttl=64 time=0.701 ms
@@ -194,13 +259,19 @@ round-trip min/avg/max/stddev = 0.450/0.634/0.775/0.121 ms
 
             </p>
 
-            
+<!--  -->
+            <h3 id="ssh-dk">
+                <a href="#ssh-dk">
+                    5、通过 ssh 登录开发板
+                </a>
+            </h3>
             <p>
-                <span class="em-bold">5、通过 ssh 登录开发板。</span><br> 
-                在电脑的命令行终端中执行 <code>ssh HwHiAiUser@192.168.137.100</code>，登录开发板。<br>
-                屏幕提示 <code>HwHiAiUser@192.168.137.100's password:</code>时，输入<code>密码 Mind@123</code>，输入密码完成后按回车键。<span class="em-blue">密码输入过程中，屏幕不会有回显，这是正常的，不必担心。</span><br>
+                <!-- <span class="em-bold">5、通过 ssh 登录开发板。</span><br> -->
+                在电脑的命令行终端中执行如下命令登录开发板：<br> <code>ssh HwHiAiUser@192.168.137.100</code><br>
+                屏幕提示<br> <code>HwHiAiUser@192.168.137.100's password:</code><br>时，输入密码 <br><code>Mind@123</code><br>输入密码完成后按回车键。<br><span
+                    class="em-blue">密码输入过程中，屏幕不会有回显，这是正常的，不必担心。</span><br>
                 当输入正确密码后，就可以登录开发板，并看到如下信息。
-                <pre><code>~ % ssh HwHiAiUser@192.168.137.100
+            <pre><code>~ % ssh HwHiAiUser@192.168.137.100
 HwHiAiUser@192.168.137.100's password: 
     _                                _             _               _     _  _   
    / \    ___   ___  ___  _ __    __| |         __| |  ___ __   __| | __(_)| |_ 
@@ -236,18 +307,24 @@ applicable law.
                 </code></pre>
             </p>
 
+            <!--  -->
+            <h3 id="run-example">
+                <a href="#run-example">
+                    6、启动开发板的预置样例
+                </a>
+            </h3>
             <p>
-                <span class="em-bold">6、启动开发板的预置样例。</span><br> 
+                <!-- <span class="em-bold">6、启动开发板的预置样例。</span><br> -->
                 依次执行以下命令：
-<pre><code>(base) HwHiAiUser@davinci-mini:~$ cd samples
+            <pre><code>(base) HwHiAiUser@davinci-mini:~$ cd samples
 (base) HwHiAiUser@davinci-mini:~/samples$ cd notebooks   
 (base) HwHiAiUser@davinci-mini:~/samples/notebooks$ ./start_notebook.sh     
 </code></pre>
-<br>
-可看到如下信息，表示开发板预置样例启动了。<br>
-<br>
+            <br>
+            可看到如下信息，表示开发板预置样例启动了。<br>
+            <br>
 
-                <pre><code>[I 2025-03-17 20:14:01.452 ServerApp] Package jupyterlab took 0.0001s to import
+            <pre><code>[I 2025-03-17 20:14:01.452 ServerApp] Package jupyterlab took 0.0001s to import
 [I 2025-03-17 20:14:01.529 ServerApp] Package jupyter_lsp took 0.0751s to import
 [W 2025-03-17 20:14:01.530 ServerApp] A `_jupyter_server_extension_points` function was not found in jupyter_lsp. Instead, a `_jupyter_server_extension_paths` function was found and will be used for now. This function name will be deprecated in future releases of Jupyter Server.
 [I 2025-03-17 20:14:01.557 ServerApp] Package jupyter_server_terminals took 0.0263s to import
@@ -278,26 +355,44 @@ Or copy and paste one of these URLs:
     http://127.0.0.1:8888/lab?token=696173ee0cbed331a0e360bf5a2b851cdf81dde0850fce7d
            
                 </code></pre>
-                <br>
-                将 <code>http://192.168.137.100:8888/lab?token=696173ee0cbed331a0e360bf5a2b851cdf81dde0850fce7d </code>那行，<span class="em-blue">复制到本地电脑的浏览器中。（token后面的取值，会每次不一样，不要复制此处的样例）</span>
-                <br>
+            <br>
+            将
+            <code>http://192.168.137.100:8888/lab?token=696173ee0cbed331a0e360bf5a2b851cdf81dde0850fce7d </code>那行，<span
+                class="em-blue">复制到本地电脑的浏览器中。（token后面的取值，会每次不一样，不要复制此处的样例）</span>
+            <br>
 
             </p>
             <p>
                 界面样例截图如下：<br>
                 <a href="../img/stt-server-aicss-01.jpg" target="_blank"><img src="../img/stt-server-aicss-01.jpg"
-                    alt="image-functions" style="width:auto;max-width:100%;"></a>
+                        alt="image-functions" style="width:auto;max-width:100%;"></a>
             </p>
 
             <p>
-                如何使用预置样例，请参考<a href="https://www.hiascend.com/document/detail/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/Getting%20Started%20with%20Application%20Development/paqe/paqe_0001.html" target="_blank">昇腾官网-体验预置样例</a>
+                如何使用预置样例，请参考<a
+                    href="https://www.hiascend.com/document/detail/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/Getting%20Started%20with%20Application%20Development/paqe/paqe_0001.html"
+                    target="_blank">昇腾官网-体验预置样例</a>
             </p>
 
+            <!--  -->
+            <h3 id="run-all-examples">
+                <a href="#run-all-examples">7、运行所有样例</a>
+            </h3>
             <p>
-                <span class="em-bold">最后：关机</span><br> 
+                运行所有样例，并能理解样例原理。
+            </p>
+
+            <!--  -->
+            <h3 id="shutdown-dk">
+                <a href="#shutdown-dk">
+                    8、关机
+                </a>
+            </h3>
+            <p>
+                <!-- <span class="em-bold">最后：关机</span><br> -->
                 1、电源插头的附近，有3个小按钮。长按中间那个按钮，约几秒钟后松开，稍后等待3个绿灯逐个熄灭，剩余一个绿灯亮时，就可以拔掉电源了。<br>
                 2、或者，切换到 root 用户关机，执行以下命令。也是要等一个绿灯亮时，才可以拔掉电源了。root 用户口令是 <code>Mind@123</code>
-<pre>
+            <pre>
 <code>(base) HwHiAiUser@davinci-mini:~/samples/notebooks$ su root
 Password: 
 (base) root@davinci-mini:/home/HwHiAiUser/samples/notebooks# shutdown -h now
