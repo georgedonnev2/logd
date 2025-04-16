@@ -21,7 +21,7 @@
 
         <section class="doc-main-info">
             <p class="doc-author text-comment em-comment">George</p>
-            <p class="doc-last-update text-comment em-comment">25-04-14</p>
+            <p class="doc-last-update text-comment em-comment">25-04-16</p>
             <p class="doc-first-on text-comment em-comment">25-03-04</p>
 
             <p class="text-comment em-comment">
@@ -73,6 +73,7 @@
         &nbsp&nbsp<a href="#run-example">启动样例</a><br>
         &nbsp&nbsp<a href="#run-all-examples">运行所有</a><br>
         &nbsp&nbsp<a href="#shutdown-dk">关机</a><br>
+        &nbsp&nbsp<a href="#task-to-do">任务</a><br>
     </aside>
 
     <!-- main -->
@@ -219,18 +220,20 @@ zyq@davinci-mini:~$ （<-- 登录成功啦！）
                     设置 [IP]：192.168.137.<span class="em-blue">xxx</span>。
                     可用的网址可以是： 192.168.137.xxx。xxx = （跳过0，0是网络号），<span class="em-blue">1 ~
                         99</span>，（跳过100，被开发板占用了），<span class="em-blue">101 ~ 254</span>，（跳过255，255是广播地址）。<br>
-                    <span class="em-blue em-bold">xxx 设置为屏幕上方贴的编号。比如，屏幕上方贴的编号数字是 139，则设置 IP 地址为： 192.168.137.139。100号，设置IP地址为 192.168.137.200<span>
+                    <span class="em-blue em-bold">xxx 设置为屏幕上方贴的编号。比如，屏幕上方贴的编号数字是 139，则设置 IP 地址为：
+                        192.168.137.139。100号，设置IP地址为 192.168.137.200<span>
                 </li>
                 <li>
                     设置 [子网掩码长度]： <span class="em-blue">24</span>
                 </li>
                 <li>
-                    设置 [网关]： 192.168.137.<span class="em-blue">xxx</span>。xxx在上述可选的取值范围内，并且和本机设置的 IP 地址不同即可，因为网关实际上不用到。比如 192.168.137.1。不设置网关，可能无法保存 IP 地址的设置。
+                    设置 [网关]： 192.168.137.<span class="em-blue">xxx</span>。xxx在上述可选的取值范围内，并且和本机设置的 IP
+                    地址不同即可，因为网关实际上不用到。比如 192.168.137.1。不设置网关，可能无法保存 IP 地址的设置。
                 </li>
                 <li>
                     点击 [保存]
                 </li>
-                
+
 
             </ul>
 
@@ -259,7 +262,7 @@ round-trip min/avg/max/stddev = 0.450/0.634/0.775/0.121 ms
 
             </p>
 
-<!--  -->
+            <!--  -->
             <h3 id="ssh-dk">
                 <a href="#ssh-dk">
                     5、通过 ssh 登录开发板
@@ -268,7 +271,8 @@ round-trip min/avg/max/stddev = 0.450/0.634/0.775/0.121 ms
             <p>
                 <!-- <span class="em-bold">5、通过 ssh 登录开发板。</span><br> -->
                 在电脑的命令行终端中执行如下命令登录开发板：<br> <code>ssh HwHiAiUser@192.168.137.100</code><br>
-                屏幕提示<br> <code>HwHiAiUser@192.168.137.100's password:</code><br>时，输入密码 <br><code>Mind@123</code><br>输入密码完成后按回车键。<br><span
+                屏幕提示<br> <code>HwHiAiUser@192.168.137.100's password:</code><br>时，输入密码
+                <br><code>Mind@123</code><br>输入密码完成后按回车键。<br><span
                     class="em-blue">密码输入过程中，屏幕不会有回显，这是正常的，不必担心。</span><br>
                 当输入正确密码后，就可以登录开发板，并看到如下信息。
             <pre><code>~ % ssh HwHiAiUser@192.168.137.100
@@ -400,6 +404,104 @@ Connection to 192.168.137.100 closed by remote host.
 Connection to 192.168.137.100 closed.
     </code>
 </pre>
+            </p>
+
+            <!--  -->
+            <h3 id="task-to-do">
+                <a href="#task-to-do">
+                    9、任务
+                </a>
+            </h3>
+
+            <!--  -->
+            <hr>
+            <p class="em-bold">
+                任务#1：完成其他物体或人物的<span class="em-blue">图片</span>识别
+            </p>
+            <p>
+                相关步骤建议如下：
+            <ul>
+                <li>
+                    拍摄，或从网上搜索可用的图片。
+                </li>
+                <li>
+                    从本地电脑上传到开发板相应目录。可使用相关软件上传，或在命令行终端中执行 scp 命令上传。scp 命令使用方法可自行查找。<br>
+                    其他可能用到的命令：<br>
+                    <span class="em-comment text-comment">
+                        切换目录：cd<br>
+                        查看文件信息：ls<br>
+                    </span>
+                </li>
+                <li>
+                    修改相关样例程序（如需要）。
+                </li>
+                <li>
+                    执行/调试修改后的样例程序，并得到预期结果。
+                </li>
+                <li>
+                    截图。截图包括：本机 IP 地址 + 运行结果。
+                </li>
+
+            </ul>
+            </p>
+
+            <!--  -->
+            <hr>
+            <p class="em-bold">
+                任务#2：完成其他物体或人物的<span class="em-blue">视频</span>识别
+            </p>
+            <p>
+                相关步骤建议如下：
+            <ul>
+                <li>
+                    拍摄，或从网上搜索可用的视频。
+                </li>
+                <li>
+                    从本地电脑上传到开发板相应目录。可使用相关软件上传，或在命令行终端中执行 scp 命令上传。scp 命令使用方法可自行查找。<br>
+                    其他可能用到的命令：<br>
+                    <span class="em-comment text-comment">
+                        切换目录：cd<br>
+                        查看文件信息：ls<br>
+                    </span>
+                </li>
+                <li>
+                    修改相关样例程序（如需要）。
+                </li>
+                <li>
+                    执行/调试修改后的样例程序，并得到预期结果。
+                </li>
+                <li>
+                    截图。截图包括：本机 IP 地址 + 运行结果。
+                </li>
+            </ul>
+            </p>
+
+            <!--  -->
+            <hr>
+            <p class="em-bold">
+                任务#3：通过<span class="em-blue">摄像头</span>完成物体或人物的识别
+            </p>
+            <p>
+                相关步骤建议如下：
+            <ul>
+                <li>
+                    安装摄像头到开发板。相关指导可参考<a
+                        href="https://www.hiascend.com/document/detail/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/Hardware%20Interfaces/hiug/hiug_0014.html"
+                        target="_blank">对接USB摄像头</a>
+                </li>
+                <li>
+                    修改相关样例程序（如需要）。
+                </li>
+                <li>
+                    执行/调试修改后的样例程序，并得到预期结果。
+                </li>
+                <li>
+                    截图。截图包括：本机 IP 地址 + 运行结果。
+                </li>
+                <li>
+                    提示：因权限要求，需要用 root 用户启动/运行样例程序。
+                </li>
+            </ul>
             </p>
 
         </section>
