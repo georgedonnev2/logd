@@ -74,6 +74,10 @@
         &nbsp&nbsp<a href="#run-all-examples">运行所有</a><br>
         &nbsp&nbsp<a href="#shutdown-dk">关机</a><br>
         &nbsp&nbsp<a href="#task-to-do">任务</a><br>
+        <a href="#project-dk">开发板课题</a><br>
+        &nbsp&nbsp<a href="#auto-car">智能车</a><br>
+        &nbsp&nbsp<a href="#robot-arm">机械臂</a><br>
+        &nbsp&nbsp<a href="#chat-robot">聊天机器人</a><br>
     </aside>
 
     <!-- main -->
@@ -502,6 +506,90 @@ Connection to 192.168.137.100 closed.
                     提示：因权限要求，需要用 root 用户启动/运行样例程序。
                 </li>
             </ul>
+            </p>
+
+        </section>
+
+        <!--  -->
+        <section>
+            <h2 id="project-dk">
+                <a href="#project-dk">
+                    开发板课题
+                </a>
+            </h2>
+
+            <!--  -->
+            <h3 id="auto-car">
+                <a href="#auto-car">1、智能车运动控制</a>
+            </h3>
+            <p>
+                智能小车通过摄像头感知周围环境自主地进行运动控制，采集环境数据后在开发者套件上进行AI推理，根据推理结果发出指令控制小车的运动状态。小车运动状态的控制需要借助ESP32微控制器，使用Arduino平台可以对其进行嵌入式开发。主控与小车主体间控制指令的发出和数据的返回，需要通过串口协议进行双向通信。
+
+                智能小车从底层硬件到上层AI应用需要完成的任务。
+
+            <ul>
+                <li>了解智能小车的组成及部件原理。</li>
+                <li>实现基于Arduino的硬件控制功能。</li>
+                <li>串口通信协议定义。</li>
+                <li>ESP32硬件主程序设计。</li>
+                <li>开发者套件与ESP32进行指令通信的接口程序开发。</li>
+                <li>AI推理应用开发。</li>
+            </ul>
+            </p>
+            <p>
+                实现手动控制小车。通过键盘按键，控制小车：前进、左转、后退、右转、逆时针旋转、顺时针旋转、加速(小车运动状态与静止状态均可以调整)、减速(小车运动状态与静止状态均可以调整)、捕获当前摄像头的图片、暂时停车，等。
+            </p>
+            <p>
+                参考样例图片：<a
+                    href="https://www.hiascend.com/doc_center/source/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/Application%20Cases/ivadg/figure/zh-cn_image_0000001698460597.png"
+                    target="_blank">智能小车</a>
+            </p>
+
+            <!--  -->
+            <h3 id="robot-arm">
+                <a href="#robot-arm">2、机械臂抓取物体</a>
+            </h3>
+            <p>
+                智能机械臂基于Atlas 200I DK A2 开发者套件的深度学习AI推理功能和机械臂的二次开发，通过串口硬件通信和python接口软件支持实现。
+            </p>
+
+            <p>
+                <span class="em-bold">任意位置积木分拣</span><br>
+            </p>
+            <p>
+                基于开发者套件的内置YoloV5神经网络模型的推理结果，标记十字标定板中积木的位置，并使用机械臂进行分拣。<br>
+            <ul>
+                <li>通过摄像头提取十字标定板轮廓，通过机器视觉方法提取轮廓的四个角点，透视变换轮廓内的平面。</li>
+                <li>
+                    使用模型适配工具训练转换的om模型进行推理，最后根据推理结果下发指令，控制机械臂抓取在摄像头可视范围内的任意位置摆放的积木，并移动至对应颜色区域。</li>
+            </ul>
+            </p>
+
+            <p class="em-bold">
+
+                任意位置积木堆叠
+            </p>
+            <p>
+                基于开发者套件的内置YoloV5神经网络模型的推理结果，标记十字标定板中积木的位置，并使用机械臂进行堆叠。</p>
+            <p>
+            <ul>
+                <li>通过摄像头提取十字标定板轮廓，通过机器视觉方法提取轮廓的四个角点，透视变换轮廓内的平面。</li>
+                <li>
+                    使用模型适配工具训练转换的om模型进行推理，最后根据推理结果下发指令，控制机械臂抓取在摄像头可视范围内的任意位置摆放的积木，并移动至灰色区域并堆叠在一起。</li>
+            </ul>
+            </p>
+            <p>
+                参考样例图片：<a
+                    href="https://www.hiascend.com/doc_center/source/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/Application%20Cases/raadg/figure/zh-cn_image_0000001698581161.jpg"
+                    target="_blank">机械臂</a>
+            </p>
+
+            <!--  -->
+            <h3 id="chat-robot">
+                <a href="#chat-robot">3、聊天机器人</a>
+            </h3>
+            <p>
+                聊天机器人应用是通过对大型语言模型进行压缩，将模型转换为ONNX或OM模型，使其能够全部或部分运行在开发者套件的昇腾AI处理器上并加速。使用流式输出对话的方式在网页前端收集数据，进行文本解析后，通过后端放入消息队列，后端推理进程获取队列中的文本后，使用大型语言模型进行推理并返回推理结果至前端页面。最终实现与聊天机器人进行对话的场景。
             </p>
 
         </section>
