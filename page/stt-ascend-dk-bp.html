@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <title>BP网络实验</title>
+    <link rel="stylesheet" type="text/css" href="../css/logd.css" />
+
+    <!-- 引入不蒜子计数 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</head>
+
+<body class="with-sidebar">
+
+    <!-- header -->
+    <header>
+        <h1>BP网络实验</h1>
+
+        <section class="doc-main-info">
+            <p class="doc-author text-comment em-comment">George</p>
+            <p class="doc-last-update text-comment em-comment">24-09-22</p>
+            <p class="doc-first-on text-comment em-comment">24-09-16</p>
+
+            <p class="text-comment em-comment">
+                <span id="busuanzi_container_page_pv">
+                    | 浏览量：<span id="busuanzi_value_page_pv"></span>👀
+                </span>
+                &nbsp|&nbsp
+                返回<a href="./stt-ascend-dk-all.html" >
+                    <实验课>
+                </a>
+            </p>
+        </section>
+    </header>
+
+    <!-- footer -->
+    <footer>
+        <p>
+            &copy George Donne 2024-2025. All Rights Reserved. 苏ICP备2021027062号-1&nbsp&nbsp|&nbsp&nbsp
+            <a href="./logd-about.html">关于</a>
+        </p>
+
+        <p>
+            Support: <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
+        </p>
+
+        <p>
+            <span id="busuanzi_container_site_pv">
+                本站浏览量：<span id="busuanzi_value_site_pv"></span>👀
+            </span>
+            &nbsp&nbsp|&nbsp&nbsp
+            <span id="busuanzi_container_site_uv">
+                本站访客数：<span id="busuanzi_value_site_uv"></span>👤
+            </span>
+        </p>
+    </footer>
+
+    <!-- sidebar -->
+    <aside>
+        <p class="em-larger">目录</p>
+
+        <a href="#bp-task">任务描述</a><br>
+        <a href="#operation-guide">操作参考</a><br>
+        &nbsp&nbsp<a href="#get-example">生成样例</a><br>
+        &nbsp&nbsp<a href="#run-example">运行样例</a><br>
+        &nbsp&nbsp<a href="#other-advice">其他建议</a><br>
+    </aside>
+
+    <!-- main -->
+    <main class="with-sidebar">
+
+        <!--  -->
+
+
+        <!--  -->
+        <section>
+            <h2 id="bp-task">
+                <a href="#bp-task">1、任务描述</a>
+            </h2>
+
+            <!--  -->
+            <h3 id="task-1">
+                <a href="#task-1">任务1：构建BP网络拟合正弦样本数据</a>
+            </h3>
+            <ul>
+                <li>样本数据，由程序自动生成。</li>
+            </ul>
+
+
+            <!--  -->
+            <h3 id="task-2">
+                <a href="#task-2">任务2：构建BP网络预测药品销量</a>
+            </h3>
+            <ul>
+                <li>已有1月到12月的药品销量。</li>
+                <li>根据1、2、3月的销量，预测4月的销量；根据2、3、4月的实际销量，预测5月的销量；……。直至满足预测精度为止。</li>
+            </ul>
+
+            <!--  -->
+            <h3 id="task-3">
+                <a href="#task-3">任务3：构建BP网络预测公路客运量和货运量</a>
+            </h3>
+            <ul>
+                <li>已有1990年到2009年的客运量和货运量数据。</li>
+                <li>根据历史数据，预测2010年和2011年的客户量/货运量数据。</li>
+            </ul>
+
+            <!--  -->
+            <h3 id="task-4">
+                <a href="#task-4">任务4：针对任务1、2、3，不同隐含层对结果影响（采用均方根误差进行分析）</a>
+            </h3>
+
+
+            <!--  -->
+            <h3 id="task-5">
+                <a href="#task-5">任务5：针对任务1、2、3，不同个数神经元对结果影响（采用均方根误差进行分析）</a>
+            </h3>
+
+        </section>
+
+
+        <!--  -->
+        <section>
+            <h2 id="operation-guide">
+                <a href="#operation-guide">2、操作参考</a>
+            </h2>
+
+            <p>
+                以下以 <span class="em-blue">Python + PyTorch + 拟合正弦样本数据</span> 为例，供实验操作参考。
+            </p>
+
+            <!--  -->
+            <h3 id="get-example">
+                <a href="#get-example">2.1 AI辅助生成基本样例程序</a>
+            </h3>
+            <p>
+                使用 DeepSeek，或者文心一言，或者其他，获取基本样例程序。并从 DeepSeek 生成结果中下载样例程序，保存到本地 PC 机。
+
+                <a href="../img/stt-ascend-dk-bp-02.png" target="_blank"><img src="../img/stt-ascend-dk-bp-02-tb.png"
+                        alt="get-example" style="width:auto;max-width:100%;"></a>
+            </p>
+
+            <!--  -->
+            <h3 id="run-example">
+                <a href="#run-example">2.2 在开发板上运行样例程序</a>
+            </h3>
+
+            <!--  -->
+            <p class="em-bold em-larger">
+                上传样例程序到开发板
+            </p>
+            <p>
+                在本地 PC 机命令行窗口（比如 powershell）执行以下命令，复制样例程序到开发板的指定目录中。<br>
+                <code>scp .\deepseek_python_20250423.py root@192.168.137.100:/root/stt/ai</code>
+            </p>
+            <span class="em-comment text-comment">
+                scp<br> -- 远程复制文件的命令<br><br>
+                deepseek_python_20250423.py<br>-- DeepSeek 生成的样例程序。请替换为 PC 本机保存的文件名。<br><br>
+                root@192.168.137.100:/root/stt/ai<br>-- 以 root 用户身份，复制文件到 192.168.137.100（开发板的 IP 地址） 的 /root/stt/ai
+                目录。请替换为开发板上的期望的目标目录名。
+            </span>
+            <p>
+                在提示 <code>root@192.168.137.100's password: </code>后面，输入 root 用户的密码
+                <code>Mind@123</code>，输入完成后按回车键。如果密码输入有误，会提示再次输入密码。输入密码时，屏幕不会有显示，这是正常的。
+            </p>
+
+            <!--  -->
+            <!--  -->
+            <p class="em-bold em-larger">
+                在开发板上运行样例程序
+            </p>
+            <p>
+                以 root 用户登录开发板。<br>
+                用 <code>cd</code> 命令切换到样例程序所在目录，执行以下命令运行样例程序：<br>
+                <code>(base) root@davinci-mini:~/stt/ai# python3 deepseek_python_20250423.py</code><br>
+
+
+            </p>
+            <span class="em-comment text-comment">
+                (base) root@davinci-mini:~/stt/ai#<br> -- 样例程序所在目录。目录不同，显示不同。<br><br>
+                python3<br>-- Python 解释器。<br><br>
+                deepseek_python_20250423.py<br>-- DeepSeek 生成的样例程序。请替换为 PC 本机保存的文件名。<br><br>
+            </span>
+            <p>
+                执行后稍等几秒，屏幕会显示如下信息，表明正在拟合。
+            <pre><code>Matplotlib is building the font cache; this may take a moment.
+Epoch [10/1000], Loss: 0.042354
+Epoch [20/1000], Loss: 0.008468
+Epoch [30/1000], Loss: 0.002331
+Epoch [40/1000], Loss: 0.000462
+Epoch [50/1000], Loss: 0.000165
+Epoch [60/1000], Loss: 0.000075
+Epoch [70/1000], Loss: 0.000066</code></pre>
+            </p>
+
+            <!--  -->
+            <!--  -->
+            <p class="em-bold em-larger">
+                查看运行结果
+            </p>
+            <p>
+                在本地 PC 机命令行窗口（比如 powershell）执行以下命令，从开发板的指定目录中复制运行结果（保存在图片）到本地 PC 机。<br>
+                <code> scp root@192.168.137.100:/root/stt/ai/sine_wave_fitting.png .</code><span
+                    class="em-blue">（最后有个点，表示复制到本地 PC 机的当前目录中。如要复制到其他目录中，请替换为本地 PC 机的目录名。）</span><br>
+                scp 从开发板上复制文件到本地 PC，和从本地 PC 机复制文件到开发板，非常类似，此处对命令不重复解释了。<br><br>
+                用图片工具查看结果，如下所示：<br>
+                <a href="../img/stt-ascend-dk-bp-03.png" target="_blank"><img src="../img/stt-ascend-dk-bp-03-tb.png"
+                        alt="run-example" style="width:auto;max-width:100%;"></a>
+            </p>
+
+            <!--  -->
+            <h3 id="other-advice">
+                <a href="#other-advice">2.3 其他建议</a>
+            </h3>
+            <p>
+                建议整个屏幕3分屏。左边：VSCode修改代码；右上： powershell命令行窗口，以 root 用户登录开发板；右下： powershell命令窗口，在本地 PC 机。
+                <a href="../img/stt-ascend-dk-bp-01.png" target="_blank"><img src="../img/stt-ascend-dk-bp-01-tb.png"
+                        alt="run-example" style="width:auto;max-width:100%;"></a>
+            </p>
+
+            <p>
+                比如，将样例程序的训练 1000 次，改成 100 次。然后在右下窗口，scp 新代码到开发板。在右上窗口（开发板上），执行新代码。再到右下窗口，将执行结果（图片）scp 复制到本地 PC
+                机。相对比较方便、高效的。
+            </p>
+            <br>
+
+    </main>
+
+</body>
+
+</html>
