@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <title>鲲鹏开发板使用简要说明</title>
+    <link rel="stylesheet" type="text/css" href="../css/logd.css" />
+
+    <!-- 引入不蒜子计数 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</head>
+
+<body class="with-sidebar">
+
+    <!-- header -->
+    <header>
+        <h1>鲲鹏开发板使用简要说明</h1>
+
+        <section class="doc-main-info">
+            <p class="doc-author text-comment em-comment">George</p>
+            <p class="doc-last-update text-comment em-comment">25-05-12</p>
+            <p class="doc-first-on text-comment em-comment">25-05-12</p>
+
+            <p class="text-comment em-comment">
+                <span id="busuanzi_container_page_pv">
+                    | 浏览量：<span id="busuanzi_value_page_pv"></span>👀
+                </span>
+                &nbsp|&nbsp
+                返回<a href="../index.html">
+                    <首页>
+                </a>
+            </p>
+        </section>
+    </header>
+
+    <!-- footer -->
+    <footer>
+        <p>
+            &copy George Donne 2024-2025. All Rights Reserved. 苏ICP备2021027062号-1&nbsp&nbsp|&nbsp&nbsp
+            <a href="./logd-about.html">关于</a>
+        </p>
+
+        <p>
+            Support: <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
+        </p>
+
+        <p>
+            <span id="busuanzi_container_site_pv">
+                本站浏览量：<span id="busuanzi_value_site_pv"></span>👀
+            </span>
+            &nbsp&nbsp|&nbsp&nbsp
+            <span id="busuanzi_container_site_uv">
+                本站访客数：<span id="busuanzi_value_site_uv"></span>👤
+            </span>
+        </p>
+    </footer>
+
+    <!-- sidebar -->
+    <!-- <aside>
+        <p class="em-larger">目录</p>
+
+        <a href="#ascend-dk-logon">登录开发板</a><br>
+        <a href="#run-example">运行样例</a><br>
+        <a href="#shutdown-dk">关机</a><br>
+        <a href="#appendix">附录</a><br>
+        &nbsp&nbsp<a href="#ascend-website">官网链接</a><br>
+        &nbsp&nbsp<a href="#vscode-to-dk">VSCode连开发板</a><br>
+    </aside> -->
+
+    <!-- main -->
+    <main class="with-sidebar">
+
+        <!--  -->
+        <section>
+            <h2 id="power-on-1st">
+                <a href="#power-on-1st">初次开机</a>
+            </h2>
+
+            <!--  -->
+            <h3 id="burn-image">
+                <a href="#burn-image">烧录系统镜像</a>
+            </h3>
+
+            <p>
+                选取了 <a href="https://www.hiascend.com/developer/devboard" target="_blank">OrangePi AIpro</a> 对应 Ubuntu
+                镜像。选取了其中的 <span class="em-blue">opiaipro_ubuntu22.04_desktop_aarch64_20241128.img.xz</span>
+                镜像，可以有桌面，5GB多，从百度网盘下载。
+            </p>
+
+            <p>
+                烧录过程略。
+            </p>
+
+            <!--  -->
+            <h3 id="connect-monitor">
+                <a href="#connect-monitor">连接外设</a>
+            </h3>
+            <p>
+                插上 HDMI 显示器。<span class="em-blue">需要注意的是，官网说明要插鲲鹏开发板的 HDMI0，对应于鲲鹏开发板金属外壳标注的
+                    HDMI-2</span>。金属外壳上盖，可以取下（不需要拧螺丝），然后看到开发板上的HDMI0，对应外壳的HDMI-2。
+            </p>
+            <p>
+                连接USB鼠标、USB键盘等，此处从略。
+            </p>
+            <p>
+                插上电源
+            </p>
+
+            <!--  -->
+            <h3 id="run-example">
+                <a href="#run-example">运行预置样例</a>
+            </h3>
+
+            <p>
+                系统启动完毕后，Desktop 显示 HwHiAiUser 登录。输入密码 <code>Mind@123</code>
+            </p>
+            <p>
+                参考 <a href="./stt-ascend-dk-brief.html#run-example">昇腾开发板运行预置样例</a>，运行预置样例。
+            </p>
+            <p>
+                ssd样例。未运行成功，报错：缺少mindspore xxx。（可能操作有误，或其他原因，未进一步排查）
+            </p>
+            <p>
+                ResNet样例。运行成功。结果有：猫、船、飞机，等。
+            </p>
+            <p class="em-bold">
+                初步判断：<span class="em-blue">鲲鹏开发板（OrangePi Kunpeng Pro），可以当做昇腾开发板使用。</span>
+            </p>
+
+            <!--  -->
+            <h3 id="change-ip">
+                <a href="#changge-ip">修改 IP 地址</a>
+            </h3>
+            <p>
+                修改 IP 地址为固定 IP 地址，以便后续用 ssh 访问。
+            </p>
+            <p>
+                需要注意的是，通过界面修改 IP 地址时，链接eth1其实是不存在（没有对应物理的 device。估计是没有改全），因此怎么修改都不成功（也不报错）。<span class="em-blue">实际上只有 1 个网口，对应的物理 device是 eth0。要么修改链接 eth1 对应的 device 为 eth0；或者新建一个链接，选择对应的物理 device 是 eth0。</span>
+            </p>
+            <p>
+                链接名称和真正的物理 device 对应上了，修改 IP 地址就可以生效了。修改 IP 地址的过程，此处从略。
+            </p>
+
+        </section>
+
+
+    </main>
+
+</body>
+
+</html>
