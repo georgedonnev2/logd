@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <title>CNN训练推理手写数字</title>
+    <link rel="stylesheet" type="text/css" href="../css/logd.css" />
+
+    <!-- 引入不蒜子计数 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</head>
+
+<body class="with-sidebar">
+
+    <!-- header -->
+    <header>
+        <h1>CNN训练推理手写数字</h1>
+
+        <section class="doc-main-info">
+            <p class="doc-author text-comment em-comment">George</p>
+            <p class="doc-last-update text-comment em-comment">25-05-14</p>
+            <p class="doc-first-on text-comment em-comment">25-05-14</p>
+
+            <p class="text-comment em-comment">
+                <span id="busuanzi_container_page_pv">
+                    | 浏览量：<span id="busuanzi_value_page_pv"></span>👀
+                </span>
+                &nbsp|&nbsp
+                返回<a href="./stt-ascend-dk-all.html">
+                    <实验课>
+                </a>
+            </p>
+        </section>
+    </header>
+
+    <!-- footer -->
+    <footer>
+        <p>
+            &copy George Donne 2024-2025. All Rights Reserved. 苏ICP备2021027062号-1&nbsp&nbsp|&nbsp&nbsp
+            <a href="./logd-about.html">关于</a>
+        </p>
+
+        <p>
+            Support: <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
+        </p>
+
+        <p>
+            <span id="busuanzi_container_site_pv">
+                本站浏览量：<span id="busuanzi_value_site_pv"></span>👀
+            </span>
+            &nbsp&nbsp|&nbsp&nbsp
+            <span id="busuanzi_container_site_uv">
+                本站访客数：<span id="busuanzi_value_site_uv"></span>👤
+            </span>
+        </p>
+    </footer>
+
+    <!-- sidebar -->
+    <aside>
+        <p class="em-larger">目录</p>
+
+        <a href="#brief-dataset">简介和数据集</a><br>
+        <a href="#train-infer">训练和推理</a><br>
+        <!-- <a href="#shutdown-dk">关机</a><br>
+        <a href="#appendix">附录</a><br>
+        &nbsp&nbsp<a href="#ascend-website">官网链接</a><br>
+        &nbsp&nbsp<a href="#vscode-to-dk">VSCode连开发板</a><br> -->
+    </aside>
+
+    <!-- main -->
+    <main class="with-sidebar">
+
+        <!--  -->
+        <section>
+            <h2 id="brief-dataset">
+                <a href="#brief-dataset">简介和数据集</a>
+            </h2>
+
+            <!--  -->
+            <h3 id="cnn-mnist-brief">
+                <a href="#cnn-mnist-brief">简介</a>
+            </h3>
+
+            <p>
+                卷积神经网络（Convolutional Neural Network,
+                CNN）是一种深度学习模型，广泛应用于计算机视觉任务中，尤其是在图像分类和物体识别方面。与传统的全连接神经网络相比，CNN通过引入局部连接、权重共享和池化层等机制，能够有效捕捉图像中的空间特征，从而提升模型的性能和计算效率。
+            </p>
+
+            <p>
+                本实验旨在利用卷积神经网络构建一个图像分类模型，以识别手写数字数据集 MNIST（Modified National Institute of Standards and Technology）。MNIST
+                数据集包含 70,000 张 28x28 像素的灰度手写数字图像，涵盖从 0 到 9 的十个类别。由于其规模适中且相对简单，MNIST 数据集成为深度学习研究和教学中常用的基准数据集。
+            </p>
+            <p class="em-comment text-comment">
+                原文链接：<a href="https://blog.csdn.net/2201_75436278/article/details/143417507"
+                    target="_blank">【卷积神经网络】MINST数据集识别 | 手写数字识别</a>
+            </p>
+
+            <!--  -->
+            <h3 id="dataset">
+                <a href="#dataset">数据集</a>
+            </h3>
+
+            <p>
+                使用 PyTorch 框架时，数据集通常放在 <code> data/MNIST/raw </code> 目录下。
+            </p>
+            <p>
+                比如，训练和推理用代码放在 <code> /root/ailab </code> 目录下，则数据集放在 <code> /root/ailab/data/MNIST/raw </code> 目录中。
+            </p>
+            <p>
+                可从网上自行下载，或从如下链接下载。共 4 个 .gz 文件，下载后放入上述数据集目录中。
+            </p>
+            <a href="../doc/mnist-dataset/t10k-images-idx3-ubyte.gz">t10k-images-idx3-ubyte.gz</a><br>
+            <a href="../doc/mnist-dataset/t10k-labels-idx1-ubyte.gz">t10k-labels-idx1-ubyte.gz</a><br>
+            <a href="../doc/mnist-dataset/train-images-idx3-ubyte.gz">train-images-idx3-ubyte.gz</a><br>
+            <a href="../doc/mnist-dataset/train-labels-idx1-ubyte.gz">train-labels-idx1-ubyte.gz</a><br>
+
+
+        </section>
+
+        <!--  -->
+        <section>
+            <h2 id="train-infer">
+                <a href="#train-infer">训练和推理</a>
+            </h2>
+
+            <!--  -->
+            <h3 id="source-code">
+                <a href="#source-code">源代码</a>
+            </h3>
+
+            <p>
+                可以咨询大模型获得源代码框架。比如：输出基于 PyTorch 框架的 Python 完整代码，用于训练 mnist 和推理，需要详细注释。
+            </p>
+            <p>
+                也可从如下链接下载，共参考。
+            </p>
+            <a href="../src/train_mnist_ascend_250513.py">train_mnist_ascend_250513.py</a><br>
+            <a href="../src/infer_mnist_ascend_250513.py">infer_mnist_ascend_250513.py</a>
+
+
+            <!--  -->
+            <h3 id="run-debug">
+                <a href="#run-debug">运行和调测</a>
+            </h3>
+            <p>
+                train_mnist_ascend_250513.py 运行结果如下（以训练 5 个 epoch 为例）
+            </p>
+            <pre><code>
+(base) root@davinci-mini:~/ailab# python3 train_mnist_ascend_250513.py
+[警告] torch_npu模块未找到，将回退到CPU训练
+当前训练设备: cpu
+/usr/local/miniconda3/lib/python3.9/site-packages/torch/utils/data/dataloader.py:626: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 3, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+===== MNIST训练开始 =====
+使用设备: cpu
+训练样本数: 60000
+批量大小: 64
+总迭代次数: 938次/epoch
+/usr/local/miniconda3/lib/python3.9/site-packages/torch/utils/data/dataloader.py:665: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+  warnings.warn(warn_msg)
+/usr/local/miniconda3/lib/python3.9/site-packages/torch/nn/functional.py:1538: UserWarning: dropout2d: Received a 2-D input to dropout2d, which is deprecated and will result in an error in a future release. To retain the behavior and silence this warning, please use dropout instead. Note that dropout2d exists to provide channel-wise dropout on inputs with 2 spatial dimensions, a channel dimension, and an optional batch dimension (i.e. 3D or 4D inputs).
+  warnings.warn(warn_msg)
+Epoch:  1 [     0/60000 (0%)]  Loss: 2.306371 elapsed_time: 0.7181 secs
+Epoch:  1 [   640/60000 (1%)]  Loss: 1.105067 elapsed_time: 4.5227 secs
+Epoch:  1 [  1280/60000 (2%)]  Loss: 0.960787 elapsed_time: 8.2586 secs
+Epoch:  1 [  1920/60000 (3%)]  Loss: 0.525667 elapsed_time: 11.9629 secs
+...
+Epoch:  2 [ 58880/60000 (98%)]  Loss: 0.151442 elapsed_time: 335.6310 secs
+Epoch:  2 [ 59520/60000 (99%)]  Loss: 0.055742 elapsed_time: 339.3682 secs
+total_elapsed_time: 690.2588 秒
+...
+Epoch:  3 [ 58880/60000 (98%)]  Loss: 0.033503 elapsed_time: 335.6799 secs
+Epoch:  3 [ 59520/60000 (99%)]  Loss: 0.015223 elapsed_time: 339.1351 secs
+total_elapsed_time: 1031.5982 秒
+...
+Epoch:  4 [ 58880/60000 (98%)]  Loss: 0.035570 elapsed_time: 333.4938 secs
+Epoch:  4 [ 59520/60000 (99%)]  Loss: 0.121509 elapsed_time: 337.1759 secs
+total_elapsed_time: 1371.1106 秒
+...
+Epoch:  5 [ 58880/60000 (98%)]  Loss: 0.004134 elapsed_time: 340.5883 secs
+Epoch:  5 [ 59520/60000 (99%)]  Loss: 0.042905 elapsed_time: 344.2381 secs
+total_elapsed_time: 1717.5507 秒
+
+            </code>
+
+            </pre>
+
+            <p class="em-bold">
+                说明<br>
+                1、对于手写代码，或从大模型获取的代码，建议增加打印信息，确保训练按预期进行。<br>
+                2、观察训练耗时，以便设置合理的 epoch。<br>
+                3、升级开发板的 torch、torchvision、torchaudio，可缩短训练耗时。<span class="em-normal em-comment text-comment">以上述样例代码为例，升级前完成 1个epoch约耗时 16 分钟，升级后只需要 6 分钟。 </span><br>
+                4、还可安装昇腾提供的 torch_npu（待验证）。
+            </p>
+            <hr>
+            <p>
+                infer_mnist_ascend_250513.py 执行结果如下。可手写0-9，拍照，处理为 28 * 28 像素的图片，然后上传到开发板上做推理验证；或用其他方法生成。
+            </p>
+            <pre><code>
+(base) root@davinci-mini:~/ailab# python3 infer_mnist_ascend_250513.py
+[警告] torch_npu模块未找到，将使用CPU推理
+当前推理设备: cpu
+模型已从 mnist_model_e5.pth 加载
+
+正在预处理图像...
+正在进行推理...
+/usr/local/miniconda3/lib/python3.9/site-packages/torch/nn/functional.py:1538: UserWarning: dropout2d: Received a 2-D input to dropout2d, which is deprecated and will result in an error in a future release. To retain the behavior and silence this warning, please use dropout instead. Note that dropout2d exists to provide channel-wise dropout on inputs with 2 spatial dimensions, a channel dimension, and an optional batch dimension (i.e. 3D or 4D inputs).
+  warnings.warn(warn_msg)
+
+===== 识别结果 =====
+预测数字: 8
+
+ASCII表示:
+ _ 
+|_|
+|_|
+</code></pre>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
