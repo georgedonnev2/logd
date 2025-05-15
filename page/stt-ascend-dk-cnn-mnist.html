@@ -192,7 +192,8 @@ total_elapsed_time: 1717.5507 秒
                 说明<br>
                 1、对于手写代码，或从大模型获取的代码，建议增加打印信息，确保训练按预期进行。<br>
                 2、观察训练耗时，以便设置合理的 epoch。<br>
-                3、升级开发板的 torch、torchvision、torchaudio，可缩短训练耗时。<span class="em-normal em-comment text-comment">以上述样例代码为例，升级前完成 1个epoch约耗时 16 分钟，升级后只需要 6 分钟。 </span><br>
+                3、升级开发板的 torch、torchvision、torchaudio，可缩短训练耗时。<span
+                    class="em-normal em-comment text-comment">以上述样例代码为例，升级前完成 1个epoch约耗时 16 分钟，升级后只需要 6 分钟。 </span><br>
                 4、还可安装昇腾提供的 torch_npu（待验证）。
             </p>
             <hr>
@@ -219,6 +220,58 @@ ASCII表示:
 |_|
 </code></pre>
 
+        </section>
+
+        <!--  -->
+        <section>
+            <h2 id="appendix">
+                <a href="#appendix">附录</a>
+            </h2>
+
+            <!--  -->
+            <h3 id="upgrade-pytorch">
+                <a href="#upgrade-pytorch">升级 PyTorch</a>
+            </h3>
+
+            <p>
+                如需要升级开发板的 PyTorch / torchvision / torchaudio，可参考如下步骤。
+            </p>
+            <p>
+                1、用 root 账号登录开发板，然后执行 <code> pip3 list | grep torch</code>，查看 PyTorch 相关版本信息。
+            </p>
+            <pre><code>
+(base) root@davinci-mini:~# pip3 list | grep torch
+torch                    1.13.0
+torchaudio               0.13.0
+torchvision              0.14.0
+</code></pre>
+
+            <p>
+                2、联系老师获得已下载的升级包，并复制到本地电脑。然后用相关工具或 <code> scp </code> 命令上传到开发板上。
+            </p>
+
+            <code>
+                # 在本地电脑上，切换到某个目录，该目录下 的 torch250515 子目录，存放了升级包。<br>
+                # 执行如下命令，将本地电脑上的 torch250515 子目录（连带子目录中的文件），复制到开发板的目录中（假定复制到 /root/ailab 目录）<br>
+                scp -r torch250515 root@192.168.137.100:/root/ailab</code>
+
+            <p>
+                3、在开发板上，切换到升级包所在目录，比如 <code>/root/ailab/torch250515</code>，执行 <code>pip3 install xxx.whl</code>
+            </p>
+            <code>
+
+    # 按此顺序依次执行<br>
+            pip3 install fsspec-2025.3.2-py3-none-any.whl <br>
+            pip3 install typing_extensions-4.13.2-py3-none-any.whl<br>
+            pip3 install sympy-1.14.0-py3-none-any.whl<br>
+            pip3 install filelock-3.18.0-py3-none-any.whl<br>
+            pip3 install torch-2.7.0-cp39-cp39-manylinux_2_28_aarch64.whl  <br>  
+            pip3 install torchvision-0.22.0-cp39-cp39-manylinux_2_28_aarch64.whl<br>
+            </code>
+
+            <p>
+                4、重复第1步，确认下升级了。
+            </p>
         </section>
 
     </main>
