@@ -237,6 +237,34 @@ MAKE_OS_RESULT = "make_os_sd.result" -->
 
         </section>
 
+        <section>
+            <h2 id="ip-informaiton">
+                <a href="#ip-inforamtion">IP信息</a>
+            </h2>
+
+            <p>
+                192.168.0.2 登web，也可以登录ssh
+            </p>
+            <p>
+                /etc/netplan/01-netcfg.yaml 信息如下：<br>
+                <pre><code>
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+      dhcp4: no
+      addresses: [192.168.0.2/24]
+      gateway4: 192.168.0.1
+
+    eth1:
+      dhcp4: no
+      addresses: [172.18.144.14/24]
+      gateway4:  172.18.144.1
+
+            </code></pre></p>
+        </section>
+
     </main>
 
 </body>

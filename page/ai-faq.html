@@ -1,39 +1,79 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
     <meta charset="utf-8">
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    
-    <title>机华为Atalas开发者套件相关FAQ</title>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <title>昇腾开发板FAQ</title>
     <link rel="stylesheet" type="text/css" href="../css/logd.css" />
+
+    <!-- 引入不蒜子计数 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </head>
 
+<body class="with-sidebar">
 
-<body>
-
+    <!-- header -->
     <header>
-        <h1>华为Atalas开发者套件相关FAQ</h1>
+        <h1>昇腾开发板FAQ</h1>
+
         <section class="doc-main-info">
-            <p class="doc-author">George Donne</p>
-            <p class="doc-last-update">2024-07-31</p>
-            <p class="doc-first-on">2024-06-28</p>
+            <p class="doc-author text-comment em-comment">George</p>
+            <p class="doc-last-update text-comment em-comment">25-05-21</p>
+            <p class="doc-first-on text-comment em-comment">24-09-16</p>
+
+            <p class="text-comment em-comment">
+                <span id="busuanzi_container_page_pv">
+                    | 浏览量：<span id="busuanzi_value_page_pv"></span>👀
+                </span>
+                &nbsp|&nbsp
+                返回<a href="../index.html" target="_blank">
+                    <主页>
+                </a>
+            </p>
         </section>
     </header>
 
+    <!-- footer -->
     <footer>
-        <p> &copy George Donne 2024-2025. All Rights Reserved. 苏ICP备2021027062号-1&nbsp&nbsp|&nbsp&nbsp
-            <a href="#">关于</a>
+        <p>
+            &copy George Donne 2024-2025. All Rights Reserved. 苏ICP备2021027062号-1&nbsp&nbsp|&nbsp&nbsp
+            <a href="./logd-about.html">关于</a>
         </p>
-        <p> Support:
-            <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
+
+        <p>
+            Support: <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
+        </p>
+
+        <p>
+            <span id="busuanzi_container_site_pv">
+                本站浏览量：<span id="busuanzi_value_site_pv"></span>👀
+            </span>
+            &nbsp&nbsp|&nbsp&nbsp
+            <span id="busuanzi_container_site_uv">
+                本站访客数：<span id="busuanzi_value_site_uv"></span>👤
+            </span>
         </p>
     </footer>
 
-    <main>
-        <article>
+    <!-- sidebar -->
+    <aside>
+        <p class="em-larger">目录</p>
+
+        <a href="#开发者套件连接的显示器不显示">显示器不显示</a><br>
+        <a href="#how-to-use-phone-camera">使用手机摄像头</a><br>
+        &nbsp&nbsp<a href="#use-iphone-camera">iPhone</a><br>
+        &nbsp&nbsp<a href="#use-android-camera">安卓手机</a><br>
+        <a href="#驱动机械臂报xxxI2Cerror">I2C错误</a><br>
+        <!-- &nbsp&nbsp<a href="#">xxxx</a><br> -->
+    </aside>
+
+    <!-- main -->
+    <main class="with-sidebar">
+
+        <section>
             <h2 id="开发者套件连接的显示器不显示">
                 <a href="#开发者套件连接的显示器不显示">开发者套件连接的显示器不显示</a>
             </h2>
@@ -59,11 +99,246 @@
                     不常用开发者套件连接的显示器，先暂不将上述 toggle_graphical_desktop.sh 加到 ~/.bashrc 中。
                 </li>
             </ul>
+            <br>
 
             <hr />
-        </article>
+        </section>
 
-        <article>
+        <section>
+            <h2 id="how-to-use-phone-camera">
+                <a href="#how-to-use-phone-camera">使用手机摄像头</a>
+            </h2>
+
+            <p>
+                分 iPhone 和 安卓手机。
+            </p>
+
+            <!--  -->
+            <!-- <h3 id="use-iphone-camera">
+                <a href="#use-iphone-camera">使用 iPhone 摄像头</a>
+            </h3>
+            <p>
+                主要设备：mac笔记本，iPhone 手机，昇腾开发板
+            </p>
+            <p>
+                方案概述：<br>
+                1、用 Mac笔记本自带的 QuickTime Player 获取 iPhone 手机的摄像头视频流。<br>
+                2、在 Mac笔记本上运行 ffmpeg，将 iPhone 手机的摄像头视频流，推送到昇腾开发板上。
+            </p>
+            <p>
+                主要步骤如下：
+            </p>
+            <p>
+                1、连接相关设备。<br>
+                （1）用苹果数据线，将 iPhone 手机连接到 Mac 笔记本。<br>
+                （2）用网线，连接 Mac笔记本和昇腾开发板。网线插在昇腾开发板上下排列的2个网口的上面那个网口，昇腾开发板的 IP地址则固定为 192.168.137.100。<br>
+                （3）昇腾开发板连接 HDMI 显示器，连 USB鼠标和键盘。
+            </p>
+            <p>
+                2、在 Mac 笔记本上，运行系统自带的 QuickTime Player。
+            </p>
+            <p>
+                3、在 QuickTime Player 界面上，选择 File | New Movie Recording。将弹出界面，画面为 iPhone 摄像头拍摄到的视频画面。
+            </p>
+            <p>
+                4、在 Mac笔记上启动 Terminal 应用，并在 Terminal 窗口中执行 <code>ffmpeg -f avfoundation -list_devices true -i ""</code>，列出有哪些音视频设备。ffmpeg 如不存在，则需要自行安装。如何安装 ffmpeg 可自行搜索指南，此处从略。<br>
+                如下显示的 <code>George’s iPhone14 Camera</code>，就是要使用的 iPhone 摄像头名称。
+                <pre><code>
+~ % ffmpeg -f avfoundation -list_devices true -i ""
+...
+[AVFoundation indev @ 0x7fb407804580] AVFoundation video devices:
+[AVFoundation indev @ 0x7fb407804580] [0] FaceTime HD Camera (Built-in)
+[AVFoundation indev @ 0x7fb407804580] [1] George’s iPhone14 Camera
+[AVFoundation indev @ 0x7fb407804580] [2] Capture screen 0
+[AVFoundation indev @ 0x7fb407804580] AVFoundation audio devices:
+[AVFoundation indev @ 0x7fb407804580] [0] Built-in Microphone
+[AVFoundation indev @ 0x7fb407804580] [1] screen-record-input
+[AVFoundation indev @ 0x7fb407804580] [2] BlackHole 2ch
+[AVFoundation indev @ 0x7fb407804580] [3] George’s iPhone14 Microphone
+[AVFoundation indev @ 0x7fb407804580] [4] BlackHole 64ch
+...
+                </code></pre>
+            </p>
+
+            <p>
+                5、在 Mac 笔记本的 Terminal 界面中，执行 <code>ffmpeg -f avfoundation -framerate 30 -video_size 640x480 -i "George’s iPhone14 Camera" -vcodec libx264 -preset ultrafast -f mpegts udp://192.168.137.100:1234</code>
+            </p>
+            <p>
+                6、在昇腾开发板上启动 Terminal，在 Terminal 界面中执行<code> ffplay -i udp://0.0.0.0:1234 </code>，就可以在昇腾开发板连接的显示器上，看到 iPhone 手机拍摄到的实时画面了。
+            </p> -->
+
+
+            <!--  -->
+            <h3 id="use-iphone-camera">
+                <a href="#use-iphone-camera">使用 iPhone 摄像头</a>
+            </h3>
+            <p>
+                主要设备：mac笔记本，iPhone 手机，昇腾开发板
+            </p>
+            <p>
+                方案概述：<br>
+                1、用 Mac笔记本自带的 QuickTime Player 获取 iPhone 手机的摄像头视频流。<br>
+                2、在 Mac笔记本上运行 ffmpeg，将 iPhone 手机的摄像头视频流，推送到昇腾开发板上。<br>
+                3、在昇腾开发板上接收 iPhone 手机的摄像头视频流，并推理。
+            </p>
+            <p>
+                主要步骤如下：
+            </p>
+            <p>
+                1、连接相关设备。<br>
+                （1）用苹果数据线，将 iPhone 手机连接到 Mac 笔记本。<br>
+                （2）用网线，连接 Mac笔记本和昇腾开发板。网线插在昇腾开发板上下排列的2个网口的上面那个网口，昇腾开发板的 IP地址则固定为 192.168.137.100。<br>
+
+            </p>
+            <p>
+                2、在 Mac 笔记本上，运行系统自带的 QuickTime Player。
+            </p>
+            <p>
+                3、在 QuickTime Player 界面上，选择 File | New Movie Recording。将弹出界面，画面为 iPhone 摄像头拍摄到的视频画面。
+            </p>
+            <p>
+                4、在 Mac笔记上启动 Terminal 应用，并在 Terminal 窗口中执行
+                <code>ffmpeg -f avfoundation -list_devices true -i ""</code>，列出有哪些音视频设备。ffmpeg 如不存在，则需要自行安装。如何安装 ffmpeg
+                可自行搜索指南，此处从略。<br>
+                如下显示的 <code>George’s iPhone14 Camera</code>，就是要使用的 iPhone 摄像头名称。
+            <pre><code>
+~ % ffmpeg -f avfoundation -list_devices true -i ""
+...
+[AVFoundation indev @ 0x7fb407804580] AVFoundation video devices:
+[AVFoundation indev @ 0x7fb407804580] [0] FaceTime HD Camera (Built-in)
+[AVFoundation indev @ 0x7fb407804580] [1] George’s iPhone14 Camera
+[AVFoundation indev @ 0x7fb407804580] [2] Capture screen 0
+[AVFoundation indev @ 0x7fb407804580] AVFoundation audio devices:
+[AVFoundation indev @ 0x7fb407804580] [0] Built-in Microphone
+[AVFoundation indev @ 0x7fb407804580] [1] screen-record-input
+[AVFoundation indev @ 0x7fb407804580] [2] BlackHole 2ch
+[AVFoundation indev @ 0x7fb407804580] [3] George’s iPhone14 Microphone
+[AVFoundation indev @ 0x7fb407804580] [4] BlackHole 64ch
+...
+                </code></pre>
+            </p>
+
+            <p>
+                5、在 Mac 笔记本的 Terminal 界面中，执行
+                <code>ffmpeg -f avfoundation -framerate 30 -video_size 1280x720 -pix_fmt uyvy422 -i "George’s iPhone14 Camera" -preset ultrafast -b:v 2M -f mpegts udp://192.168.137.100:1234</code>
+            </p>
+            <p>
+                6、在昇腾开发板启动 jupyter notebook，然后在本机浏览器窗口中，修改 /01-yolov5/main.ipynb，增加对手机摄像头视频流的推理。<br>
+                <br>
+                6.1 复制 infer_camera 函数，约 25行（含空行）<br>
+                6.2 粘贴。把函数名 infer_camera 改成 infer_phone_camera<br>
+                6.3 注释掉以下2行。在行首输入 #；或者选中2行，按 CTRL + / 键（CTRL 和 / 同时按下）。<br>
+            <pre><code>
+    # camera_index = find_camera_index()
+    # cap = cv2.VideoCapture(camera_index)
+                </code></pre>
+            <br>
+            6.4 在注释掉的2行下面，插入以下4行
+            <pre><code>
+    cap = cv2.VideoCapture("udp://127.0.0.1:1234", cv2.CAP_FFMPEG)
+    if not cap.isOpened():
+        print("无法打开手机视频流。")
+    else:
+    </code></pre><br>
+            6.5 选中函数的余下部分，从 <code># 初始化可视化对象</code>到结束，按 CTRL + ] 键缩进。<br>
+            <br>
+            <br>
+            新增的 <code> infer_phone_camera </code>如下：<br>
+            <pre><code>
+def infer_phone_camera(model, labels_dict, cfg):
+    """外设手机摄像头实时推理"""
+
+
+    # 获取摄像头
+    # camera_index = find_camera_index()
+    # cap = cv2.VideoCapture(camera_index)
+    cap = cv2.VideoCapture("udp://127.0.0.1:1234", cv2.CAP_FFMPEG)
+    if not cap.isOpened():
+        print("无法打开手机视频流。")
+    else:
+        # 初始化可视化对象
+        image_widget = widgets.Image(format='jpeg', width=1280, height=720)
+        display(image_widget)
+        while True:
+            # 对摄像头每一帧进行推理和可视化
+            _, img_frame = cap.read()
+            image_pred = infer_frame_with_vis(img_frame, model, labels_dict, cfg)
+            image_widget.value = img2bytes(image_pred)
+    </code></pre>
+            <br>
+
+            6.6 复制
+            <pre><code>
+    elif infer_mode == 'camera':
+        infer_camera(model, labels_dict, cfg)
+    </code></pre>
+            粘贴后改成：
+            <pre><code>
+    elif infer_mode == 'phone':
+        infer_phone_camera(model, labels_dict, cfg)
+    </code></pre>
+            然后修改
+            <pre><code>
+    infer_mode = 'phone'
+    </code></pre>
+
+            执行样例程序，就可以看到结果。
+
+
+            </p>
+
+            <!--  -->
+            <hr>
+            <h3 id="use-android-camera">
+                <a href="#use-android-camera">使用安卓手机摄像头</a>
+            </h3>
+
+            <p>
+                1、打开<span class="em-blue">开发者模式</span>。进入 [设置 | 关于手机]，在 [版本] 处点击数次，会出现提示“您正处于开发者模式”。
+            </p>
+
+            <p>
+                2、设置<span class="em-blue"> [开发者选项]</span><br>
+                2.1 进入 [系统和更新 | 开发者选项]<br>
+                2.2 打开<span class="em-blue"> [USB调试]</span><br>
+                2.3 设置 [选择USB配置] 为 <span class="em-blue"> [MTP(多媒体传输)]</span>
+                2.4 通过数据线，将安卓手机和 Windows 电脑连接。
+            </p>
+
+            <p>
+                3、下载 <code>scrcpy-win64-v3.2.zip</code>，解压后放到本地 windows 电脑的目录中。
+            </p>
+
+            <p>
+                4、下载 <code>ffmpeg-2025-05-19-git-c55d65ac0a-full_build.7z</code>，解压后放到本地 windows 电脑的目录中。
+            </p>
+
+            <p>
+                5、启动一个终端（CMD或powershell），转到 scrcpy 所在目录，执行
+                <code> .\scrcpy --no-audio --max-fps 30 --video-bit-rate 2M</code><br>
+                5.1 顺利的话，Windows 电脑上将出现手机界面。<br>
+                5.2 如果提示找不到设备，则重复上述第2步。然后在 scrcpy 所在目录中，执行 <code>.\adb devices</code>，看看是否招到设备了。<br>
+            </p>
+
+            <p>
+
+                6、再启一个终端，转到 ffmpeg\bin
+                所在目录，执行<code>.\ffmpeg -f gdigrab -i title="tas-an00" -preset ultrafast -f mpegts udp://192.168.137.100:1234</code>
+            </p>
+            <span class="text-comment">
+                - title="tas-an00"要修改，改成你电脑上手机界面的窗口名称。比如执行 scrcpy 命令后，你电脑上出现的手机界面窗口的名称是 redmi ，则title="redmi"。<br>
+                - 如果把 ffmpeg\bin 目录加入了环境变量PATH中，则在任意目录执行即可，ffmpeg 前面也不用加 .\
+            </span>
+
+            <p>
+                7、修改样例程序，可参考 <span class="em-blue">使用 iPhone 摄像头</span>  的 <span class="em-blue">第6步</span>。
+            </p>
+        </section>
+        <br>
+        <hr>
+
+        <!--  -->
+        <section>
             <h2 id="驱动机械臂报xxxI2Cerror">
                 <a href="#驱动机械臂报xxxI2Cerror">驱动机械臂报 xxx I2C error</a>
             </h2>
@@ -89,10 +364,13 @@
                 <li>继续咨询机械臂客服，说运行命令 <code>i2cdetect -y -r 1</code> 检查 i2c 是否正常。运行后显示一堆 <code>---</code> ，表示 i2c 设备不正常。
                 </li>
                 <li>
-                    在华为昇腾开发者套件上运行命令 <code>i2cdetect -l</code> ，发现有很多 i2c 总线，从 i2c-0 到 i2c-3、i2c-5 到 i2c-9、i2c-13。 <code>i2cdetect -y -r 1</code> 表示检查 i2c-1 是否正常。
+                    在华为昇腾开发者套件上运行命令 <code>i2cdetect -l</code> ，发现有很多 i2c 总线，从 i2c-0 到 i2c-3、i2c-5 到 i2c-9、i2c-13。
+                    <code>i2cdetect -y -r 1</code> 表示检查 i2c-1 是否正常。
                 </li>
                 <li>
-                    通过插上和拔掉华为昇腾开发者套件和机械臂扩展板的 40PIN  排线，运行命令 <code>i2cdetect -y -r {x}</code> （{x}是 i2c 总线号码，取值0、1、2、3、5、6、7、8、9、13）逐个检查 i2c 总线，确定机械臂扩展板应该是挂在 i2c-7 上（拔掉了，运行命令显示一堆---；插上了，运行命令后有 2 处显示了数字），而不是机械臂客服说的 1 号总线。
+                    通过插上和拔掉华为昇腾开发者套件和机械臂扩展板的 40PIN 排线，运行命令 <code>i2cdetect -y -r {x}</code> （{x}是 i2c
+                    总线号码，取值0、1、2、3、5、6、7、8、9、13）逐个检查 i2c 总线，确定机械臂扩展板应该是挂在 i2c-7 上（拔掉了，运行命令显示一堆---；插上了，运行命令后有 2
+                    处显示了数字），而不是机械臂客服说的 1 号总线。
                 </li>
                 <li>
                     继续请教机械臂客服。客服说，上位机不是在他家买的，无法定位。然后开始和客服讲道理，并提供相关解决建议，以及实在不行可否退货：
@@ -101,7 +379,8 @@
                             首先机械臂扩展板文档说，是可以移植到自己（即客户）的系统。既然如此，那肯定要找个不是从贵司买的上位机，当前我就使用了一个 Linux 开发板作为上位机。
                         </li>
                         <li>
-                            为了控制机械臂，客户自己的系统只需要调用机械臂厂家封装好的 python API。当前我调用 python API 时得到 xxx I2C error 的报错，总要指导指导吧，不能不管吧。
+                            为了控制机械臂，客户自己的系统只需要调用机械臂厂家封装好的 python API。当前我调用 python API 时得到 xxx I2C error
+                            的报错，总要指导指导吧，不能不管吧。
                         </li>
                         <li>
                             貌似上位机认为机械臂在 i2c-7 总线上，而不是底层驱动 Arm_Lib.py 中写死的 1 号总线。可以如何修改下试试。
@@ -109,7 +388,8 @@
                     </ul>
                 </li>
                 <li>
-                    机械臂客服说可以修改 Arm_Lib.py，将 1 改成 7 号总线。然后运行样例程序比如控制蜂鸣器的，依旧不行。记得要 <code>sudo python3 setup.py install</code> ，执行后，再执行样例程序，OK了。
+                    机械臂客服说可以修改 Arm_Lib.py，将 1 改成 7 号总线。然后运行样例程序比如控制蜂鸣器的，依旧不行。记得要
+                    <code>sudo python3 setup.py install</code> ，执行后，再执行样例程序，OK了。
                 </li>
                 <li>
                     解决后，技术支持群中有好心人也说：华为昇腾开发者套件，是把机械臂挂在 i2c 7 号总线的。
@@ -119,15 +399,17 @@
             <p>解决方案：</p>
             <ul>
                 <li>
-                    是由底层驱动  Python 程序中的 i2c 总线号（1号），和机械臂在上位机中的真正的 i2c 总线号（7号）不一致导致的。当前修改了底层驱动 Python 程序中的总线号（从1修改为7）解决的。
+                    是由底层驱动 Python 程序中的 i2c 总线号（1号），和机械臂在上位机中的真正的 i2c 总线号（7号）不一致导致的。当前修改了底层驱动 Python 程序中的总线号（从1修改为7）解决的。
 
                 </li>
                 <li>
-                    可能是安装了机械臂厂家提供的底层驱动，导致了上述问题。比如：华为昇腾开发者套件的机械臂样例，已经将底层驱动的总线号修改为正确的7号；机械臂厂家默认的是1号，安装后覆盖了正确的7号，导致报 xxx I2C error。未进一步详查证实。
+                    可能是安装了机械臂厂家提供的底层驱动，导致了上述问题。比如：华为昇腾开发者套件的机械臂样例，已经将底层驱动的总线号修改为正确的7号；机械臂厂家默认的是1号，安装后覆盖了正确的7号，导致报 xxx
+                    I2C error。未进一步详查证实。
                 </li>
             </ul>
 
-        </article>
+        </section>
+
     </main>
 
 </body>
