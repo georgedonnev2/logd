@@ -21,7 +21,7 @@
 
         <section class="doc-main-info">
             <p class="doc-author text-comment em-comment">George</p>
-            <p class="doc-last-update text-comment em-comment">25-05-21</p>
+            <p class="doc-last-update text-comment em-comment">25-05-22</p>
             <p class="doc-first-on text-comment em-comment">24-09-16</p>
 
             <p class="text-comment em-comment">
@@ -66,6 +66,7 @@
         <a href="#how-to-use-phone-camera">使用手机摄像头</a><br>
         &nbsp&nbsp<a href="#use-iphone-camera">iPhone</a><br>
         &nbsp&nbsp<a href="#use-android-camera">安卓手机</a><br>
+        &nbsp&nbsp<a href="#by-ip-camera">通用</a><br>
         <a href="#驱动机械臂报xxxI2Cerror">I2C错误</a><br>
         <!-- &nbsp&nbsp<a href="#">xxxx</a><br> -->
     </aside>
@@ -109,9 +110,12 @@
                 <a href="#how-to-use-phone-camera">使用手机摄像头</a>
             </h2>
 
-            <p>
-                分 iPhone 和 安卓手机。
-            </p>
+            
+
+
+
+
+
 
             <!--  -->
             <!-- <h3 id="use-iphone-camera">
@@ -170,7 +174,7 @@
 
             <!--  -->
             <h3 id="use-iphone-camera">
-                <a href="#use-iphone-camera">使用 iPhone 摄像头</a>
+                <a href="#use-iphone-camera">电脑转发（iPhone）</a>
             </h3>
             <p>
                 主要设备：mac笔记本，iPhone 手机，昇腾开发板
@@ -290,7 +294,7 @@ def infer_phone_camera(model, labels_dict, cfg):
             <!--  -->
             <hr>
             <h3 id="use-android-camera">
-                <a href="#use-android-camera">使用安卓手机摄像头</a>
+                <a href="#use-android-camera">电脑转发（安卓）</a>
             </h3>
 
             <p>
@@ -331,7 +335,83 @@ def infer_phone_camera(model, labels_dict, cfg):
             </span>
 
             <p>
-                7、修改样例程序，可参考 <span class="em-blue">使用 iPhone 摄像头</span>  的 <span class="em-blue">第6步</span>。
+                7、修改样例程序，可参考 <span class="em-blue">使用 iPhone 摄像头</span> 的 <span class="em-blue">第6步</span>。
+            </p>
+
+            <!--  -->
+            <h3 id="by-ip-camera">
+                <a href="#by-ip-camera">通用（IP摄像头）</a>
+            </h3>
+
+            <p>
+                【简介】将手机作为视频服务器。开发板从手机（视频服务器）上拉流，从而得到手机的视频画面。<span class="em-blue em-bold">要组成局域网，开发板要能连通手机（视频服务器）的IP地址。</span>
+            </p>
+
+
+            <p>
+                1、手机下载安装<span class="em-blue">“IP摄像头”（IP Camera） App（作者：沈垚yao）</span><br>
+                <br>
+                1.1 安卓：<a href="https://www.downxia.com/downinfo/196291.html"
+                    target="_blank">https://www.downxia.com/downinfo/196291.html</a><br>
+                1.2 iPhone：App Store 搜索 IP Camera
+            </p>
+
+            <p>
+                2、运行 IP摄像头 App，进入设置页面设置<span class="em-blue">[用户名][密码]</span>。<br>
+                <br>
+                2.1 安卓：点击首页右上角[齿轮]，可进入设置界面。<br>
+                2.2 iPhone：点击有野右上角[三条横线]，再点击[设置]，可进入设置页面。
+            </p>
+
+            <p>
+                3、设置完成后回App首页，点击底部 <span class="em-blue">[打开IP摄像头服务器]</span>，并打开<span
+                    class="em-blue">[RTSP服务器]</span><br>
+                <br>
+                3.1 安卓：在界面上勾选<span class="em-blue"> [RTSP]</span><br>
+                3.2 iPhone：点击底部<span class="em-blue">齿轮</span>，再点击<span class="em-blue">[RTSP服务器]</span>
+            </p>
+
+            <p>
+                4、设置视频画面分辨率为 640 x 480（这样，开发板使用该视频时相对比较流畅）<br>
+                <br>
+                4.1 找一个和手机（IP摄像头服务器）<span class="em-blue em-bold">在同一个局域网的手机或电脑</span>，打开浏览器，输入手机（IP摄像头服务器）界面上显示的
+                http网址，比如 http://192.168.43.132:8081/。如需要输入用户名和密码，请输入第2步中设置的用户名和密码。<br>
+                4.2 浏览器会出现手机画面。点击画面右小角<span class="em-blue">[分辨率]</span>，选择 <span class="em-blue">640 x 480</span>
+            </p>
+
+            <p>
+                5、在开发板上 ping 手机（IP摄像头服务器）的地址，如果能 ping 通，则进入下一步。比如 <code>ping 192.168.43.132</code>
+            </p>
+
+            <p>
+                6、在昇腾开发板启动 jupyter notebook，然后在本机浏览器窗口中，修改 /01-yolov5/main.ipynb<br>
+                <br>
+                以下是修改后的 infer_phone_camera，供参考。<br>
+                <br>
+                <code>url = 'rtsp://gdv2:Lily093897@192.168.43.132:8554/live'</code>中，要替换为你自己的<span
+                    class="em-blue">用户名:密码@IP地址:(RTSP)端口号</span>。<br>
+                <br>
+            <pre><code>
+def infer_phone_camera(model, labels_dict, cfg):
+    """外设手机摄像头实时推理"""
+
+
+    # 获取摄像头
+    # camera_index = find_camera_index()
+    # cap = cv2.VideoCapture(camera_index)
+    url = 'rtsp://gdv2:Lily093897@192.168.43.132:8554/live'
+    cap = cv2.VideoCapture(url)
+    if not cap.isOpened():
+        print("无法打开手机视频流。")
+    else:
+        # 初始化可视化对象
+        image_widget = widgets.Image(format='jpeg', width=640, height=480)
+        display(image_widget)
+        while True:
+            # 对摄像头每一帧进行推理和可视化
+            _, img_frame = cap.read()
+            image_pred = infer_frame_with_vis(img_frame, model, labels_dict, cfg)
+            image_widget.value = img2bytes(image_pred)</code></pre>
             </p>
         </section>
         <br>
