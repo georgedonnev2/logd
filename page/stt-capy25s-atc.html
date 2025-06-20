@@ -98,7 +98,7 @@
         <br>
         <p>
             更多详情可参考“Atlas 200I DK A2 官网文档 -- 使用ATC命令转换模型”<sup><a href="#ref-1">[1]</a></sup>
-<br>
+            <br>
             更多详情可参考“昇腾CANN文档 -- ATC log”<sup><a href="#refm-2">[2]</a></sup>
         </p>
         <!--  -->
@@ -136,8 +136,8 @@
             <code>export ASCEND_SLOG_PRINT_TO_STDOUT=1</code>
         </p>
         <p>
-            然后在执行 atc 命令时，增加 <code>--log=xxx</code> 参数
-        <pre><code>atc --model=model.onnx --framework=5 --output=model --soc_version=Ascend310B4 --log=warning</code></pre>
+            然后在执行 atc 命令时，增加 <code>--log=xxx</code> 参数<br>
+            <code>atc --model=model.onnx --framework=5 --output=model --soc_version=Ascend310B4 --log=warning</code>
         </p>
         <p><code>--log=xxx</code>中 <code>xxx</code> 的取值如下：</p>
         <span class="text-comment em-comment">debug：输出debug/info/warning/error级别的调试日志信息。<br>
@@ -146,6 +146,7 @@
             error：输出/error级别的调试日志信息。<br>
             null：（默认值）不输出调试日志。
         </span>
+
         <br>
 
 
@@ -156,9 +157,95 @@
         <h2 id="atc-on-wsl">
             <a href="#atc-on-wsl">在PC WSL 上转换模型</a>
         </h2>
+
         <p>
-            <code>export ASCEND_SLOG_PRINT_TO_STDOUT=1</code>
-            atc --model=./model.onnx --framework=5 --output=./model --soc_version=Ascend310B4 -
+            在 PC 机上运行 ATC 模型转换工具，应该比在开发板上快一些。可以考虑在 PC 机上转换模型。
+
+            需要先在 PC 机上安装 Linux，此处选用的是 WSL（Windows Subsystem for Linux）方式。更多详情可参考“WSL 安装Linux Ubuntu 22.04子系统”<sup><a
+                    href="#refm-3">[3]</a></sup>。
+
+            安装好 Linux 之后，在 Linux 上安装 CANN 软件包，就可以在 PC 上运行 ATC 转换模型了。更多详情可参考“安装 CANN 软件包”<sup><a
+                    href="#refm-4">[4]</a></sup>。
+        </p>
+        <p>
+            以下以 Windows 11 Pro 24H2 为例。重点描述一些注意点，其余请参考官网文档。
+        </p>
+
+        <!--  -->
+        <h3 id="install-linux-by-wsl">
+            <a href="#install-linux-by-wsl">WSL 方式安装 Linux</a>
+        </h3>
+
+        <p>
+            先要启动 WSL 功能。在昇腾官网文档没有展开描述，可上网搜索，大致是：
+        </p>
+        <p>
+            选择
+            <code>控制面板 | 程序 | 程序和功能</code>，点击<code>启用或关闭 Windows 功能</code>，然后在出现的界面中，勾选2项：<code>适用于 Linux 的 Windows 子系统</code>
+            和 <code>虚拟机平台</code>。然后重启电脑。
+        </p>
+        <p>
+            更多描述可参考 “WSL2 最新最全帮助小白一步步详细安装教程”<sup><a href="#refm-5">[5]</a></sup>。
+        </p>
+        <br>
+        <p>
+            电脑重启后，接下来就按照“WSL 安装Linux Ubuntu 22.04子系统”<sup，><a href="#refm-3">[3]</a></sup>，一步步操作即可。
+        </p>
+        <p>
+            第2步，要求“管理员身份”运行 PowerShell，就照做吧。没试过普通用户执行 PowerShell 啥结果。先执行
+            <code>wsl --update</code>，再执行<code>wsl --list --online</code>。有可能连校园网执行 <code>wsl --list --online</code>
+            会报错，则考虑换个网络（比如手机热点）再尝试执行。
+        </p>
+        <p>
+            第3步、第4步，没有什么补充。
+        </p>
+        <p>
+            第5步。建议照做，把 apt 源换成华为源。
+        </p>
+
+        <!--  -->
+        <h3 id="install-cann-toolkit">
+            <a href="#install-cann-toolkit">安装CANN</a>
+        </h3>
+        <p>
+            基本上就是参考“安装 CANN 软件包”<sup><a href="#refm-4">[4]</a></sup>，一步步操作。
+        </p>
+        <p>
+            <span class="em-bold">第1步</span>。可以按照昇腾官方文档操作。或者在 PC 机的 Linux 窗口执行：
+            <code>wget https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/CANN/CANN%207.0.RC1/Ascend-cann-toolkit_7.0.RC1_linux-x86_64.run</code>
+        </p>
+        <span class="text-comment em-comment">上述地址，就是复制第1步“下载链接”得到的。</span>
+
+        <br>
+        <br>
+        <p class="em-bold">
+            第2步，安装必要的依赖。
+        </p>
+        <p>2.1 检查root用户的umask。没有做，似乎也OK的。</p>
+        <p>2.2 配置安装用户权限。WSL 安装 Linux 后的第一个账号，是有 sudo 权限的。因此也可跳过。</p>
+        <p>2.3 安装依赖
+            <br>
+            2.3.1 没有一个个检查 gcc 等是否存在，可以直接复昇腾官网文档后执行
+            <code>sudo apt-get install -y gcc g++ make cmake zlib1g zlib1g-dev openssl libsqlite3-dev libssl-dev libffi-dev libbz2-dev libxslt1-dev unzip pciutils net-tools libblas-dev gfortran libblas3</code>
+            <br>
+            2.3.2 看看 python3 和 pip3 的版本。是满足要求的。
+            <br>
+            2.3.3 pip3 安装相关依赖<br>
+            (1) 建议按文档操作，pip换成华为源。<br>
+            (2) 建议执行命令 <code>pip3 install --upgrade pip</code><br>
+            (3) 复制文档一堆 pip3 install xxx 并执行。 pip3 install numpy 改成 pip3 install <span
+                class="em-blue">numpy==1.24.0</span>，因为 CANN 软件包还不支持 1.24.0 以上版本。其余无变化，原样执行。（新版本CANN的文档中已明确了1.24.0）
+        </p>
+
+        <br>
+        <p>
+            <span class="em-bold">第3步</span>。没有要补充。会有warning 说没有找到 CANN 驱动包（驱动NPU的），可以忽略的。因为 PC 电脑上没有昇腾 NPU。
+        </p>
+
+        <br>
+        <p>
+            <span class="em-bold">第4步</span>。环境变量要设置。并可把这2行，放到 .bashrc 中（执行 <code>vim ~/.bashrc</code>，将 source / export
+            这2行复制粘贴到 .bashrc 文件的最后），这样就能被自动执行了。
         </p>
 
 
@@ -168,12 +255,37 @@
         <p class="em-larger">
             参考资料：
         </p>
-        <p id="ref-1">
-            1. Atlas 200I DK A2 官网文档 -- 使用ATC命令转换模型，<a
-                href="https://www.hiascend.com/document/detail/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/Application%20Development%20Guide/tmuacop/tmuacop_0013.html">链接</a>。
-        </p>
-        <p id="refm-2">
-            2. 昇腾CANN官网文档 -- ATC离线模型编译工具 | 参数说明 | 高级功能参数 | 调试选项 | --log，<a href="https://www.hiascend.com/document/detail/zh/canncommercial/81RC1/devaids/devtools/atc/atlasatcparam_16_0082.html">链接</a>。
+
+        <p>
+            <span id="ref-1">
+                1. Atlas 200I DK A2 官网文档 -- 使用ATC命令转换模型，<a
+                    href="https://www.hiascend.com/document/detail/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/Application%20Development%20Guide/tmuacop/tmuacop_0013.html">链接</a>。
+            </span>
+
+            <br>
+            <span id="refm-2">
+                2. 昇腾CANN官网文档 -- ATC离线模型编译工具 | 参数说明 | 高级功能参数 | 调试选项 | --log，<a
+                    href="https://www.hiascend.com/document/detail/zh/canncommercial/81RC1/devaids/devtools/atc/atlasatcparam_16_0082.html">链接</a>。
+            </span>
+
+            <br>
+            <span id="refm-3">
+                3. Atlas 200I DK A2 官网文档 -- 使用 WSL 安装 Linux Ubuntu 22.04，<a
+                    href="https://www.hiascend.com/document/detail/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/Application%20Development%20Guide/tmuacop/tmuacop_0010.html">链接</a>
+            </span>
+
+            <br>
+            <span id="refm-4">
+                4. Atlas 200I DK A2 官网文档 -- 安装CANN，<a
+                    href="https://www.hiascend.com/document/detail/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/Application%20Development%20Guide/tmuacop/tmuacop_0011.html">链接</a>
+            </span>
+
+            <br>
+            <span id="refm-5">
+                5. CSDN文章 -- WSL2 最新最全帮助小白一步步详细安装教程，<a
+                    href="https://blog.csdn.net/x777777x/article/details/141092913">链接</a>
+            </span>
+
         </p>
     </main>
 
