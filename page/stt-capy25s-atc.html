@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <title>ATC模型转换</title>
+    <link rel="stylesheet" type="text/css" href="../css/logd.css" />
+
+    <!-- 引入不蒜子计数 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!-- 引入 Highlight.js -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script> -->
+
+    <!-- 引入 Prism.js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+
+</head>
+
+<body class="with-sidebar">
+
+
+
+    <!-- header -->
+    <header>
+        <h1>ATC模型转换</h1>
+
+        <section class="doc-main-info">
+            <p class="doc-author text-comment em-comment">George</p>
+            <p class="doc-last-update text-comment em-comment">25-06-18</p>
+            <p class="doc-first-on text-comment em-comment">25-06-18</p>
+
+            <p class="text-comment em-comment">
+                <span id="busuanzi_container_page_pv">
+                    | 浏览量：<span id="busuanzi_value_page_pv"></span>👀
+                </span>
+                &nbsp|&nbsp
+                返回<a href="./stt-campus-ascend-kunpeng-y25s.html">
+                    <25暑期训练营>
+                </a>
+            </p>
+        </section>
+    </header>
+
+    <!-- footer -->
+    <footer>
+        <p>
+            &copy George Donne 2024-2025. All Rights Reserved. 苏ICP备2021027062号-1&nbsp&nbsp|&nbsp&nbsp
+            <a href="./logd-about.html">关于</a>
+        </p>
+
+        <p>
+            Support: <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
+        </p>
+
+        <p>
+            <span id="busuanzi_container_site_pv">
+                本站浏览量：<span id="busuanzi_value_site_pv"></span>👀
+            </span>
+            &nbsp&nbsp|&nbsp&nbsp
+            <span id="busuanzi_container_site_uv">
+                本站访客数：<span id="busuanzi_value_site_uv"></span>👤
+            </span>
+        </p>
+    </footer>
+
+    <!-- sidebar -->
+    <aside>
+        <p class="em-larger">目录</p>
+
+        <a href="#profile-xx">xx简介</a><br>
+        &nbsp&nbsp<a href="#">xxxx</a><br>
+    </aside>
+
+    <!-- main -->
+    <main class="with-sidebar">
+        <!--  -->
+        <h2>
+            <a>ATC简介和使用</a>
+        </h2>
+
+        <p>
+            对于开源框架的网络模型（如Caffe、TensorFlow等），不能直接在昇腾AI处理器上运行推理，需要先使用ATC（Ascend Tensor
+            Compiler）工具将开源框架的网络模型转换为适配昇腾AI处理器的离线模型（*.om文件）。
+        </p>
+
+        <p>
+            当前支持在开发者套件和Ubuntu系统上转换模型，用户可以在开发者套件上进行模型转换，如果在开发者套件转换模型导致长时间不能运行（1小时以上），则请按照安装方案介绍的方法在Ubuntu系统上转换模型。
+        </p>
+
+        <br>
+        <p>
+            更多详情可参考“Atlas 200I DK A2 官网文档 -- 使用ATC命令转换模型”<sup><a href="#ref-1">[1]</a></sup>
+<br>
+            更多详情可参考“昇腾CANN文档 -- ATC log”<sup><a href="#refm-2">[2]</a></sup>
+        </p>
+        <!--  -->
+        <br>
+        <h3 id="example1">
+            <a href="#example1">常用命令参数</a>
+        </h3>
+        <p>
+            常用命令参数样例：
+        </p>
+        <pre><code>atc --model=model.onnx --framework=5 --output=model --soc_version=Ascend310B4 </code></pre>
+
+        <br>
+        <p>相关命令参数含义如下：</p>
+        <p>
+
+            <code>--model=model.onnx</code>：model.onnx 是要被转换的模型的文件名称。<br>
+            <code>--framework=5</code>：被转换的模型是什么类型。0:Caffe; 1:MindSpore; 3:Tensorflow; 5:ONNX。<br>
+            <code>--output=model</code>：转换后的 om 格式的模型的文件名称。不用加 .om，会自动加。如果写成 model.om，则转换后的模型的文件名会是 model.om.om。<br>
+            <code>--soc_version=Ascend310B4</code>：模型在哪种 NPU 上使用。昇腾/鲲鹏开发板的芯片就是 Ascend310B4。可以在开发板上执行命令
+            <code>npu-smi info</code> 查看确认。
+
+        </p>
+
+        <!--  -->
+        <br>
+        <h3 id="more-log">
+            <a href="#more-log">查看更多日志信息</a>
+        </h3>
+        <p>
+            在开发板上转换模型可能耗时较多，好久没有输出也不知什么情况。因此如果希望查看 atc 执行时输出的更多信息，可按如下步骤操作：
+        </p>
+        <p>
+            先执行以下命令设置环境变量：<br>
+            <code>export ASCEND_SLOG_PRINT_TO_STDOUT=1</code>
+        </p>
+        <p>
+            然后在执行 atc 命令时，增加 <code>--log=xxx</code> 参数
+        <pre><code>atc --model=model.onnx --framework=5 --output=model --soc_version=Ascend310B4 --log=warning</code></pre>
+        </p>
+        <p><code>--log=xxx</code>中 <code>xxx</code> 的取值如下：</p>
+        <span class="text-comment em-comment">debug：输出debug/info/warning/error级别的调试日志信息。<br>
+            info：输出info/warning/error级别的调试日志信息。<br>
+            warning：输出warning/error级别的调试日志信息。<br>
+            error：输出/error级别的调试日志信息。<br>
+            null：（默认值）不输出调试日志。
+        </span>
+        <br>
+
+
+
+
+
+        <!--  -->
+        <h2 id="atc-on-wsl">
+            <a href="#atc-on-wsl">在PC WSL 上转换模型</a>
+        </h2>
+        <p>
+            <code>export ASCEND_SLOG_PRINT_TO_STDOUT=1</code>
+            atc --model=./model.onnx --framework=5 --output=./model --soc_version=Ascend310B4 -
+        </p>
+
+
+        <!--  -->
+        <br>
+        <hr>
+        <p class="em-larger">
+            参考资料：
+        </p>
+        <p id="ref-1">
+            1. Atlas 200I DK A2 官网文档 -- 使用ATC命令转换模型，<a
+                href="https://www.hiascend.com/document/detail/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/Application%20Development%20Guide/tmuacop/tmuacop_0013.html">链接</a>。
+        </p>
+        <p id="refm-2">
+            2. 昇腾CANN官网文档 -- ATC离线模型编译工具 | 参数说明 | 高级功能参数 | 调试选项 | --log，<a href="https://www.hiascend.com/document/detail/zh/canncommercial/81RC1/devaids/devtools/atc/atlasatcparam_16_0082.html">链接</a>。
+        </p>
+    </main>
+
+</body>
+
+</html>

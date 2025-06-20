@@ -417,12 +417,12 @@ aside {
 
 /* 覆盖 Prism.js 默认字体 */
 /* 更具体的选择器 */
-/* pre[class*="language-"] code[class*="language-"],
-pre[class*="language-"] {
+pre[class*="lang-"] code[class*="lang-"],
+pre[class*="lang-"] {
     font-family: monospace !important;
     font-size: 0.95em !important;
     line-height: 1.5 !important;
-} */
+}
 
 /* body.with-sidebar {
     border: 2px solid green;
