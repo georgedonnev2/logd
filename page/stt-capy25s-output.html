@@ -34,7 +34,7 @@
 
         <section class="doc-main-info">
             <p class="doc-author text-comment em-comment">George</p>
-            <p class="doc-last-update text-comment em-comment">25-06-18</p>
+            <p class="doc-last-update text-comment em-comment">25-06-30</p>
             <p class="doc-first-on text-comment em-comment">25-06-18</p>
 
             <p class="text-comment em-comment">
@@ -81,7 +81,187 @@
 
     <!-- main -->
     <main class="with-sidebar">
-        <p>输出中</p>
+
+        <!--  -->
+        <h2 id="input-output-briefing">
+            <a href="#input-output-briefing">输入输出概述</a>
+        </h2>
+
+        <p>
+            开发板提供了丰富的硬件接口，可完成众多输入输出。
+        </p>
+        <p>
+        <ul>
+            <li>视频。将 USB 摄像头，插到开发板的 USB 接口上，开发板就可以获得视频信息。</li>
+            <li>音频。将 USB 麦克风+喇叭，插到开发板的 USB 接口上，开发板就可以获取和输出音频信息。</li>
+            <li>网口。通过网口可以做更多输入输出。比如通过网络拉取视频流。</li>
+            <li>40Pin接口。开发板上有40个细细的针脚（管脚），分2排，每排20个，称为 40Pin接口。开发板可通过 40Pin接口
+                控制单片机（单片机进一步控制机械臂，等），或者各式各样的传感器（温度、湿度、……）。本章节做简介。</li>
+        </ul>
+
+        </p>
+
+        <br>
+        <p>
+            准确的说，应该是硬件的输入输出接口。以如下简介的 GPIO（General-Purpose Input/Output），所有 GPIO
+            管脚（40Pin接口中某一些），即可以作为输出（从开发板输出到周边），也可以作为输入（从周边到开发板），只要一条命令设置下某 GPIO 管脚的方向即可（方向是 in 还是 out）。GPIO
+            最常见的用途是操作定制电子设备（比如点亮/熄灭小灯珠），通过某些 GPIO 管脚输出高电平（3.3V）或低电平。
+        </p>
+
+        <p>
+            开发板的 40Pin接口，除了支持 GPIO 以外，还支持 I2C。I2C（Inter-Integrated
+            Circuit）是一种常见的串行通信协议，主要用于微控制器和各种外围设备之间的短距离通信。它由飞利浦公司在1980年代初期开发，以减少芯片之间的连接数，简化电路设计。昇腾官网上基于开发板做的机械臂创意项目，就是开发板通过
+            I2C 控制机械臂（上的单片机 STM32）。
+        </p>
+
+        <p>
+            还支持 UART。通用异步收发器（Universal Asynchronous
+            Receiver/Transmitter)，通常称作UART，是一种串行、异步、全双工的通信协议，在嵌入式领域应用的非常广泛。比如，可以通过 USB-UART 线，连接 40Pin接口的 6、8、10号管脚，通过
+            UART 登录开发板，而不是网线。
+        </p>
+
+        <br>
+        <p>
+            可以参考昇腾官网开发板文档之《硬件接口使用指南》<a href="#refm-1"><sup>[1]</sup></a>的相关章节，获取更多信息。
+            <br>
+            还可以快速看看B站的《 零基础10分钟入门嵌入式！》<a href="#refm-1"><sup>[2]</sup></a>，以便初步了解一些基础信息，尽快消除可能的学习障碍。
+        </p>
+
+        <!--  -->
+        <h2 id="gpio-operation">
+            <a href="#gpio-operation">GPIO操作</a>
+        </h2>
+
+        <p>
+            样例代码如下：
+        </p>
+        <pre><code class="lang-python">import os
+
+GPIO_PIN = 82  # 对应物理针脚11
+GPIO_PATH = "/sys/class/gpio/"
+
+# 导出GPIO
+with open(GPIO_PATH + "export", "w") as f:
+    f.write(str(GPIO_PIN))
+
+# 设置为输出
+with open(GPIO_PATH + f"gpio{GPIO_PIN}/direction", "w") as f:
+    f.write("out")
+
+# 闪烁LED
+import time
+
+for _ in range(5):
+    with open(GPIO_PATH + f"gpio{GPIO_PIN}/value", "w") as f:
+        f.write("1")
+    time.sleep(1)
+    with open(GPIO_PATH + f"gpio{GPIO_PIN}/value", "w") as f:
+        f.write("0")
+    time.sleep(1)
+
+gpio_pin = {
+    # 40PIN管脚号: {名称，GPIO组号，GPIO组内编号, GPIO_PIN全局取值}
+    11: {"name": "GPIO17", "gpio_group": 2, "gpio_id": 18, "gpio_pin": 82},
+    13: {"name": "GPIO27", "gpio_group": 2, "gpio_id": 6, "gpio_pin": 70},
+    15: {"name": "GPIO22", "gpio_group": 2, "gpio_id": 15, "gpio_pin": 79},
+    16: {"name": "GPIO23", "gpio_group": 2, "gpio_id": 16, "gpio_pin": 80},
+    18: {"name": "GPIO24", "gpio_group": 0, "gpio_id": 25, "gpio_pin": 25},
+    22: {"name": "GPIO25", "gpio_group": 0, "gpio_id": 2, "gpio_pin": 2},
+    26: {"name": "GPIO07", "gpio_group": 2, "gpio_id": 19, "gpio_pin": 83},
+    31: {"name": "GPIO06", "gpio_group": 2, "gpio_id": 20, "gpio_pin": 84},
+    33: {"name": "GPIO13", "gpio_group": 4, "gpio_id": 0, "gpio_pin": 128},
+    36: {"name": "GPIO16", "gpio_group": 2, "gpio_id": 17, "gpio_pin": 81},
+    37: {"name": "GPIO26", "gpio_group": 0, "gpio_id": 3, "gpio_pin": 3},
+}
+# 此表说明GPIO管脚与其编号的对应关系。比如第N组第M个管脚的全局编号GPIO_PIN，是第N组的START_GPIO_PIN+M。
+
+# 根据昇腾官网相关资料整理得到
+gpio_pin_range = {
+    # gpio_group, start_gpio_pin, end_gpio_pin
+    # gpio_id_range is 0~31 for all gpio_group(s)
+    0: {"start_gpio_pin": 0, "end_gpio_pin": 31},
+    1: {"start_gpio_pin": 32, "end_gpio_pin": 63},
+    2: {"start_gpio_pin": 64, "end_gpio_pin": 95},
+    3: {"start_gpio_pin": 476, "end_gpio_pin": 507},
+    4: {"start_gpio_pin": 128, "end_gpio_pin": 159},
+    5: {"start_gpio_pin": 160, "end_gpio_pin": 191},
+    7: {"start_gpio_pin": 224, "end_gpio_pin": 255},
+}</code></pre>
+
+        <p>
+            相关说明：
+        </p>
+
+        <!--  -->
+        <p>
+            <span class="em-bold">字典gpio_pin</span>：（根据昇腾官网相关资料整理得到）
+            <br>
+        <ul>
+            <li>gpio_pin的key（11、13、15、16、18、22、26、31、33、36、37），是指 40PIN 接口的物理管脚编号。</li>
+            <li>gpio_pin["name"]：昇腾官网给 gpio 管脚取的名字。暂未发现有什么用途，可忽略。</li>
+            <li>gpio_pin["gpio_group"]：gpio管脚所属的组号。使用命令 <code>gpio_operate</code>时要用到。不用该命令则不用关注。</li>
+            <li>gpio_pin["gpio_id"]：gpio管脚所属的组的组内编号，取值是 0~31。官网使用 <code>gpio_pin</code>，此处使用<code>gpio_id</code>对应。使用命令 <code>gpio_operate</code>时要用到。不用该命令则不用关注。</li>
+            <li>gpio_pin["gpio_pin"]：gpio管脚对应的全局编号，就是上述样例程序中的 <code>GPIO_PIN</code>。</li>
+
+        </ul>
+        </p>
+
+        <!--  -->
+        <br>
+        <p>
+            <span class="em-bold">字典gpio_pin_range</span>：（根据昇腾官网相关资料整理得到）
+            <br>
+        <ul>
+            <li>gpio_pin_range的key（0、1、2、3、4、5、7），是指 gpio 管脚所属的组号 <code>gpio_group</code>。</li>
+            <li>gpio_pin_range["start_gpio_pin"]和gpio_pin_range["end_gpio_pin"]：某一组的gpio管脚对应的全局编号<code>gpio_pin</code>的范围。</li>
+
+        </ul>
+        </p>
+
+
+
+    <!--  -->
+        <br>
+        <p>
+            <span class="em-bold">计算某个物理管脚（比如 40PIN的第11号管脚）对应的gpio管脚的全局编号<code>gpio_pin</code></span>：
+            <br>
+        <ul>
+            <li>查询字典 gpio_pin，得到 40PIN 的11号管脚对应的： gpio组号gpio_group = 2， gpio组内编号 gpio_id = 18。</li>
+            <li>查询字典 gpio_pin_range，得到gpio组号 gpio_group =2 的 start_gpio_pin = 64。</li>
+            <li>则gpio管脚全局编号 gpio_pin = start_gpio_pin + gpio_id = 64 + 18 = 82。</li>
+
+        </ul>
+        </p>
+        
+        <!--  -->
+        <br>
+        <p>
+            对上述样例代码略作改造，就可以通过程序控制 40PIN 中的 gpio管脚的输入/输出，以及输出是高电平或低电平。<br>
+            当然，用程序封装下 gpio_operate 命令，使用 gpio_group 和 gpio_id（官网写的是 gpio_pin，就是对应此处的 gpio_id），也是可以的。
+        </p>
+
+        <!--  -->
+        <br>
+        <hr>
+        <p class="em-larger">
+            参考资料：
+        </p>
+
+        <p>
+            <span id="refm-1">
+                1. 硬件接口使用指南，昇腾官网 Atlas 200I DK A2 开发者套件文档，<a
+                    href="https://www.hiascend.com/document/detail/zh/Atlas200IDKA2DeveloperKit/23.0.RC2/Hardware%20Interfaces/hiug/hiug_0001.html">链接</a>。
+            </span>
+
+            <br>
+            <span id="refm-2">
+                2. 零基础10分钟入门嵌入式！，B站，<a href="https://www.bilibili.com/video/BV1BV41197rY">链接</a>。
+            </span>
+
+
+
+        </p>
+
     </main>
 
 </body>
