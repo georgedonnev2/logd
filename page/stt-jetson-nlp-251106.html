@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <title>在Jetson开发板上从零搭建NLP</title>
+    <link rel="stylesheet" type="text/css" href="../css/logd.css" />
+
+    <!-- 引入不蒜子计数 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</head>
+
+<body class="with-sidebar">
+
+    <!-- header -->
+    <header>
+        <h1>在Jetson开发板上从零搭建NLP</h1>
+
+        <section class="doc-main-info">
+            <p class="doc-author text-comment em-comment">George</p>
+            <p class="doc-last-update text-comment em-comment">25-11-06</p>
+            <p class="doc-first-on text-comment em-comment">25-11-06</p>
+
+            <p class="text-comment em-comment">
+                <span id="busuanzi_container_page_pv">
+                    | 浏览量：<span id="busuanzi_value_page_pv"></span>👀
+                </span>
+                &nbsp|&nbsp
+                返回<a href="./stt-ascend-dk-all.html">
+                    <实验课>
+                </a>
+            </p>
+        </section>
+    </header>
+
+    <!-- footer -->
+    <footer>
+        <p>
+            &copy George Donne 2024-2025. All Rights Reserved. 苏ICP备2021027062号-1&nbsp&nbsp|&nbsp&nbsp
+            <a href="./logd-about.html">关于</a>
+        </p>
+
+        <p>
+            Support: <a href="mailto:georgedonnev2@outlook.com">georgedonnev2@outlook.com</a>
+        </p>
+
+        <p>
+            <span id="busuanzi_container_site_pv">
+                本站浏览量：<span id="busuanzi_value_site_pv"></span>👀
+            </span>
+            &nbsp&nbsp|&nbsp&nbsp
+            <span id="busuanzi_container_site_uv">
+                本站访客数：<span id="busuanzi_value_site_uv"></span>👤
+            </span>
+        </p>
+    </footer>
+
+    <!-- sidebar -->
+    <aside>
+        <p class="em-larger">目录</p>
+
+        <a href="#setup-hardware">硬件组装</a><br>
+        <a href="#account-command">账号和常见命令</a><br>
+        <a href="#stt-nlp">实验内容</a><br>
+        <!-- <a href="#shutdown-dk">关机</a><br>
+        <a href="#appendix">附录</a><br>
+        &nbsp&nbsp<a href="#ascend-website">官网链接</a><br>
+        &nbsp&nbsp<a href="#vscode-to-dk">VSCode连开发板</a><br> -->
+    </aside>
+
+    <!-- main -->
+    <main class="with-sidebar">
+
+        <!--  -->
+        <section>
+            <h2 id="setup-hardware">
+                <a href="#setup-hardware">硬件组装</a>
+            </h2>
+
+            <!--  -->
+            <h3 id="list-hardware">
+                <a href="#list-hardware">清单</a>
+            </h3>
+
+            <p>和常见台式机很类似，有主机、显示器、键盘鼠标。</p>
+            <p>
+                - 主机（Jetson开发板）：1<span class="em-blue">（后面柜子领取）</span><br>
+                &nbsp&nbsp&nbsp&nbsp - 电源线：1<br>
+                - 显示器：1<br>
+                &nbsp&nbsp&nbsp&nbsp - HDMI线（一头大一头小）：1<br>
+                &nbsp&nbsp&nbsp&nbsp - 转接头（HDMI 转 DP）：1<br>
+                &nbsp&nbsp&nbsp&nbsp - 显示器支架：1<br>
+                &nbsp&nbsp&nbsp&nbsp - 电源线（USB 转 Type-C）：1<br>
+                - 键盘：1<br>
+                - 鼠标：1<br>
+                - 麦克风 + 喇叭：1<span class="em-blue">（后面柜子领取）</span><br>
+                &nbsp&nbsp&nbsp&nbsp - USB 转 Type-C 线：1<span class="em-blue">（后面柜子领取）</span><br>
+            </p>
+
+            <!--  -->
+            <h3 id="connect-hardware">
+                <a href="#connect-hardware">组装</a>
+            </h3>
+            <p>1、演示</p>
+            <p>2、连网。插网线，或连接 JNU-WLAN。</p>
+
+            <!--  -->
+            <section>
+                <h2 id="account-command">
+                    <a href="#account-command">账号和常见命令</a>
+                </h2>
+
+                <!--  -->
+                <h3 id="account-password">
+                    <a href="#account-password">账号密码</a>
+                </h3>
+                <p>账号 / 密码： cg / cgremote</p>
+
+                <!--  -->
+                <h3 id="fu-commands">
+                    <a href="#fu-commands">常用 Linux 命令</a>
+                </h3>
+
+                <p class="em-bold">开发板上：</p>
+                <p>
+                    cat 文件名（显示文件内容）<br>
+                    cd （回到 HOME 目录）<br>
+                    cd 目标路径名（切换到目标路径）<br>
+                    cp 源文件名 目标路径名（将源文件复制到目标路径中）<br>
+                    ifconfig（查看 IP 地址）<br>
+                    ls -l（列出文件夹的内容）<br>
+                    mkdir 文件夹名 （创建新文件夹）<br>
+                    pwd （显示当前路径是什么）<br>
+                    vim 文件名 （编辑文本文件）<br><br>
+
+                    <span class="em-blue">命令名 --help（查看命令怎么用，跟什么参数，等）</span>
+                </p>
+
+                <p class="em-bold">本机：（连网线或JNU-WLAN）</p>
+                <p>
+                    ssh cg@开发板IP地址（登录开发板）<br>
+                    或使用 MobaXterm（适用于 Windows）
+                </p>
+            </section>
+
+            <!--  -->
+            <section>
+                <h2 id="stt-nlp">
+                    <a href="#stt-nlp">实验内容</a>
+                </h2>
+
+
+
+                <!--  -->
+                <h3 id="stt-manual">
+                    <a href="#stt-manual">实验手册</a>
+                </h3>
+                <p>参考《76330. 实验: 从零构建自然语言AGENT》</p>
+
+                <!--  -->
+                <h3 id="some-comments">
+                    <a href="#some-comments">几点说明</a>
+                </h3>
+                <p>
+                    1、使用到了 conda。如没有，要自行安装。如何安装，可咨询deepseek等。
+                </p>
+                <p>
+                    2、要安装适合该型号开发板的 conda。如何获取开发板型号，可咨询deepseek等。
+                </p>
+
+                <p>
+                    3、实验手册中的主目录名字是 jeston_ai-main，可取其他名字。子目录和文件名，按实验手册。
+                </p>
+                <p>
+                    4、实验手册中的 conda 虚拟环境名字是 venv，也可取其他名字。
+                </p>
+                <p>
+                    5、实验手册中http://0.0.0.0:7860。如果不行，可改成 127.0.0.1:7860。
+                </p>
+                <p>
+                    6、麦克风和喇叭。要在开发板 Setting - sound 中，先调试下 Output 和 Input，选择带 Q5+ 的那个设备。
+                </p>
+                <p>
+                    7、实验手册给出的代码样例，有几处要调整后才能跑通。可尝试解决。 
+                </p>
+
+
+
+
+    </main>
+
+</body>
+
+</html>
