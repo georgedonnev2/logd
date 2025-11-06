@@ -173,15 +173,12 @@
                     为 Jetson 的 ARM (aarch64) 架构安装 Archiconda（Anaconda 的替代品）
                 </p>
                 <pre>
-                    
-                    wget
-                    https://github.com/Archiconda/build-tools/releases/download/0.2.3/Archiconda3-0.2.3-Linux-aarch64.sh
-                    bash Archiconda3-0.2.3-Linux-aarch64.sh -b
-                    echo -e '\n# set environment variable for conda' >> ~/.bashrc
-                    echo ". ~/archiconda3/etc/profile.d/conda.sh" >> ~/.bashrc
-                    echo 'export PATH=$PATH:~/archiconda3/bin' >> ~/.bashrc
-                    source ~/.bashrc
-                    
+wget https://github.com/Archiconda/build-tools/releases/download/0.2.3/Archiconda3-0.2.3-Linux-aarch64.sh
+bash Archiconda3-0.2.3-Linux-aarch64.sh -b
+echo -e '\n# set environment variable for conda' >> ~/.bashrc
+echo ". ~/archiconda3/etc/profile.d/conda.sh" >> ~/.bashrc
+echo 'export PATH=$PATH:~/archiconda3/bin' >> ~/.bashrc
+source ~/.bashrc
                 </pre>
                 <p>
                     2、要安装适合该型号开发板的 conda。如何获取开发板型号，可咨询deepseek等。
