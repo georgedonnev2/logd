@@ -168,6 +168,22 @@
                     1、使用到了 conda。如没有，要自行安装。如何安装，可咨询deepseek等。
                 </p>
                 <p>
+                    ### 步骤0：安装conda
+
+                    为 Jetson 的 ARM (aarch64) 架构安装 Archiconda（Anaconda 的替代品）
+                </p>
+                <pre>
+                    
+                    wget
+                    https://github.com/Archiconda/build-tools/releases/download/0.2.3/Archiconda3-0.2.3-Linux-aarch64.sh
+                    bash Archiconda3-0.2.3-Linux-aarch64.sh -b
+                    echo -e '\n# set environment variable for conda' >> ~/.bashrc
+                    echo ". ~/archiconda3/etc/profile.d/conda.sh" >> ~/.bashrc
+                    echo 'export PATH=$PATH:~/archiconda3/bin' >> ~/.bashrc
+                    source ~/.bashrc
+                    
+                </pre>
+                <p>
                     2、要安装适合该型号开发板的 conda。如何获取开发板型号，可咨询deepseek等。
                 </p>
 
@@ -184,7 +200,7 @@
                     6、麦克风和喇叭。要在开发板 Setting - sound 中，先调试下 Output 和 Input，选择带 Q5+ 的那个设备。
                 </p>
                 <p>
-                    7、实验手册给出的代码样例，有几处要调整后才能跑通。可尝试解决。 
+                    7、实验手册给出的代码样例，有几处要调整后才能跑通。可尝试解决。
                 </p>
 
 
